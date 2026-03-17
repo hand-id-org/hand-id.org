@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAND — ID Architecture + Interoperability + FAQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple:        #4D00AE;
+  --purple-dim:    rgba(77,0,174,0.07);
+  --purple-mid:    rgba(77,0,174,0.14);
+  --purple-border: rgba(77,0,174,0.2);
+  --sky:           #0284C7;
+  --sky-dim:       rgba(2,132,199,0.07);
+  --sky-border:    rgba(2,132,199,0.2);
+  --gold:          #D97706;
+  --gold-dim:      rgba(217,119,6,0.08);
+  --bg:            #FAFAF8;
+  --bg2:           #F3F2EF;
+  --bg3:           #ECEAE6;
+  --card:          #FFFFFF;
+  --text:          #111111;
+  --text-dim:      #666666;
+  --text-sub:      #999999;
+  --border:        rgba(0,0,0,0.08);
+  --border-mid:    rgba(0,0,0,0.13);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+/* ── SHARED ── */
+.section { padding: 80px 64px; border-bottom: 1px solid var(--border); }
+.section.white { background: var(--card); }
+.section.alt { background: var(--bg2); }
+.section.dark { background: #0D0D0D; }
+.section-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+}
+.section-label::before { content: ''; width: 20px; height: 1px; background: var(--purple); }
+.section-label.sky { color: var(--sky); }
+.section-label.sky::before { background: var(--sky); }
+.section-heading {
+  font-size: clamp(28px, 3.5vw, 44px); font-weight: 800;
+  letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 16px;
+}
+.section-heading em { font-style: normal; color: var(--purple); }
+.section-heading .sky { color: var(--sky); }
+.body-lead {
+  font-size: 17px; font-weight: 300; color: var(--text-dim);
+  line-height: 1.75; max-width: 700px; margin-bottom: 8px;
+}
+.body-lead strong { color: var(--text); font-weight: 600; }
+
+
+/* ════════════════════════════════════════════
+   SECTION 1 — HAND ID ANATOMY DIAGRAM
+════════════════════════════════════════════ */
+
+.anatomy-wrap { margin-top: 56px; }
+
+/* The ID string display */
+.id-display {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 40px 48px 32px;
+  margin-bottom: 0;
+  position: relative; overflow: hidden;
+}
+.id-display::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--sky) 100%);
+}
+.id-display-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-sub);
+  letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px;
+}
+.id-string {
+  font-family: 'DM Mono', monospace; font-size: clamp(18px, 2.5vw, 30px);
+  font-weight: 500; letter-spacing: 0.04em; color: var(--text);
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap;
+  margin-bottom: 32px; line-height: 1.6;
+}
+.id-seg { position: relative; display: inline-block; cursor: default; }
+.id-seg.doi-prefix span { color: var(--gold); }
+.id-seg.slash span { color: var(--text-sub); margin: 0 1px; }
+.id-seg.unique-id span { color: var(--purple); }
+.id-seg.check span { color: var(--sky); }
+.id-seg:hover .id-tooltip { opacity: 1; transform: translateY(0); }
+.id-tooltip {
+  position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
+  background: var(--text); color: #fff; border-radius: 7px;
+  padding: 8px 12px; font-size: 11px; font-weight: 400;
+  white-space: nowrap; pointer-events: none; z-index: 10;
+  opacity: 0; transition: opacity 0.18s, transform 0.18s;
+  font-family: 'Manrope', sans-serif; letter-spacing: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+.id-tooltip::before {
+  content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  border: 5px solid transparent; border-bottom-color: var(--text);
+}
+
+/* Anatomy legend */
+.anatomy-legend {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 2px;
+}
+.legend-item {
+  padding: 20px 24px; background: var(--bg2); border-radius: 0;
+  border-left: 3px solid transparent;
+  transition: background 0.2s;
+}
+.legend-item:first-child { border-radius: 0 0 0 12px; }
+.legend-item:last-child { border-radius: 0 0 12px 0; }
+.legend-item.gold { border-left-color: var(--gold); }
+.legend-item.purple { border-left-color: var(--purple); }
+.legend-item.sky { border-left-color: var(--sky); }
+.legend-item:hover { background: var(--bg3); }
+.legend-num {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; color: var(--text-sub); margin-bottom: 6px;
+}
+.legend-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.legend-value {
+  font-family: 'DM Mono', monospace; font-size: 12px; margin-bottom: 6px;
+}
+.legend-item.gold .legend-value { color: var(--gold); }
+.legend-item.purple .legend-value { color: var(--purple); }
+.legend-item.sky .legend-value { color: var(--sky); }
+.legend-desc { font-size: 12px; font-weight: 300; color: var(--text-dim); line-height: 1.55; }
+
+/* Three object types */
+.object-types {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 40px;
+}
+.obj-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px 24px;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative; overflow: hidden;
+}
+.obj-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--purple); opacity: 0; transition: opacity 0.2s;
+}
+.obj-card:hover { border-color: var(--purple-border); transform: translateY(-2px); }
+.obj-card:hover::after { opacity: 1; }
+.obj-num {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--purple); letter-spacing: 0.12em; margin-bottom: 12px;
+}
+.obj-icon { font-size: 28px; margin-bottom: 12px; }
+.obj-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.obj-id {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--purple); letter-spacing: 0.05em; margin-bottom: 10px;
+  padding: 4px 8px; background: var(--purple-dim);
+  border-radius: 4px; display: inline-block;
+}
+.obj-desc { font-size: 13px; font-weight: 300; color: var(--text-dim); line-height: 1.6; }
+.obj-arrow {
+  position: absolute; right: -1px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; color: var(--purple-border);
+}
+
+/* Resolution flow diagram */
+.resolution-flow {
+  margin-top: 48px; padding: 40px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+}
+.resolution-title {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-sub);
+  margin-bottom: 32px;
+}
+.flow-steps {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0;
+}
+.flow-step {
+  text-align: center; padding: 0 8px;
+}
+.flow-node {
+  width: 56px; height: 56px; border-radius: 12px;
+  margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; position: relative;
+}
+.flow-node.purple { background: var(--purple-dim); border: 1.5px solid var(--purple-border); }
+.flow-node.gold { background: var(--gold-dim); border: 1.5px solid rgba(217,119,6,0.25); }
+.flow-node.sky { background: var(--sky-dim); border: 1.5px solid var(--sky-border); }
+.flow-node.dark { background: #1a1a1a; border: 1.5px solid #333; }
+.flow-label {
+  font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 3px;
+  line-height: 1.3; text-align: center;
+}
+.flow-sub {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  color: var(--text-sub); letter-spacing: 0.04em; line-height: 1.4;
+}
+.flow-arrow {
+  font-size: 18px; color: var(--border-mid);
+  padding: 0 4px; color: var(--text-sub);
+  display: flex; align-items: center; justify-content: center;
+}
+.flow-darpa {
+  margin-top: 24px; padding: 14px 18px;
+  background: #0D0D0D; border-radius: 8px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.flow-darpa-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.flow-darpa-text {
+  font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+}
+.flow-darpa-text strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+
+/* ════════════════════════════════════════════
+   SECTION 2 — INTEROPERABILITY
+════════════════════════════════════════════ */
+
+.interop-grid {
+  display: grid; grid-template-columns: 3fr 2fr;
+  gap: 64px; margin-top: 48px; align-items: start;
+}
+.interop-main {}
+.interop-comparison {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; position: sticky; top: 80px;
+}
+.comp-header {
+  padding: 14px 20px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-sub);
+  border-bottom: 1px solid var(--border); background: var(--bg2);
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+}
+.comp-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.comp-row:last-child { border-bottom: none; }
+.comp-row:hover { background: var(--bg2); }
+.comp-cell {
+  padding: 13px 16px; font-size: 12px; font-weight: 400; color: var(--text-dim);
+  border-right: 1px solid var(--border); line-height: 1.45;
+}
+.comp-cell:last-child { border-right: none; }
+.comp-cell.feature { font-weight: 600; color: var(--text); font-size: 12px; }
+.comp-cell.hand { color: var(--purple); font-weight: 600; }
+.comp-cell.yes { color: #059669; font-weight: 600; }
+.comp-cell.no { color: #DC2626; }
+.comp-cell.partial { color: var(--gold); }
+
+/* Rosetta Stone callout */
+.rosetta {
+  padding: 28px; background: var(--purple);
+  border-radius: 12px; margin-top: 32px;
+  position: relative; overflow: hidden;
+}
+.rosetta::before {
+  content: '"'; position: absolute; top: -20px; left: 16px;
+  font-size: 120px; color: rgba(255,255,255,0.06);
+  font-family: Georgia, serif; line-height: 1;
+}
+.rosetta-quote {
+  font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.95);
+  line-height: 1.65; margin-bottom: 12px; font-style: italic; position: relative;
+}
+.rosetta-attr {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* Why-not-internal section */
+.why-not {
+  margin-top: 32px;
+}
+.why-not-q {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  margin-bottom: 8px; padding-top: 20px; border-top: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.why-not-q::before {
+  content: 'Q'; flex-shrink: 0; width: 22px; height: 22px;
+  background: var(--purple-dim); border: 1px solid var(--purple-border);
+  border-radius: 5px; display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--purple);
+  font-weight: 700; margin-top: 1px;
+}
+.why-not-a {
+  font-size: 14px; font-weight: 300; color: var(--text-dim);
+  line-height: 1.72; padding: 12px 0 0 32px;
+}
+.why-not-a strong { color: var(--text); font-weight: 600; }
+.why-not-a em { font-style: normal; color: var(--purple); font-weight: 600; }
+
+/* Neutral by design */
+.neutral-box {
+  margin-top: 28px; padding: 24px 28px;
+  background: var(--sky-dim); border: 1px solid var(--sky-border);
+  border-radius: 10px;
+}
+.neutral-label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--sky);
+  margin-bottom: 10px;
+}
+.neutral-heading { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.neutral-body { font-size: 14px; font-weight: 300; color: var(--text-dim); line-height: 1.7; }
+.neutral-body strong { color: var(--text); font-weight: 600; }
+
+/* DNS analogy */
+.dns-analogy {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 32px;
+}
+.dns-card {
+  padding: 20px 22px; border-radius: 10px;
+}
+.dns-card.left { background: var(--bg2); }
+.dns-card.right { background: var(--purple); }
+.dns-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.dns-card.left .dns-label { color: var(--text-sub); }
+.dns-card.right .dns-label { color: rgba(255,255,255,0.5); }
+.dns-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.dns-card.left .dns-title { color: var(--text); }
+.dns-card.right .dns-title { color: #fff; }
+.dns-example {
+  font-family: 'DM Mono', monospace; font-size: 12px; margin-bottom: 8px;
+  padding: 5px 10px; border-radius: 4px; display: inline-block;
+}
+.dns-card.left .dns-example { background: var(--bg3); color: var(--text-dim); }
+.dns-card.right .dns-example { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); }
+.dns-desc { font-size: 12px; font-weight: 300; line-height: 1.6; }
+.dns-card.left .dns-desc { color: var(--text-dim); }
+.dns-card.right .dns-desc { color: rgba(255,255,255,0.7); }
+
+
+/* ════════════════════════════════════════════
+   SECTION 3 — FAQ
+════════════════════════════════════════════ */
+
+.faq-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; margin-top: 48px;
+  border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+}
+.faq-item {
+  padding: 28px 32px; border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: var(--card); transition: background 0.18s;
+}
+.faq-item:nth-child(even) { border-right: none; }
+.faq-item:nth-last-child(-n+2) { border-bottom: none; }
+.faq-item:hover { background: var(--bg2); }
+.faq-q {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  margin-bottom: 10px; line-height: 1.35;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.faq-q-mark {
+  flex-shrink: 0; width: 24px; height: 24px; border-radius: 6px;
+  background: var(--purple-dim); border: 1px solid var(--purple-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--purple); font-weight: 700; margin-top: 1px;
+}
+.faq-a { font-size: 13px; font-weight: 300; color: var(--text-dim); line-height: 1.72; padding-left: 34px; }
+.faq-a strong { color: var(--text); font-weight: 600; }
+.faq-a em { font-style: normal; color: var(--purple); font-weight: 600; }
+.faq-a a { color: var(--sky); text-decoration: none; }
+.faq-a a:hover { text-decoration: underline; }
+
+/* ownership callout */
+.ownership-callout {
+  margin-top: 32px; padding: 24px 28px;
+  border: 1.5px solid var(--purple-border); border-radius: 10px;
+  background: var(--purple-dim); display: flex; gap: 16px; align-items: flex-start;
+}
+.ownership-icon { font-size: 24px; flex-shrink: 0; }
+.ownership-text {}
+.ownership-head { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.ownership-body { font-size: 13px; font-weight: 300; color: var(--text-dim); line-height: 1.7; }
+.ownership-body strong { color: var(--text); font-weight: 600; }
+
+
+/* ── PAGE NAV ── */
+.page-nav {
+  background: var(--purple); padding: 16px 64px;
+  display: flex; align-items: center; gap: 32px;
+  position: sticky; top: 0; z-index: 100;
+}
+.page-nav-title {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-right: 8px; white-space: nowrap;
+}
+.page-nav a {
+  font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7);
+  text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s;
+  white-space: nowrap;
+}
+.page-nav a:hover { color: #fff; }
+
+@media (max-width: 900px) {
+  .section { padding: 60px 24px; }
+  .anatomy-legend, .object-types, .faq-grid, .dns-analogy { grid-template-columns: 1fr; }
+  .flow-steps { grid-template-columns: 1fr; gap: 16px; }
+  .flow-arrow { transform: rotate(90deg); }
+  .interop-grid { grid-template-columns: 1fr; }
+  .page-nav { padding: 16px 24px; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-nav">
+  <span class="page-nav-title">hand-id.org · New Sections</span>
+  <a href="#anatomy">① ID Anatomy & Architecture</a>
+  <a href="#interop">② Interoperability & The Rosetta Stone</a>
+  <a href="#faq">③ FAQ — Questions & Answers</a>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 1 — HAND ID ANATOMY & ARCHITECTURE
+════════════════════════════════════════════ -->
+<div class="section white" id="anatomy">
+  <div class="section-label">How HAND IDs Work</div>
+  <h2 class="section-heading">The anatomy of a<br><em>HAND ID.</em></h2>
+  <p class="body-lead">A HAND ID is a <strong>DOI<sup>&reg;</sup> (Digital Object Identifier)</strong> — a persistent, globally resolvable handle built on the same internet infrastructure as TCP/IP, designed by the same minds. Every HAND ID follows an open, ISO-governed structure that any authorized system in the world can resolve.</p>
+
+  <div class="anatomy-wrap">
+
+    <!-- ID String + Anatomy -->
+    <div class="id-display">
+      <div class="id-display-label">Example HAND ID — Legal Person (Type 01)</div>
+      <div class="id-string">
+        <span class="id-seg doi-prefix">
+          <span>10.23</span>
+          <div class="id-tooltip">DOI Foundation prefix · All HAND IDs share this</div>
+        </span>
+        <span class="id-seg slash"><span>/</span></span>
+        <span class="id-seg unique-id">
+          <span>B77C-A6A1-D3E8-1E13-D6C7</span>
+          <div class="id-tooltip">Unique suffix · Opaque · Assigned by HAND registry</div>
+        </span>
+      </div>
+      <div class="id-display-label" style="margin-top:24px;">Example HAND ID — Digital Replica (Type 02)</div>
+      <div class="id-string" style="margin-bottom:24px;">
+        <span class="id-seg doi-prefix">
+          <span>10.23</span>
+        </span>
+        <span class="id-seg slash"><span>/</span></span>
+        <span class="id-seg unique-id">
+          <span>F72B-0103-B361-05F9-3Z71</span>
+        </span>
+        <span style="font-family:'DM Mono',monospace; font-size:13px; color:var(--sky); background:var(--sky-dim); border:1px solid var(--sky-border); border-radius:5px; padding:3px 10px; margin-left:16px; font-weight:500;">→ Linked to B77C-A6A1… (Type 01)</span>
+      </div>
+    </div>
+
+    <!-- Anatomy Legend -->
+    <div class="anatomy-legend">
+      <div class="legend-item gold">
+        <div class="legend-num">Part 01</div>
+        <div class="legend-title">DOI Prefix</div>
+        <div class="legend-value">10.23</div>
+        <div class="legend-desc">All HAND IDs begin with <strong>10.23</strong> — the DOI Foundation prefix assigned to HAND as one of only 12 authorized Registration Agencies in the world. The "10." is the top-level DOI namespace; ".23" is HAND's unique naming authority within it.</div>
+      </div>
+      <div class="legend-item purple">
+        <div class="legend-num">Part 02</div>
+        <div class="legend-title">Unique Suffix</div>
+        <div class="legend-value">B77C-A6A1-D3E8-1E13-D6C7</div>
+        <div class="legend-desc">A globally unique alphanumeric string assigned by the HAND registry upon registration. <strong>Intentionally opaque</strong> — it encodes no biographical information, no employer, no platform. It belongs to the record of notability, not to any organization that registers it.</div>
+      </div>
+      <div class="legend-item sky">
+        <div class="legend-num">Part 03</div>
+        <div class="legend-title">Object Type Link</div>
+        <div class="legend-value">→ Linked to Type 01 ID</div>
+        <div class="legend-desc">Digital Replica (Type 02) and Fictional Character (Type 03) IDs are structurally linked to their Legal Person (Type 01) source ID. This parent-child relationship is encoded in the registry metadata — enabling chain-of-consent tracking for AI-generated likenesses.</div>
+      </div>
+    </div>
+
+    <!-- Three Object Types -->
+    <div style="margin-top:48px;">
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.13em; text-transform:uppercase; color:var(--text-sub); margin-bottom:20px;">Three registered object types — the full talent lifecycle</div>
+      <div class="object-types">
+        <div class="obj-card">
+          <div class="obj-num">TYPE 01</div>
+          <div class="obj-icon">🧑</div>
+          <div class="obj-title">Legal & Natural Persons</div>
+          <div class="obj-id">10.23/B77C-A6A1-D3E8-1E13-D6C7</div>
+          <div class="obj-desc">Athletes, actors, directors, musicians, creators, and other quantifiably notable public figures. The foundational identity record. Source of truth for all downstream IDs. Citation-Backed Notability™ verified.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">TYPE 02</div>
+          <div class="obj-icon">🤖</div>
+          <div class="obj-title">Connected Digital Replicas</div>
+          <div class="obj-id">10.23/F72B-0103-B361-05F9-3Z71</div>
+          <div class="obj-desc">Consent-based AI likenesses, synthetic voice models, and virtual avatars. Always structurally linked to their Type 01 Legal Person source ID — enabling chain-of-consent tracking and licensed use verification.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">TYPE 03</div>
+          <div class="obj-icon">🎭</div>
+          <div class="obj-title">Fictional Characters</div>
+          <div class="obj-id">10.23/5F45-8D85-5C84-E4AD</div>
+          <div class="obj-desc">IP-protected fictional characters from film, television, gaming, and publishing. Enables character-level rights tracking, licensing automation, and disambiguation across reboots, remakes, and digital continuations.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resolution Flow -->
+    <div class="resolution-flow">
+      <div class="resolution-title">How a HAND ID resolves — the global handle system</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-node purple">🏢</div>
+          <div class="flow-label">Registrant submits</div>
+          <div class="flow-sub">Studio / Guild /<br>Rep / Platform</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-node purple">🔍</div>
+          <div class="flow-label">HAND verifies</div>
+          <div class="flow-sub">Citation-Backed<br>Notability™ check</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-node gold">⬡</div>
+          <div class="flow-label">HAND ID issued</div>
+          <div class="flow-sub">10.23/[unique suffix]<br>Stored in registry</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-node gold">🌐</div>
+          <div class="flow-label">DOI / Handle System</div>
+          <div class="flow-sub">Global root servers<br>DONA Foundation</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-node sky">✅</div>
+          <div class="flow-label">Any system resolves</div>
+          <div class="flow-sub">Anywhere · Forever ·<br>No single point of failure</div>
+        </div>
+      </div>
+      <div class="flow-darpa">
+        <div class="flow-darpa-icon">🛰</div>
+        <div class="flow-darpa-text">
+          <strong>The same infrastructure as the internet itself.</strong> The Handle System — the resolution layer beneath every HAND ID — was developed by <strong>Dr. Robert E. Kahn</strong> at CNRI with original DARPA funding (1992–1996). Dr. Kahn co-invented TCP/IP with Vint Cerf — the foundational protocol of the entire internet — and received the Presidential Medal of Freedom in 2005, the highest civilian honor in the United States. The DOI Foundation has operated on this infrastructure since 1997, now handling over 3 billion resolutions per month globally as AI agents resolve identifiers at machine scale. HAND IDs are built on the most time-tested persistent identifier infrastructure in existence. That is not a credential. That is a fact about the nature of the world.
+        </div>
+      </div>
+
+      <!-- Jessop Callout -->
+      <div style="margin-top:40px; background:var(--card); border:1px solid var(--border); border-left:3px solid var(--purple); border-radius:10px; padding:32px 36px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--purple); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+          <span style="display:inline-block; width:6px; height:6px; background:var(--purple); border-radius:50%;"></span>
+          Independent Validation — A Verdict From Inside the Room
+        </div>
+        <p style="font-size:16px; font-weight:400; color:var(--text); line-height:1.7; margin-bottom:16px;">
+          Paul Jessop — former CTO of both IFPI and the RIAA, current Executive Director of the US ISRC Agency, co-author of ISNI (ISO 27729), former Technology Adviser to the DOI Foundation, and one of the architects of DDEX — was among the first people Will Kreth brought into the conversation about what would become HAND.
+        </p>
+        <p style="font-size:16px; font-weight:300; color:var(--text-dim); line-height:1.7; margin-bottom:16px;">
+          In October 2023, after years of watching the infrastructure take shape, Jessop published <em>A Manifesto for Creator Identification and Protection</em> — a nine-point bill of rights, written under his own name and his own consulting firm, calling for exactly the infrastructure HAND had already built. He didn't discover HAND and endorse it. He was there from the beginning, and then he said it publicly.
+        </p>
+        <p style="font-size:16px; font-weight:300; color:var(--text-dim); line-height:1.7; margin-bottom:20px;">
+          Jessop brings the same institutional lineage to HAND that Raymond Drewry brings through EIDR — the people who built the identifier standards the industry already depends on, choosing to extend that work into talent identity. That is not coincidence. That is pattern recognition.
+        </p>
+        <a href="https://hand-id.org/creator-id-manifesto/" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--purple); text-decoration:none; font-family:'DM Mono',monospace; letter-spacing:0.04em; border:1px solid var(--purple-border); border-radius:6px; padding:10px 18px; transition:background 0.2s;">
+          Read the Manifesto ↗
+        </a>
+        <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border); font-family:'DM Mono',monospace; font-size:10px; color:var(--text-sub); letter-spacing:0.06em;">
+          Paul Jessop · County Analytics Ltd · Cambridge Engineering/Computer Science · Oxford Management · Chartered Engineer, Fellow IET · HAND Advisor
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 2 — INTEROPERABILITY
+════════════════════════════════════════════ -->
+<div class="section alt" id="interop">
+  <div class="section-label sky">Interoperability</div>
+  <h2 class="section-heading">The <span class="sky">Rosetta Stone</span><br>of talent identity.</h2>
+  <p class="body-lead">Every organization in the Cultural Industries has its own internal talent database. Studios have theirs. Leagues have theirs. Platforms have theirs. None of them speak the same language — until now. <strong>HAND ID is the common language everyone's system already understands.</strong></p>
+
+  <div class="interop-grid">
+    <div class="interop-main">
+
+      <div class="why-not">
+        <div class="why-not-q">Why can't I just use our existing internal talent database?</div>
+        <div class="why-not-a">You can — for some things. Your internal system works inside your walls. But your production partners, your distribution partners, your union counterparts, your licensing attorneys — none of them use your IDs. <strong>Nobody works in a vacuum.</strong> Every handoff between organizations introduces a name-matching problem, a deduplication problem, and a data-integrity problem. HAND ID solves all three: <em>one ID, every system, every partner.</em></div>
+
+        <div class="why-not-q">Why use an outside entity to manage talent identity?</div>
+        <div class="why-not-a">Because you need a <strong>disinterested third party</strong>. If talent identity is managed by a studio, talent doesn't trust it. If it's managed by a platform, other platforms won't adopt it. If it's managed by a guild, rights holders resist it. HAND is a <strong>nonprofit trade association</strong> — not owned by any studio, platform, or guild — governed by an independent board of industry veterans. Like the internet's DNS, HAND works precisely because no single organization controls it.</div>
+
+        <div class="why-not-q">We have contractual relationships with thousands of performers. How do we connect our records to HAND IDs?</div>
+        <div class="why-not-a">HAND supports <strong>bulk catalog mapping</strong> — you provide your existing records and HAND identifies which have registered IDs, flags duplicates, and registers new IDs where they don't yet exist. HAND IDs become the connective tissue between your internal records and every external partner's system. <em>Think of it as the Rosetta Stone between your database and everyone else's.</em></div>
+
+        <div class="why-not-q">Does a HAND ID imply ownership of the talent?</div>
+        <div class="why-not-a"><strong>No.</strong> A HAND ID is purely functional — it carries no implication of ownership, employment, or contractual relationship. It identifies the person as a publicly notable individual, not as an asset belonging to any organization. The ID persists regardless of who registers it, who employs the talent, or which organization manages their career. It belongs to the public record of their notability — not to any registrant.</div>
+
+        <div class="why-not-q">What about our SSN-based internal records? Do we still need those?</div>
+        <div class="why-not-a">Yes, for payroll and tax compliance — SSNs are legally required for those purposes. But <strong>SSNs are dangerously overused in the entertainment industry</strong> as de facto identity tokens across production, casting, and rights workflows. California's CPRA creates significant liability for organizations that expose or unnecessarily process SSNs. HAND IDs provide a <em>safe, neutral, portable</em> identifier for every workflow that doesn't require tax compliance — eliminating SSN exposure risk without disrupting payroll systems.</div>
+
+        <div class="why-not-q">Is HAND interoperable with EIDR?</div>
+        <div class="why-not-a">Yes. Both HAND and EIDR are DOI Registration Agencies operating on the same Handle System infrastructure. EIDR identifies <em>content</em> (films, TV shows, episodes, edits). HAND identifies <em>talent</em> (the people who create that content). A production record can carry both an EIDR ID (for the title) and HAND IDs (for the cast and crew) — linking content and talent identity within the same ISO-governed, globally resolvable namespace. They are sibling standards, not competing ones.</div>
+      </div>
+
+      <!-- DNS analogy -->
+      <div class="dns-analogy" style="margin-top:36px;">
+        <div class="dns-card left">
+          <div class="dns-label">Domain Name System (DNS)</div>
+          <div class="dns-title">How the internet resolves locations</div>
+          <div class="dns-example">humandigital.tech → 104.21.4.x</div>
+          <div class="dns-desc">DNS translates human-readable domain names into IP addresses. It's neutral infrastructure that every internet-connected system uses — not owned by any website, browser, or ISP. That neutrality is why it works everywhere.</div>
+        </div>
+        <div class="dns-card right">
+          <div class="dns-label">HAND ID / DOI Handle System</div>
+          <div class="dns-title">How the industry resolves talent identity</div>
+          <div class="dns-example">10.23/B77C-A6A1-… → [talent record]</div>
+          <div class="dns-desc">HAND IDs work the same way — neutral, nonprofit infrastructure that any authorized system can resolve. Not owned by any studio, platform, or guild. That neutrality is why HAND wins: every organization can adopt it without surrendering control to a competitor.</div>
+        </div>
+      </div>
+
+      <!-- Rosetta Stone callout -->
+      <div class="rosetta">
+        <div class="rosetta-quote">"Just as the Rosetta Stone unlocked the meaning of hieroglyphics by providing the same content in three languages — HAND ID is the Rosetta Stone of talent identity. It provides the same authoritative record of a person's notability in a form that every system, every partner, and every jurisdiction can read."</div>
+        <div class="rosetta-attr">Will Kreth · Founder & CEO, Human &amp; Digital · Former Executive Director, EIDR · Co-inventor of the Rosetta Stone metaphor for DOI-based media identifiers</div>
+      </div>
+
+    </div>
+
+    <!-- Comparison table -->
+    <div>
+      <div class="interop-comparison">
+        <div class="comp-header">
+          <span>Capability</span>
+          <span>Internal DB</span>
+          <span>HAND ID</span>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">Works across org boundaries</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">Globally resolvable</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">Persistent (no expiry)</div>
+          <div class="comp-cell partial">~ Sometimes</div>
+          <div class="comp-cell yes">✓ Always</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">No ownership implication</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">Neutral third-party governed</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">Covers Digital Replicas / AI</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">ISO 26324:2025 aligned</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">Interoperable with EIDR</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">Eliminates SSN exposure risk</div>
+          <div class="comp-cell no">✗ No</div>
+          <div class="comp-cell yes">✓ Yes</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature">API automatable</div>
+          <div class="comp-cell partial">~ Internal only</div>
+          <div class="comp-cell yes">✓ Universal</div>
+        </div>
+      </div>
+
+      <div class="neutral-box" style="margin-top:16px;">
+        <div class="neutral-label">Neutral by Design</div>
+        <div class="neutral-heading">Governed by no one. Trusted by everyone.</div>
+        <div class="neutral-body">HAND is a Delaware nonprofit trade association applying for 501(c)(6) status — <strong>not owned by any studio, platform, streaming service, or guild</strong>. This structural neutrality is the feature. Talent trusts it because no employer controls it. Guilds trust it because no platform built it. Platforms trust it because no competitor owns it. <strong>HAND is infrastructure. Infrastructure works when everyone can rely on it equally.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 3 — FAQ
+════════════════════════════════════════════ -->
+<div class="section white" id="faq">
+  <div class="section-label">Frequently Asked Questions</div>
+  <h2 class="section-heading">Everything you wanted<br>to know about <em>HAND IDs.</em></h2>
+  <p class="body-lead">Clear answers to the questions rights holders, guilds, talent representatives, and developers ask most. <strong>If your question isn't here, we want to hear it.</strong></p>
+
+  <div class="faq-grid">
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>What exactly is a HAND ID?</div>
+      <div class="faq-a">A HAND ID is a <em>persistent, globally resolvable Digital Object Identifier (DOI)</em> for a notable public figure — an athlete, actor, musician, director, creator, or other quantifiably notable person in the Cultural Industries. It is issued by HAND — one of only 12 authorized DOI Registration Agencies in the world — under the governance of the DOI Foundation and ISO 26324:2025.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>What makes someone eligible for a HAND ID?</div>
+      <div class="faq-a">Eligibility is determined by <em>Citation-Backed Notability™</em> — HAND's proprietary methodology for verifying genuine, enduring significance through <strong>independent, verifiable citations from reputable sources</strong>. No self-reported credentials, no follower counts, no gamed metrics. A multiplicity of citations from a community of reputable sources — with no single arbiter and no single point of failure.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Does a HAND ID expire?</div>
+      <div class="faq-a"><strong>No.</strong> A HAND ID is permanent. It is issued once and remains resolvable forever — through career changes, platform migrations, organizational changes, and even after death. The DOI Foundation's infrastructure, in operation since 1997 with over 1 billion resolutions per day, guarantees this persistence at the technical and organizational level.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Who owns a HAND ID once it is issued?</div>
+      <div class="faq-a">Nobody "owns" a HAND ID in the traditional sense. <strong>A HAND ID belongs to the public record of a person's notability</strong> — not to the studio that employs them, the platform that hosts them, or the representative who registers them. It is purely functional, carrying no implication of ownership or contractual relationship. It persists regardless of any change in who manages the talent's career.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Is HAND an ISO standard?</div>
+      <div class="faq-a">HAND is not itself an ISO standard, but it is a Registration Agency of the DOI Foundation — the governance body for ISO 26324:2025. All HAND IDs are issued under this ISO standard, which governs syntax, persistence, and resolution infrastructure. <a href="https://www.iso.org/standard/81599.html" target="_blank">ISO 26324:2025 ↗</a></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>How does HAND relate to EIDR?</div>
+      <div class="faq-a">EIDR and HAND are <strong>sibling DOI Registration Agencies</strong> — both authorized by the DOI Foundation, both operating on the same Handle System infrastructure. EIDR identifies <em>content</em> (films, TV shows, edits). HAND identifies <em>talent</em> (the people who create that content). A production record can carry both. They are complementary, not competing — HAND's success deepens the value of EIDR, and vice versa. That alignment is structural, not incidental: <strong>Raymond Drewry</strong>, Co-Founder of EIDR and Principal Scientist at MovieLabs, sits on HAND's board.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Does HAND track talent rights or ownership?</div>
+      <div class="faq-a"><strong>No.</strong> HAND is a registry, not a rights management system. The metadata associated with a HAND ID is functional in nature — sufficient to identify and disambiguate a person, nothing more. HAND does not collect commercially sensitive rights data, contract terms, compensation, or ownership information. Think of it as the identifier that your rights management system references — not a replacement for it.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>What about Digital Replicas and AI likenesses?</div>
+      <div class="faq-a">HAND issues <em>Type 02: Connected Digital Replica IDs</em> that are structurally linked to their Type 01 Legal Person source ID. This parent-child relationship in the registry metadata creates an <strong>auditable chain of consent</strong> — enabling verification that a digital replica was authorized by the underlying talent, critical for compliance with California CPRA, AB 1836, AB 2602, the NO FAKES Act, and emerging AI likeness legislation globally.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Can anyone search the HAND registry?</div>
+      <div class="faq-a">Yes. The HAND registry is publicly searchable — anyone can look up a HAND ID or search by name at <a href="https://registry.handidentity.com" target="_blank">registry.handidentity.com ↗</a>. Programmatic API access for bulk resolution and supply-chain integration is available to HAND members. <strong>Lookup is always free.</strong></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>What does HAND membership include?</div>
+      <div class="faq-a">HAND membership provides: <strong>unlimited HAND ID resolution via API</strong>, bulk catalog mapping support, participation in HAND working groups and standards governance, access to technical documentation and SDKs, free training sessions, and inclusion in the HAND member roster. Membership tiers scale to organization size. <a href="#join">Learn about membership →</a></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>How is HAND governed?</div>
+      <div class="faq-a">HAND is a <strong>Delaware non-stock nonprofit C corporation</strong>, currently applying for IRS 501(c)(6) trade association status. It is governed by an independent board of industry veterans — currently chaired by <em>Renard T. Jenkins</em> (Past President, SMPTE), with board members including <em>Raymond Drewry</em> (Co-Founder, EIDR) and <em>Scott Perry</em> (C2PA Conformance Lead, CAWG Co-Chair). No single commercial interest controls the board.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Is HAND's infrastructure secure if it depends on the DOI Foundation?</div>
+      <div class="faq-a">Yes — and this is a strength, not a risk. The DOI Foundation mandates that if any Registration Agency ceases operations, its DOI names are "homed" in another RA, ensuring <strong>no DOI name is ever lost</strong>. The Handle System's global root infrastructure has operated continuously since 1997. HAND adds its own redundant infrastructure — replication servers, secondary sites, and mirrored databases — on top of this already resilient foundation.</div>
+    </div>
+
+  </div>
+
+  <!-- Ownership callout -->
+  <div class="ownership-callout">
+    <div class="ownership-icon">🔑</div>
+    <div class="ownership-text">
+      <div class="ownership-head">Your HAND ID belongs to your notability — not to any organization.</div>
+      <div class="ownership-body">A HAND ID is issued on the basis of your independently verified, publicly documented significance. <strong>No employer, platform, studio, or representative owns your HAND ID.</strong> It persists through every career change, platform migration, and business relationship. Whoever you work with next — your ID is already there waiting.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<div style="background:var(--bg2); border-top:1px solid var(--border); padding:24px 64px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+  <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--text-sub); letter-spacing:.04em;">DOI<sup>&reg;</sup>, DOI.ORG<sup>&reg;</sup>, and short DOI<sup>&reg;</sup> are trademarks of the International DOI Foundation.</span>
+  <a href="hand_id_homepage_v4.html" style="font-family:'DM Mono',monospace; font-size:11px; color:var(--purple); text-decoration:none;">&#8592; hand-id.org</a>
+</div>
+</body>
+</html>
