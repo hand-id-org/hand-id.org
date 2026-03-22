@@ -69,7 +69,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 /* ── HERO ── */
 .hero { padding:128px 48px 96px; position:relative; overflow:hidden; border-bottom:1px solid var(--border); min-height:96vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:0 48px; }
 .hero-image-wrap { display:flex; align-items:center; justify-content:center; position:relative; z-index:2; animation:fadeUp 1s cubic-bezier(.22,1,.36,1) .6s both; }
-.hero-image-wrap img { width:100%; max-width:680px; height:auto; display:block; filter:drop-shadow(0 40px 80px rgba(0,0,0,0.5)); }
+.hero-image-wrap img { width:100%; max-width:680px; height:auto; display:block; filter:drop-shadow(0 48px 80px rgba(0,0,0,0.35)) drop-shadow(0 24px 48px rgba(77,0,174,0.15)); }
 .hero-grid { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px); background-size:56px 56px; animation:gridDrift 14s ease-in-out infinite alternate; }
 .hero-glow { position:absolute; top:-120px; right:-100px; pointer-events:none; width:700px; height:600px; background:radial-gradient(ellipse,rgba(77,0,174,.06) 0%,transparent 65%); animation:glowDrift 9s ease-in-out infinite; }
 .hero-glow-sky { position:absolute; bottom:-80px; left:30%; pointer-events:none; width:500px; height:400px; background:radial-gradient(ellipse,rgba(2,132,199,.05) 0%,transparent 65%); animation:glowDrift 11s ease-in-out infinite reverse; }
@@ -319,7 +319,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     </div>
   </div>
   <div class="hero-image-wrap">
-    <img src="/images/HAND.HEROINE.IMAGE.webp" alt="HAND Identity — Human, Digital Replica, Fictional Character" style="width:100%;max-width:680px;height:auto;display:block;border-radius:16px;box-shadow:0 32px 80px rgba(77,0,174,0.18),0 8px 32px rgba(0,0,0,0.12);">
+    <img src="/images/HAND.HEROINE.IMAGE.webp" alt="HAND Identity — Human, Digital Replica, Fictional Character" >
   </div>
 </section>
 <div class="urgency reveal">
