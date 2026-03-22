@@ -421,6 +421,16 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
   .page-nav { padding: 16px 24px; gap: 16px; }
 }
 </style>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VN98QYPGL0');
+  </script>
+  <!-- HubSpot Tracking -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/48696710.js"></script>
 </head>
 <body>
 
@@ -456,7 +466,7 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
           <div class="id-tooltip">Unique suffix · Opaque · Assigned by HAND registry</div>
         </span>
       </div>
-      <div class="id-display-label" style="margin-top:24px;">Example HAND ID — Digital Replica (Type 02)</div>
+      <div class="id-display-label" style="margin-top:24px;">Example HAND ID — Licensed Likeness (Type 02)</div>
       <div class="id-string" style="margin-bottom:24px;">
         <span class="id-seg doi-prefix">
           <span>10.23</span>
@@ -487,7 +497,7 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
         <div class="legend-num">Part 03</div>
         <div class="legend-title">Object Type Link</div>
         <div class="legend-value">→ Linked to Type 01 ID</div>
-        <div class="legend-desc">Digital Replica (Type 02) and Fictional Character (Type 03) IDs are structurally linked to their Legal Person (Type 01) source ID. This parent-child relationship is encoded in the registry metadata — enabling chain-of-consent tracking for AI-generated likenesses.</div>
+        <div class="legend-desc">Licensed Likeness (Type 02) and Fictional Character (Type 03) IDs are structurally linked to their Legal Person (Type 01) source ID. This parent-child relationship is encoded in the registry metadata as a traversable provenance graph — the NIL rights holder is always one hop away, in any system, at any time.</div>
       </div>
     </div>
 
@@ -505,9 +515,9 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
         <div class="obj-card">
           <div class="obj-num">TYPE 02</div>
           <div class="obj-icon">🤖</div>
-          <div class="obj-title">Connected Digital Replicas</div>
+          <div class="obj-title">Licensed Likenesses</div>
           <div class="obj-id">10.23/F72B-0103-B361-05F9-3Z71</div>
-          <div class="obj-desc">Consent-based AI likenesses, synthetic voice models, and virtual avatars. Always structurally linked to their Type 01 Legal Person source ID — enabling chain-of-consent tracking and licensed use verification.</div>
+          <div class="obj-desc">Any authorized likeness — AI-generated, synthetic voice, virtual avatar, NIL endorsement, or any other licensed permutation. Ideally registered at the moment of creation, so consent and instantiation are co-recorded. Retroactive registration is fully supported for likenesses already in use. In both cases, the Type 02 ID is permanently linked to its Type 01 Legal Person source — a traversable chain of custody to the NIL rights holder, measurable and resolvable at any time.</div>
         </div>
         <div class="obj-card">
           <div class="obj-num">TYPE 03</div>
@@ -677,7 +687,7 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
           <div class="comp-cell yes">✓ Yes</div>
         </div>
         <div class="comp-row">
-          <div class="comp-cell feature">Covers Digital Replicas / AI</div>
+          <div class="comp-cell feature">Covers Licensed Likenesses / AI</div>
           <div class="comp-cell no">✗ No</div>
           <div class="comp-cell yes">✓ Yes</div>
         </div>
@@ -759,8 +769,8 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
     </div>
 
     <div class="faq-item">
-      <div class="faq-q"><span class="faq-q-mark">Q</span>What about Digital Replicas and AI likenesses?</div>
-      <div class="faq-a">HAND issues <em>Type 02: Connected Digital Replica IDs</em> that are structurally linked to their Type 01 Legal Person source ID. This parent-child relationship in the registry metadata creates an <strong>auditable chain of consent</strong> — enabling verification that a digital replica was authorized by the underlying talent, critical for compliance with California CPRA, AB 1836, AB 2602, the NO FAKES Act, and emerging AI likeness legislation globally.</div>
+      <div class="faq-q"><span class="faq-q-mark">Q</span>What about Licensed Likenesses and AI-generated content?</div>
+      <div class="faq-a">HAND issues <em>Type 02: Licensed Likeness IDs</em> — covering every authorized permutation of a person's likeness, from AI-generated synthetic voice and virtual avatars to NIL endorsements, holographic appearances, and uses not yet imagined. The best practice is concurrent registration: when a new likeness object is created with consent, a HAND ID is issued at that same moment — so the act of creation and the act of licensing are co-recorded in a single provenance event. Retroactive registration is fully supported for likenesses already in use, bringing existing deployments into the same auditable graph. In both cases, the Type 02 ID is permanently linked to its Type 01 Legal Person source, creating a <strong>traversable chain of custody</strong> to the NIL rights holder — one hop, any system, any time. This structure is critical for compliance with California AB 1836, AB 2602, the NO FAKES Act, and emerging AI likeness legislation globally.</div>
     </div>
 
     <div class="faq-item">
