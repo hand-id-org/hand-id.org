@@ -237,40 +237,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 .footer-hd-link { font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,.35); text-decoration:none; transition:color .2s; }
 .footer-hd-link:hover { color:rgba(255,255,255,.7); }
 
-@media (max-width:1024px) {
-  nav { padding:0 24px; }
-  .nav-tagline { display:none; }
-  .nav-links { display:none; }
-  .nav-hamburger { display:flex; }
-  .hero {
-    grid-template-columns:1fr;
-    grid-template-rows: auto auto;
-    min-height:auto;
-    padding:96px 24px 48px;
-  }
-  .hero-content { grid-column:1; grid-row:1; }
-  .hero-image-wrap {
-    grid-column:1; grid-row:2;
-    max-width:100%;
-    margin-top:40px;
-  }
-  .hero-image-wrap img { max-width:100%; }
-  .hero,.section,.membership,.cbn-section { padding-left:24px; padding-right:24px; }
-  .standards { padding-left:24px; padding-right:24px; }
-  .metrics-bar { grid-template-columns:repeat(3,1fr); }
-  .forces-grid,.registry-grid { grid-template-columns:1fr; }
-  .audience-grid,.what-grid,.voices-grid { grid-template-columns:1fr; }
-  .board-grid { grid-template-columns:1fr 1fr; }
-  .membership-grid { grid-template-columns:1fr 1fr; }
-  .cbn-attributes { grid-template-columns:repeat(2,1fr); }
-  .footer-top { grid-template-columns:1fr 1fr; }
-  footer { padding:48px 24px 32px; }
-}
-@media (max-width:640px) {
-  .hero h1 { font-size:36px; }
-  .metrics-bar { grid-template-columns:1fr 1fr; }
-  .board-grid,.advisor-grid,.membership-grid { grid-template-columns:1fr; }
-}
+
   /* ── HAMBURGER NAV (mobile) ── */
   .nav-hamburger {
     display: none;
@@ -331,6 +298,40 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     border-bottom: none;
   }
 
+  @media (max-width:1024px) {
+  nav { padding:0 24px; }
+  .nav-tagline { display:none; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+  .hero {
+    grid-template-columns:1fr;
+    grid-template-rows: auto auto;
+    min-height:auto;
+    padding:96px 24px 48px;
+  }
+  .hero-content { grid-column:1; grid-row:1; }
+  .hero-image-wrap {
+    grid-column:1; grid-row:2;
+    max-width:100%;
+    margin-top:40px;
+  }
+  .hero-image-wrap img { max-width:100%; }
+  .hero,.section,.membership,.cbn-section { padding-left:24px; padding-right:24px; }
+  .standards { padding-left:24px; padding-right:24px; }
+  .metrics-bar { grid-template-columns:repeat(3,1fr); }
+  .forces-grid,.registry-grid { grid-template-columns:1fr; }
+  .audience-grid,.what-grid,.voices-grid { grid-template-columns:1fr; }
+  .board-grid { grid-template-columns:1fr 1fr; }
+  .membership-grid { grid-template-columns:1fr 1fr; }
+  .cbn-attributes { grid-template-columns:repeat(2,1fr); }
+  .footer-top { grid-template-columns:1fr 1fr; }
+  footer { padding:48px 24px 32px; }
+}
+@media (max-width:640px) {
+  .hero h1 { font-size:36px; }
+  .metrics-bar { grid-template-columns:1fr 1fr; }
+  .board-grid,.advisor-grid,.membership-grid { grid-template-columns:1fr; }
+}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>

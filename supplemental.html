@@ -167,23 +167,6 @@ footer { background:var(--purple); padding:48px 64px 36px; }
 .footer-hd-link { font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,.35); text-decoration:none; transition:color .2s; }
 .footer-hd-link:hover { color:rgba(255,255,255,.7); }
 
-@media (max-width:1024px) {
-  nav,.page-nav,.section,.membership { padding-left:24px; padding-right:24px; }
-  .nav-links { display:none; }
-  .nav-hamburger { display:flex; }
-  footer { padding:40px 24px 28px; }
-  .partner-card { grid-template-columns:1fr; gap:20px; }
-  .ownership-hero { grid-template-columns:1fr; }
-  .ownership-panel.left { border-radius:12px 12px 0 0; }
-  .ownership-panel.right { border-radius:0 0 12px 12px; }
-  .survives-grid { grid-template-columns:repeat(3,1fr); }
-  .membership-grid { grid-template-columns:1fr 1fr; }
-  .accessible-grid { grid-template-columns:1fr; }
-}
-@media (max-width:640px) {
-  .survives-grid { grid-template-columns:1fr 1fr; }
-  .membership-grid { grid-template-columns:1fr; }
-}
 
   /* ── HAMBURGER NAV (mobile) ── */
   .nav-hamburger {
@@ -244,6 +227,24 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     text-align: center;
     border-bottom: none;
   }
+  @media (max-width:1024px) {
+  nav,.page-nav,.section,.membership { padding-left:24px; padding-right:24px; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+  footer { padding:40px 24px 28px; }
+  .partner-card { grid-template-columns:1fr; gap:20px; }
+  .ownership-hero { grid-template-columns:1fr; }
+  .ownership-panel.left { border-radius:12px 12px 0 0; }
+  .ownership-panel.right { border-radius:0 0 12px 12px; }
+  .survives-grid { grid-template-columns:repeat(3,1fr); }
+  .membership-grid { grid-template-columns:1fr 1fr; }
+  .accessible-grid { grid-template-columns:1fr; }
+}
+@media (max-width:640px) {
+  .survives-grid { grid-template-columns:1fr 1fr; }
+  .membership-grid { grid-template-columns:1fr; }
+}
+
 </style>
   <!-- Google Analytics GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>
