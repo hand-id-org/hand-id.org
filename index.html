@@ -240,8 +240,21 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 @media (max-width:1024px) {
   nav { padding:0 24px; }
   .nav-tagline { display:none; }
-  .hero { grid-template-columns:1fr; }
-  .hero-image-wrap { max-width:380px; margin:0 auto; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+  .hero {
+    grid-template-columns:1fr;
+    grid-template-rows: auto auto;
+    min-height:auto;
+    padding:96px 24px 48px;
+  }
+  .hero-content { grid-column:1; grid-row:1; }
+  .hero-image-wrap {
+    grid-column:1; grid-row:2;
+    max-width:100%;
+    margin-top:40px;
+  }
+  .hero-image-wrap img { max-width:100%; }
   .hero,.section,.membership,.cbn-section { padding-left:24px; padding-right:24px; }
   .standards { padding-left:24px; padding-right:24px; }
   .metrics-bar { grid-template-columns:repeat(3,1fr); }
@@ -258,6 +271,66 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   .metrics-bar { grid-template-columns:1fr 1fr; }
   .board-grid,.advisor-grid,.membership-grid { grid-template-columns:1fr; }
 }
+  /* ── HAMBURGER NAV (mobile) ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-dim);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 2px;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    background: rgba(250,250,248,0.98);
+    border-bottom: 1px solid var(--border);
+    z-index: 199;
+    padding: 16px 24px 24px;
+    backdrop-filter: blur(16px);
+  }
+  .nav-mobile-menu.open { display: block; }
+  .nav-mobile-menu ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .nav-mobile-menu ul li a {
+    display: block;
+    padding: 14px 0;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .nav-mobile-menu ul li:last-child a { border-bottom: none; }
+  .nav-mobile-menu ul li a:hover { color: var(--purple); }
+  .nav-mobile-menu ul li a.nav-cta {
+    background: var(--purple);
+    color: #fff !important;
+    padding: 12px 20px;
+    border-radius: 7px;
+    margin-top: 8px;
+    text-align: center;
+    border-bottom: none;
+  }
+
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>
@@ -295,7 +368,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   <div class="hero-glow"></div>
   <div class="hero-glow-sky"></div>
   <div class="hero-content">
-    <div class="eyebrow">hand-id.org &middot; Nonprofit Trade Association &middot; 501(c)(6) &mdash; In Process</div>
+    <div class="eyebrow">hand-id.org &middot; Nonprofit Trade Association &middot; 501(c)(6) Applying</div>
     <h1>Who You Are.<br>What You&rsquo;ve Done.<br><em>And Who Says So.</em></h1>
     <p class="hero-lead">
       HAND is the first persistent, globally resolvable identifier for athletes, actors, creators, and every notable public figure in the Cultural Industries. One ID. Forever. Follows the person &mdash; not the team, not the studio, not the platform. Built on the DOI<sup>&reg;</sup> Foundation. Governed by a nonprofit. Controlled by nobody &mdash; which is exactly why everybody can trust it.
@@ -398,7 +471,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <div class="force-card reveal reveal-delay-3">
       <div class="force-num">FORCE 03 &mdash; AI Provenance</div>
       <div class="force-title">AI Made This Urgent. HAND Makes It Solvable.</div>
-      <div class="force-body">Synthetic media, AI-generated likenesses, and digital replicas have made talent identification a trust crisis across sports and entertainment alike. C2PA can attest the chain of custody of a file. HAND attests who is in it. Provenance without resolution is a label on an empty box. HAND&rsquo;s Type 02 Digital Replica IDs create an auditable consent chain linking every AI likeness back to a verified, consenting person &mdash; the infrastructure every AI governance policy assumes exists but hasn&rsquo;t. Until now.</div>
+      <div class="force-body">Synthetic media, AI-generated likenesses, and digital replicas have made talent identification a trust crisis across sports and entertainment alike. C2PA&rsquo;s <em>Content Credentials</em> can attest the chain of custody of a file. HAND attests <em>who</em> is in it. Provenance without resolution is a label on an empty box. HAND&rsquo;s Type 02 Licensed Likeness IDs create an auditable consent chain linking every AI or other generated human replica likeness back to a verified, consenting person &mdash; the infrastructure every AI governance policy assumes exists but hasn&rsquo;t. Until now.</div>
       <div class="force-law">
         <span class="force-pill">C2PA Member</span>
         <span class="force-pill">CAWG Member</span>
@@ -729,7 +802,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <div class="member-tier-who">API-first teams building HAND ID resolution into supply-chain infrastructure. Full DOI resolution API. Sandbox environment. SDK documentation. C2PA / CAWG integration guidance. EIDR cross-reference support. Technical integration support.</div>
       <div class="member-tier-cta">Developer Access &rarr;</div>
     </a>
-    <a href="#join" class="member-tier reveal reveal-delay-4">
+    <a href="https://registry.handidentity.com" target="_blank" rel="noopener" class="member-tier reveal reveal-delay-4">
       <div class="member-tier-tag">Always Free</div>
       <div class="member-tier-title">Public Registry Access</div>
       <div class="member-tier-who">Any person, organization, or system anywhere in the world can search the HAND registry and resolve any HAND ID &mdash; at no cost, forever. This is a foundational commitment. The identifier infrastructure is public. Membership is how you participate in building it.</div>
@@ -888,7 +961,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   <div class="footer-top">
     <div>
       <img id="footer-logo-img" src="/images/hand-logo-white.webp" alt="HAND" style="height:36px; width:auto; margin-bottom:14px; display:block;">
-      <p class="footer-mission">HAND &mdash; The Universal Talent Identifier. The first persistent, globally resolvable identifier standard for human talent in the Cultural Industries. Delaware Non-Stock Nonprofit C Corp &middot; 501(c)(6) &mdash; In Process.</p>
+      <p class="footer-mission">HAND &mdash; The Universal Talent Identifier. The first persistent, globally resolvable identifier standard for human talent in the Cultural Industries. Delaware Non-Stock Nonprofit C Corp &middot; 501(c)(6) Applying.</p>
       <span class="footer-501">Built on ISO 26324:2025</span>
     </div>
     <div>
@@ -928,6 +1001,22 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   </div>
 
 </footer>
+
+<script>
+  // ── HAMBURGER NAV ──
+  const handHamburger = document.getElementById('hand-hamburger');
+  const handMobileMenu = document.getElementById('hand-mobile-menu');
+  handHamburger.addEventListener('click', () => {
+    handHamburger.classList.toggle('open');
+    handMobileMenu.classList.toggle('open');
+  });
+  handMobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      handHamburger.classList.remove('open');
+      handMobileMenu.classList.remove('open');
+    });
+  });
+</script>
 
 <script>
   // ── SCROLL REVEAL ──
