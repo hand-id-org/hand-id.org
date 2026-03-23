@@ -1004,16 +1004,19 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 
 <script>
   // ── HAMBURGER NAV ──
-  const handHamburger = document.getElementById('hand-hamburger');
-  const handMobileMenu = document.getElementById('hand-mobile-menu');
-  handHamburger.addEventListener('click', () => {
-    handHamburger.classList.toggle('open');
-    handMobileMenu.classList.toggle('open');
-  });
-  handMobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      handHamburger.classList.remove('open');
-      handMobileMenu.classList.remove('open');
+  document.addEventListener('DOMContentLoaded', function() {
+    const handHamburger = document.getElementById('hand-hamburger');
+    const handMobileMenu = document.getElementById('hand-mobile-menu');
+    if (!handHamburger || !handMobileMenu) return;
+    handHamburger.addEventListener('click', () => {
+      handHamburger.classList.toggle('open');
+      handMobileMenu.classList.toggle('open');
+    });
+    handMobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        handHamburger.classList.remove('open');
+        handMobileMenu.classList.remove('open');
+      });
     });
   });
 </script>
