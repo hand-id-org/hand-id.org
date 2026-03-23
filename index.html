@@ -298,25 +298,21 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     border-bottom: none;
   }
 
+  
+  .hero-image-mobile { display:none; }
   @media (max-width:1024px) {
   nav { padding:0 24px; }
   .nav-tagline { display:none; }
   .nav-links { display:none; }
   .nav-hamburger { display:flex; }
   .hero {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns:1fr;
     min-height:auto;
     padding:96px 24px 48px;
   }
-  .hero-content { grid-column:1; grid-row:1; order: 2; }
-  .hero-image-wrap {
-    grid-column:1; grid-row:2;
-    max-width:100%;
-    margin-top:0;
-    margin-bottom:32px;
-    order: 1;
-  }
+  .hero-content { grid-column:1; grid-row:1; }
+  .hero-image-wrap { display:none; }
+  .hero-image-mobile { display:block; }
   .hero-image-wrap img { max-width:100%; }
   .hero,.section,.membership,.cbn-section { padding-left:24px; padding-right:24px; }
   .standards { padding-left:24px; padding-right:24px; }
@@ -398,12 +394,16 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <a href="https://registry.handidentity.com" class="btn-sky">Find a HAND ID</a>
       <a href="architecture.html" class="btn-ghost">The Standard &rarr;</a>
     </div>
+    <!-- Heroine image — mobile only, sits between CTAs and DOI badge -->
+    <div class="hero-image-mobile">
+      <img src="/images/hand-heroine-image.webp" alt="HAND Identity — Human, Licensed Likeness, Fictional Character" style="width:100%; max-width:100%; height:auto; display:block; filter:drop-shadow(0 32px 60px rgba(0,0,0,0.2)) drop-shadow(0 16px 32px rgba(77,0,174,0.1)); margin-bottom:24px;">
+    </div>
     <!-- DOI badge -->
-    <div style="display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--card); border:1px solid var(--border); border-radius:10px; max-width:500px;">
-      <img id="doi-logo-img" src="/images/doi-logo.webp" alt="DOI Foundation" style="height:36px; width:auto; flex-shrink:0;">
+    <div style="display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--card); border:1px solid var(--border); border-radius:10px; max-width:500px;">
+      <img id="doi-logo-img" src="/images/doi-logo.webp" alt="DOI Foundation" style="height:27px; width:auto; flex-shrink:0;">
       <div>
-        <div style="font-size:15px; font-weight:700; color:var(--text); margin-bottom:3px;">One of only 12 DOI Registration Agencies in the world</div>
-        <div style="font-size:12px; font-weight:300; color:var(--text-dim); line-height:1.5;">The same ISO standard (ISO 26324:2025) behind academic publishing, scientific research, and global content identification &mdash; now, for the first time, for human talent.</div>
+        <div style="font-size:14px; font-weight:700; color:var(--text); margin-bottom:2px;">One of only 12 DOI Registration Agencies in the world</div>
+        <div style="font-size:11px; font-weight:300; color:var(--text-dim); line-height:1.5;">The same ISO standard (ISO 26324:2025) behind academic publishing, scientific research, and global content identification &mdash; now, for the first time, for human talent.</div>
       </div>
     </div>
   </div>
