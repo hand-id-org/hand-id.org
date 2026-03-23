@@ -58,8 +58,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 .nav-brand { display:flex; align-items:center; gap:14px; text-decoration:none; }
 .nav-logo { height:32px; width:auto; }
 .nav-tagline { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-sub); border-left:1px solid var(--border); padding-left:14px; }
-.nav-links { display:flex; align-items:center; gap:24px; list-style:none; }
-.nav-links a { font-size:15px; font-weight:500; color:var(--text-dim); text-decoration:none; letter-spacing:.02em; transition:color .2s; }
+.nav-links { display:flex; align-items:center; gap:clamp(10px,2vw,24px); list-style:none; }
+.nav-links a { font-size:clamp(11px,1.3vw,15px); font-weight:500; color:var(--text-dim); text-decoration:none; letter-spacing:.02em; transition:color .2s; white-space:nowrap; }
 .nav-links a:hover { color:var(--purple); }
 .nav-cta { background:var(--purple); color:#fff!important; padding:9px 20px; border-radius:7px; font-weight:600!important; transition:opacity .2s!important; }
 .nav-cta:hover { opacity:.88; }
@@ -193,8 +193,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 .voices-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:48px; }
 .voice-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:32px; transition:border-color .25s, transform .25s; }
 .voice-card:hover { border-color:var(--purple-border); transform:translateY(-2px); }
-.voice-pullquote { font-size:22px; font-weight:700; color:var(--text); line-height:1.35; margin-bottom:16px; letter-spacing:-.01em; position:relative; }
-.voice-pullquote::before { content:'"'; position:absolute; top:-12px; left:-4px; font-size:72px; line-height:1; color:var(--purple); opacity:.25; font-family:Georgia,serif; }
+.voice-pullquote { font-size:22px; font-weight:700; color:var(--text); line-height:1.35; margin-bottom:16px; letter-spacing:-.01em; }
+.voice-pullquote::before { content:'“'; display:block; font-size:48px; line-height:1; color:var(--purple); opacity:.5; font-family:Georgia,serif; margin-bottom:6px; }
 .voice-quote-full { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.7; margin-bottom:20px; font-style:italic; padding-top:12px; border-top:1px solid var(--border); }
 .voice-name { font-size:15px; font-weight:700; color:var(--text); }
 .voice-title { font-size:12px; font-weight:300; color:var(--text-dim); margin-top:2px; }
@@ -481,7 +481,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
         </div>
         <div class="what-feature">
           <div class="what-feature-icon">&#11095;</div>
-          <div><div class="what-feature-title">Three ID types &mdash; the full talent lifecycle</div><div class="what-feature-body">Type 01: Legal Persons. Type 02: Connected Digital Replicas (consent-chained to Type 01). Type 03: Fictional Characters. Every dimension of talent identity, covered.</div></div>
+          <div><div class="what-feature-title">Three ID types &mdash; the full talent lifecycle</div><div class="what-feature-body">Type 01: Legal Persons. Type 02: Licensed Likenesses (consent-chained to Type 01). Type 03: Fictional Characters. Every dimension of talent identity, covered.</div></div>
         </div>
         <div class="what-feature">
           <div class="what-feature-icon">&#11036;</div>
@@ -501,7 +501,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
           </div>
           <div style="background:var(--card); border:1px solid var(--border); border-radius:8px; padding:18px 20px;">
             <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--sky); letter-spacing:.08em; margin-bottom:6px;">TYPE 02</div>
-            <div style="font-size:16px; font-weight:700; margin-bottom:4px;">&#129302; Connected Digital Replicas</div>
+            <div style="font-size:16px; font-weight:700; margin-bottom:4px;">&#129302; Licensed Likenesses</div>
             <div style="font-family:'DM Mono',monospace; font-size:11px; color:var(--text-sub); margin-bottom:6px;">10.23/F72B-0103-B361-05F9-3Z71</div>
             <div style="font-size:12px; font-weight:300; color:var(--text-dim); line-height:1.55;">AI likenesses &amp; synthetic voice models. Always linked to Type 01 &mdash; auditable consent chain.</div>
           </div>
@@ -661,7 +661,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   </div>
   <div class="voices-grid">
     <div class="voice-card reveal reveal-delay-1">
-      <div class="voice-pullquote">They should have another number to navigate and simplify their careers.</div>
+      <div class="voice-pullquote">Athletes should have another number to navigate and simplify their careers.</div>
       <div class="voice-quote-full">&ldquo;There is a reason why there are numbers on every athlete. They should have another number to navigate and simplify their careers. We should consider the individual advantages if talented people could have more control over their work identities. I think HAND is a step in that direction.&rdquo;</div>
       <div class="voice-name">James Blevins</div>
       <div class="voice-title">Chairman, HPA NET &middot; Media Consultant &amp; Producer (Lucasfilm) &middot; Sports &amp; Entertainment</div>
@@ -895,7 +895,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <div class="footer-col-heading">Registry</div>
       <ul class="footer-links">
         <li><a href="#what">What is HAND?</a></li>
-        <li><a href="https://registry.hand-id.org" target="_blank">Find a HAND ID</a></li>
+        <li><a href="https://registry.handidentity.com" target="_blank">Find a HAND ID</a></li>
         <li><a href="/architecture">ID Architecture</a></li>
         <li><a href="#what">Citation-Backed Notability&#8482;</a></li>
         <li><a href="#why-now">Benefits</a></li>
@@ -918,7 +918,6 @@ footer { background:var(--purple); padding:56px 48px 40px; }
         <li><a href="https://c2pa.org" target="_blank">C2PA &middot; CAWG</a></li>
         <li><a href="https://eidr.org" target="_blank">EIDR</a></li>
         <li><a href="https://www.linkedin.com/company/hand-identity/" target="_blank">LinkedIn</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#f0999e969fb098919e94dd9994de9f8297"><span class="__cf_email__" data-cfemail="fd94939b92bd959c9399d09499d3928f9a">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
