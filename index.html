@@ -304,16 +304,18 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   .nav-links { display:none; }
   .nav-hamburger { display:flex; }
   .hero {
-    grid-template-columns:1fr;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-direction: column;
     min-height:auto;
     padding:96px 24px 48px;
   }
-  .hero-content { grid-column:1; grid-row:1; }
+  .hero-content { grid-column:1; grid-row:1; order: 2; }
   .hero-image-wrap {
     grid-column:1; grid-row:2;
     max-width:100%;
-    margin-top:40px;
+    margin-top:0;
+    margin-bottom:32px;
+    order: 1;
   }
   .hero-image-wrap img { max-width:100%; }
   .hero,.section,.membership,.cbn-section { padding-left:24px; padding-right:24px; }
@@ -1002,9 +1004,10 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <div class="footer-col-heading">Standards &amp; Connect</div>
       <ul class="footer-links">
         <li><a href="https://www.doi.org" target="_blank">DOI Foundation</a></li>
-        <li><a href="https://c2pa.org" target="_blank">C2PA &middot; CAWG</a></li>
+        <li><a href="https://c2pa.org" target="_blank">C2PA</a></li>
+        <li><a href="https://cawg.io" target="_blank">CAWG</a></li>
         <li><a href="https://eidr.org" target="_blank">EIDR</a></li>
-        <li><a href="https://www.linkedin.com/company/hand-identity/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/company/handidentity/" target="_blank">LinkedIn</a></li>
       </ul>
     </div>
   </div>
