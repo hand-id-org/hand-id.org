@@ -81,7 +81,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 .section-heading { font-size:clamp(28px,3.5vw,44px); font-weight:800; letter-spacing:-.025em; line-height:1.1; margin-bottom:16px; }
 .section-heading em { font-style:normal; color:var(--purple); }
 .section-heading .sky { color:var(--sky); }
-.body-lead { font-size:17px; font-weight:300; color:var(--text-dim); line-height:1.75; max-width:700px; }
+.body-lead { font-size:17px; font-weight:400; color:var(--text); line-height:1.75; max-width:700px; }
 .body-lead strong { color:var(--text); font-weight:600; }
 
 /* ── OWNERSHIP / YOUR ID ── */
@@ -95,7 +95,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 .ownership-panel-heading { font-size:22px; font-weight:800; letter-spacing:-.02em; line-height:1.15; margin-bottom:16px; }
 .left .ownership-panel-heading { color:var(--text); }
 .right .ownership-panel-heading { color:#fff; }
-.ownership-panel-body { font-size:14px; font-weight:300; line-height:1.75; }
+.ownership-panel-body { font-size:15px; font-weight:400; line-height:1.75; }
 .left .ownership-panel-body { color:var(--text-dim); }
 .right .ownership-panel-body { color:rgba(255,255,255,.75); }
 .ownership-checklist { list-style:none; margin-top:20px; display:flex; flex-direction:column; gap:10px; }
@@ -130,7 +130,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 .partner-status.active { background:var(--sky-dim); color:var(--sky); border:1px solid var(--sky-border); }
 .partner-status.active::before { content:''; width:5px; height:5px; background:var(--sky); border-radius:50%; animation:dotPulse 2s infinite; }
 .partner-col-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-sub); margin-bottom:10px; }
-.partner-col-body { font-size:13px; font-weight:300; color:var(--text-dim); line-height:1.7; }
+.partner-col-body { font-size:15px; font-weight:400; color:var(--text); line-height:1.75; }
 .partner-col-body strong { color:var(--text); font-weight:600; }
 .partner-beneficiaries { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
 .partner-ben-pill { font-family:'DM Mono',monospace; font-size:10px; background:var(--bg2); border:1px solid var(--border); border-radius:100px; padding:3px 10px; color:var(--text-dim); letter-spacing:.04em; }
@@ -148,8 +148,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 .member-tier-title { font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
 .member-tier-who { font-size:12px; font-weight:300; color:rgba(255,255,255,.6); line-height:1.6; margin-bottom:16px; flex-grow:1; }
 .member-tier-features { list-style:none; margin-bottom:20px; }
-.member-tier-features li { font-size:11px; color:rgba(255,255,255,.55); line-height:1.6; padding:3px 0; border-bottom:1px solid rgba(255,255,255,.06); display:flex; align-items:flex-start; gap:6px; }
-.member-tier-features li::before { content:'&#10003;'; color:rgba(255,255,255,.35); flex-shrink:0; font-size:10px; margin-top:2px; }
+.member-tier-features li { font-size:13px; color:rgba(255,255,255,.75); line-height:1.6; padding:4px 0; border-bottom:1px solid rgba(255,255,255,.06); display:flex; align-items:flex-start; gap:6px; }
+.member-tier-features li::before { content:'✓'; color:rgba(255,255,255,.35); flex-shrink:0; font-size:10px; margin-top:2px; }
 .member-tier-cta { font-size:12px; font-weight:600; color:rgba(255,255,255,.8); display:flex; align-items:center; gap:6px; margin-top:auto; }
 
 /* ── ACCESSIBLE / NEUTRAL ── */
@@ -158,7 +158,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-
 .accessible-card:hover { border-color:var(--purple-border); }
 .accessible-icon { font-size:28px; margin-bottom:14px; }
 .accessible-title { font-size:18px; font-weight:700; margin-bottom:10px; }
-.accessible-body { font-size:14px; font-weight:300; color:var(--text-dim); line-height:1.7; }
+.accessible-body { font-size:15px; font-weight:400; color:var(--text); line-height:1.75; }
 
 /* ── FOOTER ── */
 footer { background:var(--purple); padding:48px 64px 36px; }
@@ -267,8 +267,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="#ownership">Your ID</a></li>
-    <li><a href="#partners">Partners</a></li>
+    <li><span style="font-size:13px; font-weight:600; color:var(--purple); letter-spacing:.02em;">Your ID & Partners</span></li>
     <li><a href="#membership">Membership</a></li>
     <li><a href="index.html#membership" class="nav-cta">Join HAND</a></li>
   </ul>
@@ -279,8 +278,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
 <div class="nav-mobile-menu" id="supp-mobile-menu">
   <ul>
     <li><a href="index.html">Home</a></li>
-    <li><a href="#ownership">Your ID</a></li>
-    <li><a href="#partners">Partners</a></li>
+    <li><span style="font-size:13px; font-weight:600; color:var(--purple); letter-spacing:.02em;">Your ID & Partners</span></li>
     <li><a href="#membership">Membership</a></li>
     <li><a href="index.html#membership" class="nav-cta">Join HAND</a></li>
   </ul>
@@ -409,7 +407,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
           <span class="partner-ben-pill">Digital distribution</span>
           <span class="partner-ben-pill">Supply-chain interoperability</span>
         </div>
-        <div style="margin-top:16px; font-size:12px; font-weight:300; color:var(--text-sub); line-height:1.6;">Managing production, distribution, and licensing for an extensive global catalog across theatrical, streaming, and home entertainment.</div>
+        <div style="margin-top:16px; font-size:14px; font-weight:400; color:var(--text-dim); line-height:1.7;">Managing production, distribution, and licensing for an extensive global catalog across theatrical, streaming, and home entertainment.</div>
       </div>
     </div>
 
@@ -417,12 +415,13 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     <div class="partner-card reveal reveal-delay-2">
       <div>
         <div class="partner-org">Fabric</div>
+        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-sub); margin-top:2px; margin-bottom:0;">incl. BB Media</div>
         <div class="partner-type">Production Technology</div>
         <div class="partner-status active">Active Integration</div>
       </div>
       <div>
         <div class="partner-col-label">HAND&rsquo;s Role</div>
-        <div class="partner-col-body">HAND IDs provide <strong>persistent talent disambiguation</strong> within Fabric&rsquo;s metadata orchestration layer &mdash; connecting cast and crew records across production, post-production, and distribution workflows. When a production record references a performer, the HAND ID is the universal reference point that every downstream system can resolve.</div>
+        <div class="partner-col-body">HAND IDs provide <strong>persistent talent disambiguation</strong> within Fabric&rsquo;s metadata orchestration layer &mdash; connecting cast and crew records across production, post-production, and distribution workflows. The BB Media acquisition extends this into global streaming intelligence: the same HAND ID resolves a performer&rsquo;s identity across 4,400+ streaming services in 250 countries, regardless of regional spelling variations or transliterations.</div>
       </div>
       <div>
         <div class="partner-col-label">What Fabric Does</div>
@@ -461,55 +460,56 @@ footer { background:var(--purple); padding:48px 64px 36px; }
       </div>
     </div>
 
-    <!-- BB MEDIA -->
-    <div class="partner-card reveal reveal-delay-4">
-      <div>
-        <div class="partner-org">BB Media</div>
-        <div class="partner-type">Data Science &mdash; Global</div>
-        <div class="partner-status active">Active Integration</div>
-      </div>
-      <div>
-        <div class="partner-col-label">HAND&rsquo;s Role</div>
-        <div class="partner-col-body">HAND IDs enable <strong>cross-market talent disambiguation</strong> in BB Media&rsquo;s global catalog &mdash; resolving the same performer&rsquo;s identity across different regional spellings, transliterations, and metadata sources across 250 countries. One ID resolves the same person everywhere.</div>
-      </div>
-      <div>
-        <div class="partner-col-label">What BB Media Does</div>
-        <div class="partner-col-body">Award-winning data science company monitoring <strong>4,400+ streaming services across 250 countries</strong> &mdash; normalized metadata, pricing intelligence, and catalog analysis for the global media industry.</div>
-        <div class="partner-beneficiaries" style="margin-top:12px;">
-          <span class="partner-ben-pill">Streaming services</span>
-          <span class="partner-ben-pill">Broadcasters</span>
-          <span class="partner-ben-pill">Advertisers</span>
-          <span class="partner-ben-pill">Audience measurement</span>
-        </div>
-      </div>
-    </div>
+
 
     <!-- SCAN TRUCK -->
     <div class="partner-card reveal reveal-delay-5">
       <div>
-        <div class="partner-org">The Scan Truck / Wild Capture</div>
-        <div class="partner-type">3D Capture &amp; Digital Humans</div>
+        <div class="partner-org">The Scan Truck</div>
+        <div class="partner-type">Mobile Volumetric Capture</div>
         <div class="partner-status active">Active Integration</div>
       </div>
       <div>
         <div class="partner-col-label">HAND&rsquo;s Role</div>
-        <div class="partner-col-body">HAND IDs provide the <strong>legal identity anchor for every digital human asset created</strong> &mdash; linking the 3D scan back to the consenting Legal Person, establishing a verifiable chain of custody from capture to deployment. Every volumetric scan has a provenance record. Every digital human has a source ID.</div>
+        <div class="partner-col-body">HAND IDs provide the <strong>legal identity anchor for every 3D scan asset created</strong> &mdash; linking the volumetric capture back to the consenting Legal Person and establishing a verifiable chain of custody from capture to deployment. Every scan has a provenance record traceable to a verified, consenting source.</div>
       </div>
       <div>
-        <div class="partner-col-label">What They Do</div>
-        <div class="partner-col-body">Mobile volumetric capture and photogrammetry platforms creating <strong>high-fidelity 3D scans and digital human assets</strong> for film, gaming, sports, and virtual production.</div>
+        <div class="partner-col-label">What The Scan Truck Does</div>
+        <div class="partner-col-body">Mobile volumetric capture platform bringing <strong>high-fidelity 3D scanning to on-location productions</strong> &mdash; athletes, performers, and talent captured at speed for film, gaming, sports, and virtual production pipelines.</div>
         <div class="partner-beneficiaries" style="margin-top:12px;">
           <span class="partner-ben-pill">Game studios</span>
           <span class="partner-ben-pill">Film VFX</span>
           <span class="partner-ben-pill">Sports leagues</span>
           <span class="partner-ben-pill">Virtual production</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WILD CAPTURE -->
+    <div class="partner-card reveal reveal-delay-6">
+      <div>
+        <div class="partner-org">Wild Capture</div>
+        <div class="partner-type">Photogrammetry &amp; Digital Humans</div>
+        <div class="partner-status active">Active Integration</div>
+      </div>
+      <div>
+        <div class="partner-col-label">HAND&rsquo;s Role</div>
+        <div class="partner-col-body">HAND IDs serve as the <strong>persistent identity record linking every digital human asset to its source talent</strong> &mdash; a Licensed Likeness ID (Type 02) anchored to the Type 01 record of the consenting person. The consent chain is built in at the moment of creation, not added retroactively.</div>
+      </div>
+      <div>
+        <div class="partner-col-label">What Wild Capture Does</div>
+        <div class="partner-col-body">Advanced photogrammetry and digital human creation &mdash; building <strong>photorealistic digital likenesses</strong> for entertainment, brand, and virtual production use cases where identity fidelity and rights provenance are both essential.</div>
+        <div class="partner-beneficiaries" style="margin-top:12px;">
           <span class="partner-ben-pill">IP rights holders</span>
+          <span class="partner-ben-pill">Film &amp; TV</span>
+          <span class="partner-ben-pill">Brand &amp; advertising</span>
+          <span class="partner-ben-pill">Virtual production</span>
         </div>
       </div>
     </div>
 
     <!-- OPUS DATA -->
-    <div class="partner-card reveal reveal-delay-6">
+    <div class="partner-card reveal reveal-delay-7">
       <div>
         <div class="partner-org">Opus Data / The Numbers</div>
         <div class="partner-type">Box Office &amp; Industry Data</div>
@@ -537,7 +537,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
   <!-- Pattern recognition callout -->
   <div style="margin-top:32px; background:var(--card); border:1px solid var(--border); border-left:4px solid var(--sky); border-radius:10px; padding:28px 32px;" class="reveal">
     <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--sky); margin-bottom:10px;">The Pattern</div>
-    <p style="font-size:15px; font-weight:400; color:var(--text); line-height:1.7;">A leading production technology platform. An AI voice company. A global streaming data service. A volumetric capture company. A box office intelligence platform. An active major studio engagement. Six different parts of the supply chain &mdash; all arriving independently at the same conclusion. When that many unrelated decision-makers converge on the same infrastructure need, it stops being a product pitch and starts being a market signal.</p>
+    <p style="font-size:17px; font-weight:600; color:var(--text); line-height:1.75;">A leading production technology and global data platform. An AI voice company. Two discrete volumetric capture and digital human studios. A box office intelligence platform. An active major studio engagement. Seven different nodes across the supply chain &mdash; all arriving independently at the same conclusion. When that many unrelated decision-makers converge on the same infrastructure need, it stops being a product pitch and starts being a market signal.</p>
   </div>
 </div>
 
@@ -646,17 +646,17 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px;" class="reveal reveal-delay-1">
       <div style="font-size:24px; margin-bottom:12px;">&#127916;</div>
       <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Studios &amp; Platforms trust it</div>
-      <div style="font-size:13px; font-weight:300; color:var(--text-dim); line-height:1.7;">Because no guild or player association controls the standard. Adoption doesn&rsquo;t concede anything to the other side of the negotiating table.</div>
+      <div style="font-size:15px; font-weight:400; color:var(--text); line-height:1.75;">Because no guild or player association controls the standard. Adoption doesn&rsquo;t concede anything to the other side of the negotiating table.</div>
     </div>
     <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px;" class="reveal reveal-delay-2">
       <div style="font-size:24px; margin-bottom:12px;">&#9994;</div>
       <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Guilds &amp; Unions trust it</div>
-      <div style="font-size:13px; font-weight:300; color:var(--text-dim); line-height:1.7;">Because no studio or platform controls the standard. Members&rsquo; identity infrastructure isn&rsquo;t held by a party with adverse interests in their contract negotiations.</div>
+      <div style="font-size:15px; font-weight:400; color:var(--text); line-height:1.75;">Because no studio or platform controls the standard. Members&rsquo; identity infrastructure isn&rsquo;t held by a party with adverse interests in their contract negotiations.</div>
     </div>
     <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px;" class="reveal reveal-delay-3">
       <div style="font-size:24px; margin-bottom:12px;">&#127942;</div>
       <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Athletes &amp; Leagues trust it</div>
-      <div style="font-size:13px; font-weight:300; color:var(--text-dim); line-height:1.7;">Because no single league, association, or broadcast partner controls the standard. A HAND ID issued to a D1 athlete belongs to that athlete &mdash; not to the school, the conference, or the NCAA.</div>
+      <div style="font-size:15px; font-weight:400; color:var(--text); line-height:1.75;">Because no single league, association, or broadcast partner controls the standard. A HAND ID issued to a D1 athlete belongs to that athlete &mdash; not to the school, the conference, or the NCAA.</div>
     </div>
   </div>
   <div style="margin-top:32px; background:var(--card); border:1px solid var(--border); border-left:4px solid var(--purple); border-radius:10px; padding:28px 32px;" class="reveal">
