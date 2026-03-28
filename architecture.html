@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HAND — ID Architecture + Interoperability + FAQ</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -27,7 +31,7 @@
   --border-mid:    rgba(0,0,0,0.13);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+body { padding-top:64px; font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
 
 /* ── SHARED ── */
 .section { padding: 80px 64px; border-bottom: 1px solid var(--border); }
@@ -398,7 +402,7 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
 .page-nav {
   background: var(--purple); padding: 16px 64px;
   display: flex; align-items: center; gap: 32px;
-  position: sticky; top: 0; z-index: 100;
+  position: sticky; top: 64px; z-index: 100;
 }
 .page-nav-title {
   font-family: 'DM Mono', monospace; font-size: 11px;
@@ -418,7 +422,46 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
   .flow-steps { grid-template-columns: 1fr; gap: 16px; }
   .flow-arrow { transform: rotate(90deg); }
   .interop-grid { grid-template-columns: 1fr; }
-  .page-nav { padding: 16px 24px; gap: 16px; }
+  .page-nav { padding: 14px 20px; gap: 12px; flex-wrap: wrap; }
+  .page-nav-title { display: none; }
+}
+@media (max-width: 600px) {
+  .page-nav { gap: 8px; padding: 12px 16px; }
+  .page-nav a { font-size: 12px; }
+}
+
+/* ── GLOBAL NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:200; background:rgba(250,250,248,0.95); backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); height:64px; padding:0 48px; display:flex; align-items:center; justify-content:space-between; }
+.nav-brand { display:flex; align-items:center; gap:14px; text-decoration:none; }
+.nav-logo { height:32px; width:auto; }
+.nav-tagline { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#999999; border-left:1px solid rgba(0,0,0,0.08); padding-left:14px; }
+.nav-links { display:flex; align-items:center; gap:clamp(10px,2vw,24px); list-style:none; }
+.nav-links a { font-size:clamp(11px,1.3vw,14px); font-weight:500; color:#666666; text-decoration:none; letter-spacing:.02em; transition:color .2s; white-space:nowrap; }
+.nav-links a:hover { color:#4D00AE; }
+.nav-cta { background:#4D00AE; color:#fff!important; padding:8px 18px; border-radius:7px; font-weight:600!important; }
+.nav-secondary { border:1px solid rgba(77,0,174,0.22); color:#4D00AE!important; padding:7px 16px; border-radius:7px; font-weight:600!important; }
+.nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
+.nav-hamburger span { display:block; width:22px; height:2px; background:#111111; border-radius:2px; }
+.nav-mobile-menu { display:none; position:fixed; top:64px; left:0; right:0; background:rgba(250,250,248,0.97); backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,0.08); z-index:199; padding:16px 32px 24px; }
+.nav-mobile-menu ul { list-style:none; display:flex; flex-direction:column; gap:4px; }
+.nav-mobile-menu a { display:block; padding:10px 0; font-size:16px; font-weight:500; color:#111111; text-decoration:none; border-bottom:1px solid rgba(0,0,0,0.08); }
+.nav-mobile-menu.open { display:block; }
+@media (max-width:768px) { nav { padding:0 20px; } .nav-links { display:none; } .nav-hamburger { display:flex; } }
+/* ── FOOTER ── */
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; padding:56px 48px 40px; background:#111111; border-top:1px solid rgba(255,255,255,.06); }
+.footer-mission { font-size:13px; font-weight:300; color:rgba(255,255,255,.45); line-height:1.7; max-width:280px; margin-bottom:10px; }
+.footer-501 { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,.25); letter-spacing:.06em; }
+.footer-col-heading { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:16px; }
+.footer-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-links a { font-size:13px; font-weight:400; color:rgba(255,255,255,.5); text-decoration:none; transition:color .2s; }
+.footer-links a:hover { color:#fff; }
+.footer-bottom { padding:20px 48px 28px; background:#111111; border-top:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-copy { font-size:11px; color:rgba(255,255,255,.3); font-family:'DM Mono',monospace; letter-spacing:.03em; }
+.footer-hd-link { font-size:11px; color:rgba(255,255,255,.4); text-decoration:none; font-family:'DM Mono',monospace; transition:color .2s; }
+.footer-hd-link:hover { color:#fff; }
+@media (max-width:768px) {
+  .footer-top { grid-template-columns:1fr 1fr; gap:32px; padding:40px 24px 32px; }
+  .footer-bottom { padding:16px 24px 24px; flex-direction:column; align-items:flex-start; }
 }
 </style>
   <!-- Google Analytics GA4 -->
@@ -434,8 +477,36 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
 </head>
 <body>
 
+<nav>
+  <a class="nav-brand" href="/">
+    <img class="nav-logo" id="nav-logo-img" src="/images/hand-logo.webp" alt="HAND">
+    <span class="nav-tagline">The Universal Talent Identifier</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#what">What is HAND?</a></li>
+    <li><a href="/#why-now">Why Now</a></li>
+    <li><a href="/architecture">The Standard</a></li>
+    <li><a href="/#board">Leadership</a></li>
+    <li><a href="/#membership" class="nav-secondary">Join HAND</a></li>
+    <li><a href="https://registry.handidentity.com" class="nav-cta">Find a HAND ID</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hand-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="hand-mobile-menu">
+  <ul>
+    <li><a href="/#what">What is HAND?</a></li>
+    <li><a href="/#why-now">Why Now</a></li>
+    <li><a href="/architecture">The Standard</a></li>
+    <li><a href="/#board">Leadership</a></li>
+    <li><a href="/#membership">Join HAND</a></li>
+    <li><a href="https://registry.handidentity.com" class="nav-cta">Find a HAND ID</a></li>
+  </ul>
+</div>
+
 <div class="page-nav">
-  <span class="page-nav-title">hand-id.org · New Sections</span>
+  <span class="page-nav-title">The HAND Standard</span>
   <a href="#anatomy">① ID Anatomy & Architecture</a>
   <a href="#interop">② Interoperability & The Rosetta Stone</a>
   <a href="#faq">③ FAQ — Questions & Answers</a>
@@ -495,9 +566,9 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
       </div>
       <div class="legend-item sky">
         <div class="legend-num">Part 03</div>
-        <div class="legend-title">Object Type Link</div>
-        <div class="legend-value">→ Linked to Type 01 ID</div>
-        <div class="legend-desc">Licensed Likeness (Type 02) and Fictional Character (Type 03) IDs are structurally linked to their Legal Person (Type 01) source ID. This parent-child relationship is encoded in the registry metadata as a traversable provenance graph — the NIL rights holder is always one hop away, in any system, at any time.</div>
+        <div class="legend-title">Object Type</div>
+        <div class="legend-value">Type 01 · 02 · 03</div>
+        <div class="legend-desc">Every HAND ID carries its object type. <strong>Type 01</strong> (Legal Person) is the root of all human identity — the NIL rights holder, always one hop away. <strong>Type 02</strong> (Licensed Likeness) is constitutively linked to its Type 01 source — the consent chain is structural. <strong>Type 03</strong> (Fictional Character) is an independent root node — Batman and Spider-Man are not children of any human. They connect to Type 01 nodes via typed semantic edges (portrays, licensed-as) that carry their own metadata. The character exists. The performance links to it.</div>
       </div>
     </div>
 
@@ -793,6 +864,30 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
       <div class="faq-a">Yes — and this is a strength, not a risk. The DOI Foundation mandates that if any Registration Agency ceases operations, its DOI names are "homed" in another RA, ensuring <strong>no DOI name is ever lost</strong>. The Handle System's global root infrastructure has operated continuously since 1997. HAND adds its own redundant infrastructure — replication servers, secondary sites, and mirrored databases — on top of this already resilient foundation.</div>
     </div>
 
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Does a DOI only identify digital objects? Does that mean HAND only covers digital talent?</div>
+      <div class="faq-a">
+        <p style="margin-bottom:12px;">This is one of the most common misconceptions about the DOI system — and it matters for understanding what HAND is. The word &ldquo;digital&rdquo; in <em>Digital Object Identifier</em> refers to <strong>the identifier itself</strong>, not the object being identified. A DOI is a digital identifier <em>of</em> an object — not an identifier <em>of a digital</em> object.</p>
+        <p style="margin-bottom:12px;">The DOI Foundation states this plainly on doi.org: <strong>&ldquo;A DOI name is a digital identifier of an object, any object — physical, digital, or abstract.&rdquo;</strong> DOI names identify physical books, physical people, physical locations, abstract licenses, and digital files with exactly equal validity. The identifier is digital. The object is whatever it is.</p>
+        <p>For HAND, this means a HAND ID identifies a <em>person</em> — a legal, natural human being — regardless of whether they appear in digital or physical contexts. An athlete on a physical field, an actor in a physical theatre, a musician performing live — all equally identified by their HAND ID. The fact that AI-generated likenesses and digital replicas are among HAND&rsquo;s most urgent use cases does not limit HAND to the digital world. It is the identifier that is digital. The talent is human.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Is the governing body called the &ldquo;International DOI Foundation&rdquo; or just &ldquo;The DOI Foundation&rdquo;?</div>
+      <div class="faq-a">Both appear in circulation, but the Foundation itself consistently uses <strong>The DOI Foundation</strong> in its own communications — on doi.org, in its official statements, and in its ISO registration authority capacity. The formal legal name is the International DOI Foundation, Inc., which is how it appears in some external references including Wikipedia. For everyday reference and in standards contexts, <em>The DOI Foundation</em> is how the organization styles itself. HAND follows that convention.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-mark">Q</span>Is a HAND ID a URN? Is it internet-native at the protocol level?</div>
+      <div class="faq-a">
+        <p style="margin-bottom:12px;">Yes — on both counts, and the lineage goes back further than most people realize.</p>
+        <p style="margin-bottom:12px;">A HAND ID is a DOI, and the DOI has been expressible as a Uniform Resource Identifier since its inception. The <strong>Dublin Core Metadata Initiative (DCMI)</strong> — the foundational metadata standard for the web, established 1995 — explicitly lists the DOI alongside ISBN and URN as the canonical examples of conforming identification systems for its <code style="font-family:'DM Mono',monospace; font-size:12px; background:var(--purple-dim); color:var(--purple); padding:2px 6px; border-radius:3px;">dc:identifier</code> element. That specification has been publicly documented since the late 1990s.</p>
+        <p style="margin-bottom:12px;">DOIs are expressible as URNs using the <code style="font-family:'DM Mono',monospace; font-size:12px; background:var(--purple-dim); color:var(--purple); padding:2px 6px; border-radius:3px;">doi:</code> URI scheme and are fully compatible with the Handle System's own URI resolution infrastructure. The DOI's internet-native credentials are not a recent addition — they are structural, dating to the Handle System's development at CNRI by Dr. Robert E. Kahn (1994) and the DOI Foundation's incorporation (1997).</p>
+        <p>In practical terms: a HAND ID can appear in any system that accepts a URI, a URN, a DOI, or a Dublin Core <code style="font-family:'DM Mono',monospace; font-size:12px; background:var(--purple-dim); color:var(--purple); padding:2px 6px; border-radius:3px;">dc:identifier</code> value — including C2PA Content Credentials manifests, CAWG identity assertions, linked data graphs, and any metadata standard built on Dublin Core. It resolves globally via the same Handle System infrastructure that has underpinned the internet&#x2019;s object identifier resolution layer since 1997.</p>
+      </div>
+    </div>
+
   </div>
 
   <!-- Ownership callout -->
@@ -807,9 +902,59 @@ body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--t
 </div>
 
 
-<div style="background:var(--bg2); border-top:1px solid var(--border); padding:24px 64px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-  <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--text-sub); letter-spacing:.04em;">DOI<sup>&reg;</sup>, DOI.ORG<sup>&reg;</sup>, and short DOI<sup>&reg;</sup> are trademarks of the International DOI Foundation.</span>
-  <a href="index.html" style="font-family:'DM Mono',monospace; font-size:11px; color:var(--purple); text-decoration:none;">&#8592; hand-id.org</a>
-</div>
+<footer>
+  <div class="footer-top">
+    <div>
+      <img id="footer-logo-img" src="/images/hand-logo-white.webp" alt="HAND" style="height:36px; width:auto; margin-bottom:14px; display:block;">
+      <p class="footer-mission">HAND &mdash; The Universal Talent Identifier. The first persistent, globally resolvable identifier standard for human talent in the Cultural Industries. Delaware Non-Stock Nonprofit C Corp &middot; 501(c)(6) Applying.</p>
+      <span class="footer-501">Built on ISO 26324:2025</span>
+    </div>
+    <div>
+      <div class="footer-col-heading">Registry</div>
+      <ul class="footer-links">
+        <li><a href="/#what">What is HAND?</a></li>
+        <li><a href="https://registry.handidentity.com" target="_blank">Find a HAND ID</a></li>
+        <li><a href="/architecture">The Standard</a></li>
+        <li><a href="/#what">Citation-Backed Notability&#8482;</a></li>
+        <li><a href="/#why-now">Benefits</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-heading">Membership</div>
+      <ul class="footer-links">
+        <li><a href="/#join">Join HAND</a></li>
+        <li><a href="/#membership">Corporate Members</a></li>
+        <li><a href="/#membership">Guilds &amp; Unions</a></li>
+        <li><a href="/#join">Developer Access</a></li>
+        <li><a href="/#why-now">Standards Governance</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-heading">Standards &amp; Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://www.doi.org" target="_blank">DOI Foundation</a></li>
+        <li><a href="https://c2pa.org" target="_blank">C2PA</a></li>
+        <li><a href="https://cawg.io" target="_blank">CAWG</a></li>
+        <li><a href="https://eidr.org" target="_blank">EIDR</a></li>
+        <li><a href="https://www.linkedin.com/company/handidentity/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" style="display:block;margin-bottom:8px;">DOI<sup>&reg;</sup> and DOI.ORG<sup>&reg;</sup> are registered trademarks of the International DOI Foundation.</span>
+    <span class="footer-copy">&copy; 2026 HAND &mdash; The Universal Talent Identifier &middot; hand-id.org &middot; Citation-Backed Notability&#8482; is a trademark of HAND.</span>
+    <a href="https://humandigital.tech" class="footer-hd-link">Commercial services: humandigital.tech &rarr;</a>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const h = document.getElementById('hand-hamburger');
+    const m = document.getElementById('hand-mobile-menu');
+    if (!h || !m) return;
+    h.addEventListener('click', () => { h.classList.toggle('open'); m.classList.toggle('open'); });
+    m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { h.classList.remove('open'); m.classList.remove('open'); }));
+  });
+</script>
 </body>
 </html>

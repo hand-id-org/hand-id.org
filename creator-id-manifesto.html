@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Manifesto for Creator Identification and Protection &mdash; HAND</title>
+<meta name="description" content="A nine-point bill of rights for creator identification and protection, by HAND Advisor Paul Jessop. Published October 2023.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple:        #4D00AE;
+  --purple-dim:    rgba(77,0,174,0.08);
+  --purple-mid:    rgba(77,0,174,0.15);
+  --purple-border: rgba(77,0,174,0.22);
+  --sky:           #0284C7;
+  --sky-dim:       rgba(2,132,199,0.08);
+  --sky-border:    rgba(2,132,199,0.22);
+  --bg:            #FAFAF8;
+  --bg2:           #F3F2EF;
+  --bg3:           #ECEAE6;
+  --card:          #FFFFFF;
+  --text:          #111111;
+  --text-dim:      #666666;
+  --text-sub:      #999999;
+  --border:        rgba(0,0,0,0.08);
+  --border-mid:    rgba(0,0,0,0.13);
+  --nav-bg:        rgba(250,250,248,0.95);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes navSlide { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes drawLine { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes dotPulse { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+@keyframes glowDrift { 0%,100% { opacity:.05; transform:scale(1); } 50% { opacity:.09; transform:scale(1.04); } }
+
+.reveal { opacity:0; transform:translateY(22px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.08s; }
+.reveal-delay-2 { transition-delay:.16s; }
+@media (prefers-reduced-motion:reduce) { .reveal,.reveal.visible { opacity:1; transform:none; transition:none; } * { animation:none!important; } }
+
+/* ── NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-bg); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); height:64px; padding:0 48px; display:flex; align-items:center; justify-content:space-between; animation:navSlide .5s ease both; }
+.nav-brand { display:flex; align-items:center; gap:14px; text-decoration:none; }
+.nav-logo { height:32px; width:auto; }
+.nav-tagline { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-sub); border-left:1px solid var(--border); padding-left:14px; }
+.nav-links { display:flex; align-items:center; gap:clamp(10px,2vw,24px); list-style:none; }
+.nav-links a { font-size:clamp(11px,1.3vw,15px); font-weight:500; color:var(--text-dim); text-decoration:none; letter-spacing:.02em; transition:color .2s; white-space:nowrap; }
+.nav-links a:hover { color:var(--purple); }
+.nav-cta { background:var(--purple); color:#fff!important; padding:9px 20px; border-radius:7px; font-weight:600!important; transition:opacity .2s!important; }
+.nav-cta:hover { opacity:.88; }
+.nav-secondary { border:1px solid var(--purple-border); color:var(--purple)!important; padding:8px 18px; border-radius:7px; font-weight:600!important; transition:all .2s!important; }
+.nav-secondary:hover { background:var(--purple-dim); }
+
+/* hamburger */
+.nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
+.nav-hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .25s; }
+.nav-mobile-menu { display:none; position:fixed; top:64px; left:0; right:0; background:var(--nav-bg); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); z-index:199; padding:16px 32px 24px; }
+.nav-mobile-menu ul { list-style:none; display:flex; flex-direction:column; gap:4px; }
+.nav-mobile-menu a { display:block; padding:10px 0; font-size:16px; font-weight:500; color:var(--text); text-decoration:none; border-bottom:1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom:none; }
+.nav-mobile-menu.open { display:block; }
+
+@media (max-width:768px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  padding: 120px 48px 64px;
+  background: var(--text);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.page-hero-glow {
+  position: absolute;
+  top: -80px; right: -60px;
+  width: 600px; height: 500px;
+  background: radial-gradient(ellipse, rgba(77,0,174,.12) 0%, transparent 65%);
+  pointer-events: none;
+  animation: glowDrift 10s ease-in-out infinite;
+}
+.page-hero-glow-sky {
+  position: absolute;
+  bottom: -60px; left: 20%;
+  width: 400px; height: 300px;
+  background: radial-gradient(ellipse, rgba(2,132,199,.07) 0%, transparent 65%);
+  pointer-events: none;
+  animation: glowDrift 13s ease-in-out infinite reverse;
+}
+.page-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 24px;
+  animation: fadeIn .8s ease .3s both;
+}
+.page-eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--purple);
+  flex-shrink: 0;
+  animation: drawLine .6s ease .5s both;
+  transform-origin: left;
+}
+.page-hero h1 {
+  font-size: clamp(32px, 4.5vw, 62px);
+  font-weight: 800;
+  letter-spacing: -.028em;
+  line-height: 1.06;
+  color: #fff;
+  margin-bottom: 24px;
+  max-width: 820px;
+  animation: fadeUp .8s cubic-bezier(.22,1,.36,1) .4s both;
+}
+.page-hero h1 em { font-style: normal; color: var(--purple); }
+.page-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  animation: fadeUp .8s cubic-bezier(.22,1,.36,1) .55s both;
+}
+.author-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 100px;
+  padding: 8px 16px 8px 8px;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.author-chip:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.22); }
+.author-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--purple-dim);
+  border: 1px solid var(--purple-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px; font-weight: 700;
+  color: var(--purple);
+  flex-shrink: 0;
+}
+.author-info { display: flex; flex-direction: column; }
+.author-name { font-size: 14px; font-weight: 700; color: #fff; }
+.author-role { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.5); }
+.pub-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .04em;
+}
+.version-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: var(--purple-dim);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+  border-radius: 100px;
+  padding: 4px 12px;
+  letter-spacing: .06em;
+}
+
+/* ── MANIFESTO BODY ── */
+.manifesto-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 72px 48px 96px;
+}
+.manifesto-preamble {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.5;
+  letter-spacing: -.01em;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid var(--purple-border);
+}
+.manifesto-rights {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 64px;
+}
+.right-item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background .2s;
+}
+.right-item:last-child { border-bottom: none; }
+.right-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--purple);
+  letter-spacing: .08em;
+  padding-top: 4px;
+  opacity: .7;
+}
+.right-text {
+  font-size: clamp(16px, 1.8vw, 18px);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.7;
+}
+.right-text strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── NOTE SECTION ── */
+.manifesto-note {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--purple);
+  border-radius: 10px;
+  padding: 32px 36px;
+  margin-bottom: 64px;
+}
+.manifesto-note-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.manifesto-note-label::before {
+  content: '';
+  width: 16px; height: 1px;
+  background: var(--purple);
+}
+.manifesto-note p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+.manifesto-note a {
+  color: var(--purple);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── AUTHOR BIO ── */
+.author-bio {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px;
+  margin-bottom: 64px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 28px;
+  align-items: start;
+}
+.author-bio-avatar {
+  width: 72px; height: 72px;
+  border-radius: 14px;
+  background: var(--purple-dim);
+  border: 1px solid var(--purple-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 22px; font-weight: 700;
+  color: var(--purple);
+  flex-shrink: 0;
+}
+.author-bio-name {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  margin-bottom: 4px;
+}
+.author-bio-role {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--purple);
+  margin-bottom: 14px;
+  letter-spacing: .02em;
+}
+.author-bio-body {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+.author-bio-body a {
+  color: var(--purple);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.author-bio-creds {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cred-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: var(--purple-dim);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+  border-radius: 100px;
+  padding: 3px 10px;
+  letter-spacing: .04em;
+}
+
+/* ── BACK LINK ── */
+.back-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-sub);
+  text-decoration: none;
+  transition: color .2s;
+}
+.back-link:hover { color: var(--purple); }
+.back-link::before { content: '←'; font-size: 14px; }
+
+/* ── CTA BAND ── */
+.manifesto-cta {
+  background: var(--purple);
+  border-radius: 12px;
+  padding: 48px 40px;
+  text-align: center;
+  margin-bottom: 0;
+}
+.manifesto-cta h3 {
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.manifesto-cta p {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+  max-width: 540px;
+  margin: 0 auto 28px;
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--purple);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .2s, transform .2s;
+}
+.btn-white:hover { opacity: .92; transform: translateY(-1px); }
+
+/* ── FOOTER ── */
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; padding:56px 48px 40px; background:var(--text); border-top:1px solid rgba(255,255,255,.06); }
+.footer-mission { font-size:13px; font-weight:300; color:rgba(255,255,255,.45); line-height:1.7; max-width:280px; margin-bottom:10px; }
+.footer-501 { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,.25); letter-spacing:.06em; }
+.footer-col-heading { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:16px; }
+.footer-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-links a { font-size:13px; font-weight:400; color:rgba(255,255,255,.5); text-decoration:none; transition:color .2s; }
+.footer-links a:hover { color:#fff; }
+.footer-bottom { padding:20px 48px 28px; background:var(--text); border-top:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-copy { font-size:11px; color:rgba(255,255,255,.3); font-family:'DM Mono',monospace; letter-spacing:.03em; }
+.footer-hd-link { font-size:11px; color:rgba(255,255,255,.4); text-decoration:none; font-family:'DM Mono',monospace; transition:color .2s; }
+.footer-hd-link:hover { color:#fff; }
+
+@media (max-width:900px) {
+  .footer-top { grid-template-columns:1fr 1fr; gap:32px; padding:40px 24px 32px; }
+  .footer-bottom { padding:16px 24px 24px; flex-direction:column; align-items:flex-start; }
+}
+@media (max-width:640px) {
+  .page-hero { padding:100px 24px 48px; }
+  .manifesto-wrap { padding:48px 24px 72px; }
+  .author-bio { grid-template-columns:1fr; gap:16px; }
+  .footer-top { grid-template-columns:1fr; }
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="/">
+    <img class="nav-logo" id="nav-logo-img" src="/images/hand-logo.webp" alt="HAND">
+    <span class="nav-tagline">The Universal Talent Identifier</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#what">What is HAND?</a></li>
+    <li><a href="/#why-now">Why Now</a></li>
+    <li><a href="/#board">Leadership</a></li>
+    <li><a href="/#voices">Industry Voices</a></li>
+    <li><a href="/#membership" class="nav-secondary">Join HAND</a></li>
+    <li><a href="https://registry.handidentity.com" class="nav-cta">Find a HAND ID</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hand-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="hand-mobile-menu">
+  <ul>
+    <li><a href="/#what">What is HAND?</a></li>
+    <li><a href="/#why-now">Why Now</a></li>
+    <li><a href="/#board">Leadership</a></li>
+    <li><a href="/#voices">Industry Voices</a></li>
+    <li><a href="/#membership">Join HAND</a></li>
+    <li><a href="https://registry.handidentity.com" class="nav-cta">Find a HAND ID</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-glow-sky"></div>
+  <div class="page-eyebrow">hand-id.org &middot; Standards &amp; Governance</div>
+  <h1>A Manifesto for Creator<br>Identification and <em>Protection</em></h1>
+  <div class="page-hero-meta">
+    <a class="author-chip" href="https://www.linkedin.com/in/paul-jessop-a7007a1/" target="_blank">
+      <div class="author-avatar">PJ</div>
+      <div class="author-info">
+        <span class="author-name">Paul Jessop</span>
+        <span class="author-role">HAND Advisor &middot; Former CTO, IFPI &amp; RIAA</span>
+      </div>
+    </a>
+    <span class="pub-date">First published &mdash; 20 November 2023</span>
+    <span class="version-pill">Ver. 1.0</span>
+  </div>
+</div>
+
+<!-- MANIFESTO BODY -->
+<div class="manifesto-wrap">
+
+  <div class="back-wrap reveal">
+    <a class="back-link" href="/">Back to hand-id.org</a>
+  </div>
+
+  <div class="manifesto-preamble reveal">
+    Those involved in the creation and interpretation of artistic works such as literature, music, dance, movies and television should have the right:
+  </div>
+
+  <div class="manifesto-rights">
+
+    <div class="right-item reveal">
+      <div class="right-num">01</div>
+      <div class="right-text"><strong>To be unambiguously identified through machine readable codes</strong> that can be associated with their endeavors.</div>
+    </div>
+
+    <div class="right-item reveal reveal-delay-1">
+      <div class="right-num">02</div>
+      <div class="right-text"><strong>To have their name and an unambiguous code associated</strong> with their endeavors when they elect to require this.</div>
+    </div>
+
+    <div class="right-item reveal reveal-delay-2">
+      <div class="right-num">03</div>
+      <div class="right-text"><strong>For this association to be a technically robust binding</strong> so that it is hard to remove the association.</div>
+    </div>
+
+    <div class="right-item reveal">
+      <div class="right-num">04</div>
+      <div class="right-text"><strong>To be able to license, or refuse to license, their Name, Image and Likeness (NIL &mdash; including their vocal timbre and style)</strong> for the creation of licensed likenesses.</div>
+    </div>
+
+    <div class="right-item reveal reveal-delay-1">
+      <div class="right-num">05</div>
+      <div class="right-text"><strong>To have their name and unambiguous code robustly associated (when they require it) with licensed likenesses</strong> in a way that makes it clear that the likeness uses the NIL of the creator but does not capture the creator themselves.</div>
+    </div>
+
+    <div class="right-item reveal reveal-delay-2">
+      <div class="right-num">06</div>
+      <div class="right-text"><strong>To have an unambiguous code associated</strong> (when they require it) with each distinct authorized licensed likeness so that compliance with the relevant license can be ascertained.</div>
+    </div>
+
+    <div class="right-item reveal">
+      <div class="right-num">07</div>
+      <div class="right-text"><strong>To be protected from licensed likenesses</strong> that assert or imply that they capture the creator themselves.</div>
+    </div>
+
+    <div class="right-item reveal reveal-delay-1">
+      <div class="right-num">08</div>
+      <div class="right-text"><strong>To be protected from licensed likenesses that are not in compliance</strong> with the license conditions applicable to the identity of the relevant likeness.</div>
+    </div>
+
+    <div class="right-item reveal reveal-delay-2">
+      <div class="right-num">09</div>
+      <div class="right-text"><strong>To be protected from captures and licensed likenesses that are associated with names or codes that are incorrect,</strong> whether or not this is done in pursuit of gain by the party involved.</div>
+    </div>
+
+  </div>
+
+  <!-- Contextual note -->
+  <div class="manifesto-note reveal">
+    <div class="manifesto-note-label">Context &amp; Prior Art</div>
+    <p>Some of these rights are close to rights that already exist in (for instance) implementations of the <a href="https://www.wipo.int/treaties/en/ip/wct/summary_wct.html" target="_blank">WIPO treaty protections for Rights Management Information</a> (RMI) or implementations of moral rights. However, these existing rights are imperfectly implemented globally and are heavily circumscribed by (for instance in the case of the protection of RMI, termed Copyright Management Information, in the DMCA) which effectively requires an act to &ldquo;induce, enable, facilitate, or conceal an infringement of any right.&rdquo;</p>
+  </div>
+
+  <!-- Author bio -->
+  <div class="author-bio reveal">
+    <div class="author-bio-avatar">PJ</div>
+    <div>
+      <div class="author-bio-name">Paul Jessop</div>
+      <div class="author-bio-role">HAND Advisor &middot; County Analytics Ltd.</div>
+      <div class="author-bio-body">
+        <p>Paul Jessop is an independent consultant who provides advice through his company, County Analytics Ltd. in the UK. After a career in engineering and strategy with British Telecom, Paul was for 13 years CTO at the International Federation of the Phonographic Industry (IFPI) and subsequently at the Recording Industry Association of America (RIAA). Since 2016, he has been a technology advisor to the DOI Foundation and is a current advisor and equity holder in HAND.</p>
+        <p style="margin-top:12px;">Paul is a Chartered Engineer, a Fellow of the Institution of Engineering and Technology and the Royal Institution of Great Britain. He is a Member of the Audio Engineering Society. He obtained a degree in Engineering and Computer Science at Cambridge and a post-graduate Diploma in Management Studies at Oxford.</p>
+        <p style="margin-top:12px;"><a href="https://www.linkedin.com/in/paul-jessop-a7007a1/" target="_blank">Connect with Paul on LinkedIn &rarr;</a></p>
+      </div>
+      <div class="author-bio-creds">
+        <span class="cred-pill">Former CTO, IFPI</span>
+        <span class="cred-pill">Former CTO, RIAA</span>
+        <span class="cred-pill">DOI Foundation Advisor</span>
+        <span class="cred-pill">ISNI Co-Author (ISO 27729)</span>
+        <span class="cred-pill">DDEX Founder</span>
+        <span class="cred-pill">Cambridge Engineering</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="manifesto-cta reveal">
+    <h3>The infrastructure this Manifesto calls for.<br>It now exists.</h3>
+    <p>HAND is the first persistent, globally resolvable identifier for creators, athletes, and every notable public figure in the Cultural Industries &mdash; built on the DOI&reg; Foundation, governed by a nonprofit, structured so that no platform, studio, or league can ever capture it.</p>
+    <a href="/" class="btn-white">Explore hand-id.org &rarr;</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <img id="footer-logo-img" src="/images/hand-logo-white.webp" alt="HAND" style="height:36px; width:auto; margin-bottom:14px; display:block;">
+      <p class="footer-mission">HAND &mdash; The Universal Talent Identifier. The first persistent, globally resolvable identifier standard for human talent in the Cultural Industries. Delaware Non-Stock Nonprofit C Corp &middot; 501(c)(6) Applying.</p>
+      <span class="footer-501">Built on ISO 26324:2025</span>
+    </div>
+    <div>
+      <div class="footer-col-heading">Registry</div>
+      <ul class="footer-links">
+        <li><a href="/#what">What is HAND?</a></li>
+        <li><a href="https://registry.handidentity.com" target="_blank">Find a HAND ID</a></li>
+        <li><a href="/architecture">ID Architecture</a></li>
+        <li><a href="/#what">Citation-Backed Notability&#8482;</a></li>
+        <li><a href="/#why-now">Benefits</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-heading">Membership</div>
+      <ul class="footer-links">
+        <li><a href="/#join">Join HAND</a></li>
+        <li><a href="/#membership">Corporate Members</a></li>
+        <li><a href="/#membership">Guilds &amp; Unions</a></li>
+        <li><a href="/#join">Developer Access</a></li>
+        <li><a href="/#why-now">Standards Governance</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-heading">Standards &amp; Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://www.doi.org" target="_blank">DOI Foundation</a></li>
+        <li><a href="https://c2pa.org" target="_blank">C2PA</a></li>
+        <li><a href="https://cawg.io" target="_blank">CAWG</a></li>
+        <li><a href="https://eidr.org" target="_blank">EIDR</a></li>
+        <li><a href="https://www.linkedin.com/company/handidentity/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <span class="footer-copy" style="display:block;margin-bottom:8px;">DOI<sup>&reg;</sup> and DOI.ORG<sup>&reg;</sup> are registered trademarks of the International DOI Foundation.</span>
+      <span class="footer-copy">&copy; 2026 HAND &mdash; The Universal Talent Identifier &middot; hand-id.org &middot; Citation-Backed Notability&#8482; is a trademark of HAND.</span>
+    </div>
+    <a href="https://humandigital.tech" class="footer-hd-link">Commercial services: humandigital.tech &rarr;</a>
+  </div>
+</footer>
+
+<script>
+  // ── HAMBURGER NAV ──
+  document.addEventListener('DOMContentLoaded', function() {
+    const handHamburger = document.getElementById('hand-hamburger');
+    const handMobileMenu = document.getElementById('hand-mobile-menu');
+    if (!handHamburger || !handMobileMenu) return;
+    handHamburger.addEventListener('click', () => {
+      handHamburger.classList.toggle('open');
+      handMobileMenu.classList.toggle('open');
+    });
+    handMobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        handHamburger.classList.remove('open');
+        handMobileMenu.classList.remove('open');
+      });
+    });
+  });
+</script>
+
+<script>
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
