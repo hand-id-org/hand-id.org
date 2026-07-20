@@ -1,0 +1,5 @@
+# If you already have a netlify.toml in the repo, just add the
+# [build] block below to it — don't duplicate the file.
+
+[build]
+  functions = "netlify/functions"

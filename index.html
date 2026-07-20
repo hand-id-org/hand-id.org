@@ -488,9 +488,9 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 <!-- METRICS BAR -->
 <div class="metrics-bar reveal">
   <div class="metric">
-    <div class="metric-num"><em>145</em>K+</div>
+    <div class="metric-num"><em class="tick-num" data-hand-ticker="k-num">145</em><span class="tick-suffix">K+</span></div>
     <div class="metric-label">HAND IDs registered in the DOI registry</div>
-    <div class="metric-sub">As of Q1 2026</div>
+    <div class="metric-sub">Live count</div>
   </div>
   <div class="metric">
     <div class="metric-num"><em>10</em>M+</div>
@@ -592,17 +592,17 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   <div class="registry-grid">
     <div class="registry-card reveal reveal-delay-1">
       <div class="registry-badge">Sports &mdash; Baseball</div>
-      <div class="registry-date">September 2025</div>
-      <div class="registry-title">2025 MLB First Round Draft Class</div>
-      <div class="registry-body">The entire 2025 MLB First Round Draft Class received HAND IDs &mdash; providing each rising star with a permanent, resolvable identifier ahead of their professional careers, before their first at-bat, before their first endorsement deal.</div>
-      <a class="registry-link" href="https://www.sportsvideo.org/2025/09/26/2025-mlb-1st-round-draft-class-awarded-hand-ids/" target="_blank">Learn More &rarr;</a>
+      <div class="registry-date">July 2026</div>
+      <div class="registry-title">50 Top 2026 MLB Draft Prospects</div>
+      <div class="registry-body">HAND issued IDs to 50 top prospects ahead of the 2026 MLB Draft &mdash; including consensus top-ranked players Roch Cholowsky, Grady Emerson, and Justin Lebron &mdash; before a single name was called. The second time in three weeks HAND has established identity ahead of a major sports draft, across two different sports.</div>
+      <a class="registry-link" href="https://www.sportsvideo.org/2026/07/07/hand-issues-persistent-digital-ids-to-50-top-2026-mlb-draft-prospects/" target="_blank">Learn More &rarr;</a>
     </div>
     <div class="registry-card reveal reveal-delay-2">
       <div class="registry-badge">Sports &mdash; Basketball</div>
-      <div class="registry-date">September 2025</div>
-      <div class="registry-title">2025 NBA Draft Class</div>
-      <div class="registry-body">The entire 2025 NBA Draft Class received HAND IDs &mdash; a forever ID protecting against deepfakes and streamlining NIL licensing from the first day of their professional lives. Issued proactively, not retroactively.</div>
-      <a class="registry-link" href="https://www.sportsvideo.org/2025/09/04/hand-gives-2025-nba-draft-class-ids-for-more-effective-management-of-nil-in-digital-environments/" target="_blank">Learn More &rarr;</a>
+      <div class="registry-date">June 2026</div>
+      <div class="registry-title">2026 NBA Draft Class</div>
+      <div class="registry-body">34 top projected prospects in the 2026 NBA Draft class &mdash; including AJ Dybantsa, Cameron Boozer, and Darryn Peterson &mdash; received HAND IDs before draft night, the first time an ISO-standard talent registry has established identity for college athletes prior to NBA Draft selection.</div>
+      <a class="registry-link" href="https://www.sportsvideo.org/2026/06/23/hand-issues-persistent-digital-ids-to-2026-nba-draft-class/" target="_blank">Learn More &rarr;</a>
     </div>
     <div class="registry-card reveal reveal-delay-3">
       <div class="registry-badge">Entertainment</div>
@@ -1109,5 +1109,6 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
   revealEls.forEach(el => observer.observe(el));
 </script>
+<script src="/ticker/hand-ticker.js" defer></script>
 </body>
 </html>
