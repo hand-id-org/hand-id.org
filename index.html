@@ -410,6 +410,19 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 .tier-hint { margin-top:8px; font-size:12px; color:rgba(255,255,255,.45); line-height:1.5; }
 @media (max-width:640px) { .join-steps { grid-template-columns:1fr; } }
 
+/* ── RECENT MILESTONES ── */
+.ms-wrap { margin-top:48px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:28px 32px; }
+.ms-head { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-sub); margin-bottom:18px; }
+.ms-list { list-style:none; margin:0; padding:0; }
+.ms-list li { display:grid; grid-template-columns:120px 1fr; gap:18px; padding:14px 0; border-top:1px solid var(--border); }
+.ms-list li:first-child { border-top:0; padding-top:0; }
+.ms-date { font-family:'DM Mono',monospace; font-size:12px; color:var(--purple); padding-top:2px; }
+.ms-date.next { color:var(--sky); }
+.ms-t { font-size:16px; font-weight:700; margin-bottom:3px; }
+.ms-b { font-size:14px; font-weight:300; color:var(--text-dim); line-height:1.6; }
+.ms-b a { color:var(--purple); font-weight:600; text-decoration:none; }
+@media (max-width:640px) { .ms-list li { grid-template-columns:1fr; gap:4px; } .ms-wrap { padding:22px 20px; } }
+
 /* ── REGISTRY PATH / ELIGIBILITY (form gate) ── */
 .lane-box { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); border-left:4px solid var(--sky); border-radius:10px; padding:24px 26px; margin-bottom:36px; }
 .lane-title { font-size:16px; font-weight:700; color:#fff; margin-bottom:10px; }
@@ -602,12 +615,22 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <img src="/images/hand-heroine-image.webp" alt="HAND Identity — Human, Licensed Human Likeness, Fictional Character" style="width:100%; max-width:100%; height:auto; display:block; filter:drop-shadow(0 32px 60px rgba(0,0,0,0.2)) drop-shadow(0 16px 32px rgba(77,0,174,0.1)); margin-bottom:24px;">
     </div>
     <!-- DOI badge -->
-    <div style="display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--card); border:1px solid var(--border); border-radius:10px; max-width:500px;">
-      <img id="doi-logo-img" src="/images/doi-logo.webp" alt="DOI Foundation" style="height:27px; width:auto; flex-shrink:0;">
+    <div style="display:flex; flex-direction:column; gap:10px; max-width:500px;">
+    <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; background:var(--card); border:1px solid var(--border); border-radius:10px;">
+      <div style="width:118px; flex-shrink:0; display:flex; align-items:center;"><img id="doi-logo-img" src="/images/doi-logo.webp" alt="DOI Foundation" style="height:27px; width:auto; max-width:118px;"></div>
       <div>
         <div style="font-size:14px; font-weight:700; color:var(--text); margin-bottom:2px;">One of only 12 DOI Registration Agencies in the world</div>
         <div style="font-size:11px; font-weight:300; color:var(--text-dim); line-height:1.5;">The same ISO standard (ISO 26324:2025) behind academic publishing, scientific research, and global content identification &mdash; now, for the first time, for human talent.</div>
       </div>
+    </div>
+    <!-- Wikidata property badge -->
+    <a href="https://www.wikidata.org/wiki/Property:P14750" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; padding:14px 16px; background:var(--card); border:1px solid var(--border); border-radius:10px; text-decoration:none; color:inherit; transition:border-color .2s;" onmouseover="this.style.borderColor='var(--purple-border)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="width:118px; flex-shrink:0; display:flex; align-items:center; gap:6px;"><img src="/images/wikidata-logo.svg" alt="" style="height:26px; width:auto;"><img src="/images/wikidata-wordmark.svg" alt="Wikidata" style="height:11px; width:auto;"></div>
+      <div>
+        <div style="font-size:14px; font-weight:700; color:var(--text); margin-bottom:2px;">An official Wikidata property: HAND ID (P14750) &#8599;</div>
+        <div style="font-size:11px; font-weight:300; color:var(--text-dim); line-height:1.5;">Approved by the Wikidata community in 2026 &mdash; HAND IDs now link into the world&rsquo;s largest open knowledge graph, alongside identifiers like ISNI, VIAF, and IMDb.</div>
+      </div>
+    </a>
     </div>
   </div>
   <div class="hero-image-wrap">
@@ -620,6 +643,8 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <div class="urgency-item"><span class="urgency-dot"></span>500K+ NCAA Athletes NIL-Eligible &mdash; No Portable ID Infrastructure</div>
     <div class="urgency-item"><span class="urgency-dot"></span>SAG-AFTRA 2026 Contract Ratified &mdash; AI Terms Through 2030</div>
     <div class="urgency-item"><span class="urgency-dot"></span>MLB / MLBPA Labor Talks Underway</div>
+    <div class="urgency-item"><span class="urgency-dot"></span>EU AI Act Art. 50 in Force &mdash; Marking Grace Period Ends Dec. 2</div>
+    <div class="urgency-item"><span class="urgency-dot"></span>CA: No Stripping Provenance Data &mdash; Jan. 1, 2027</div>
     <div class="urgency-item"><span class="urgency-dot"></span>CA AB 1836 &amp; AB 2602 Now Law</div>
     <div class="urgency-item"><span class="urgency-dot"></span>NO FAKES Act Cleared Senate Judiciary</div>
     <div class="urgency-item"><span class="urgency-dot"></span>AI-Generated Likenesses: Board-Level Risk, Today</div>
@@ -651,7 +676,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   <div class="metric">
     <div class="metric-num"><span class="sky">ISO</span></div>
     <div class="metric-label">26324:2025 aligned identifier standard</div>
-    <div class="metric-sub">DOI &middot; C2PA &middot; CAWG &middot; EIDR &middot; IPTC</div>
+    <div class="metric-sub">DOI &middot; C2PA &middot; CAI &middot; CAWG &middot; IPTC &middot; EIDR</div>
   </div>
 </div>
 
@@ -678,12 +703,14 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <div class="force-card reveal reveal-delay-2">
       <div class="force-num">FORCE 02 &mdash; Legislative</div>
       <div class="force-title">The Laws Are Already Signed</div>
-      <div class="force-body">California AB 1836 and AB 2602 create statutory liability for unauthorized AI likenesses and AI-generated performances &mdash; in the state where most major studios and sports leagues are headquartered. NY S.8420-A and S.8391 extend those protections. The federal NO FAKES Act cleared the Senate Judiciary Committee unanimously in June 2026. CPRA exposure for SSN-based talent identification is an active, unresolved legal risk today. This is not anticipated regulation &mdash; these are active laws creating active liability right now.</div>
+      <div class="force-body">California AB 1836 and AB 2602 create statutory liability for unauthorized AI likenesses and AI-generated performances &mdash; in the state where most major studios and sports leagues are headquartered. NY S.8420-A and S.8391 extend those protections. In Europe, Article 50 of the EU AI Act took effect August 2, 2026, and the grace period for machine-readable marking of AI-generated content from systems already on the market ends December 2, 2026. California&rsquo;s AI Transparency Act, aligned to the same date, goes further on January 1, 2027: large online platforms must detect and display provenance data &mdash; and may not knowingly strip it. Mexico now requires performers&rsquo; express consent for AI cloning of their voice and image. The federal NO FAKES Act cleared the Senate Judiciary Committee unanimously in June 2026. CPRA exposure for SSN-based talent identification is an active, unresolved legal risk today. This is not anticipated regulation &mdash; these are active laws creating active liability right now.</div>
       <div class="force-law">
         <span class="force-pill">CA AB 1836</span>
         <span class="force-pill">CA AB 2602</span>
         <span class="force-pill">NY S.8420-A</span>
         <span class="force-pill">NO FAKES Act</span>
+        <span class="force-pill sky">EU AI Act Art. 50</span>
+        <span class="force-pill sky">CA AI Transparency Act</span>
         <span class="force-pill">CPRA</span>
       </div>
     </div>
@@ -693,6 +720,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <div class="force-body">Synthetic media, AI-generated likenesses, and digital replicas have made talent identification a trust crisis across sports and entertainment alike. C2PA&rsquo;s <em>Content Credentials</em> can attest the chain of custody of a file. HAND attests <em>who</em> is in it. Provenance without resolution is a label on an empty box. HAND&rsquo;s Type 02 Licensed Human Likeness IDs create an auditable consent chain linking every AI or other generated human replica likeness back to a verified, consenting person &mdash; the infrastructure every AI governance policy assumes exists but hasn&rsquo;t. Until now.</div>
       <div class="force-law">
         <span class="force-pill">C2PA Member</span>
+        <span class="force-pill">CAI Member</span>
         <span class="force-pill">CAWG Member</span>
         <span class="force-pill">Type 02 Consent Chain</span>
         <span class="force-pill sky">SAG-AFTRA / AMPTP</span>
@@ -753,6 +781,23 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <a class="registry-link" href="https://drive.google.com/file/d/1CW8R5RZ3mEx4qD47gfiVHmCkaaf8Tz0V/view?usp=sharing" target="_blank">Learn More &rarr;</a>
     </div>
   </div>
+  <!-- Recent milestones (since May 2026) -->
+  <div class="ms-wrap reveal">
+    <div class="ms-head">Recent milestones</div>
+    <ul class="ms-list">
+      <li><div class="ms-date next">Nov 18, 2026</div><div><div class="ms-t">Technical paper at the SMPTE Media Technology Summit</div><div class="ms-b">HAND presents technical paper #4954 &mdash; Pasadena, California.</div></div></li>
+      <li><div class="ms-date">Sept 2026</div><div><div class="ms-t">HAND joins the SMPTE Metadata Registry</div><div class="ms-b">HAND&rsquo;s organizational node (Class 13, Node 16) is ratified and visible in SMPTE&rsquo;s public draft registers &mdash; native carriage for HAND IDs in professional media workflows.</div></div></li>
+      <li><div class="ms-date">Sept 2026</div><div><div class="ms-t">Identity Week America: HAND and CAWG</div><div class="ms-b">A joint session in Washington, D.C. &mdash; HAND&rsquo;s first appearance representing two organizations.</div></div></li>
+      <li><div class="ms-date">Oct 2026</div><div><div class="ms-t">The registry grows 22&times; since June</div><div class="ms-b">Past 2.7 million records by October 1 &mdash; including one million new records in a single week in early September. <a href="https://registry.hand-id.org" target="_blank" rel="noopener">Search it free &#8599;</a></div></div></li>
+      <li><div class="ms-date">Sept 2026</div><div><div class="ms-t">Ready for the 2026 Primetime Emmys</div><div class="ms-b">Before the ceremony, more than two-thirds of this year&rsquo;s performer nominees already held HAND IDs.</div></div></li>
+      <li><div class="ms-date">Aug 2026</div><div><div class="ms-t">The registry crosses one million records</div><div class="ms-b">On August 27 &mdash; two weeks ahead of target.</div></div></li>
+      <li><div class="ms-date">Aug 2026</div><div><div class="ms-t">HAND ID becomes a Wikidata property</div><div class="ms-b">Approved by the Wikidata community as <a href="https://www.wikidata.org/wiki/Property:P14750" target="_blank" rel="noopener">P14750 &#8599;</a>, linking HAND IDs into the world&rsquo;s largest open knowledge graph.</div></div></li>
+      <li><div class="ms-date">July 2026</div><div><div class="ms-t">Named in a Finnish government report</div><div class="ms-b">Finland&rsquo;s Copyright Infrastructure Task Force report records that its actor-identifier expert workshop was facilitated by experts from HAND and WIPO.</div></div></li>
+      <li><div class="ms-date">June 2026</div><div><div class="ms-t">HAND Foundation joins the Ayra Trust Network</div><div class="ms-b">Building toward interoperability so the consent HAND records can be recognized across trust networks. <a href="https://handfound.org" target="_blank" rel="noopener">handfound.org &#8599;</a></div></div></li>
+      <li><div class="ms-date">June&ndash;July 2026</div><div><div class="ms-t">NBA and MLB draft classes, registered before draft day</div><div class="ms-b">Top prospects held HAND IDs before a single name was called.</div></div></li>
+      <li><div class="ms-date">May 2026</div><div><div class="ms-t">Shortlisted in three categories at the Smarter Sports Awards</div><div class="ms-b">London &mdash; recognition from the sports-technology industry.</div></div></li>
+    </ul>
+  </div>
 </div>
 
 <!-- IBC 2024 — PROOF IN PRACTICE -->
@@ -792,12 +837,12 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <div class="ibc-proof-card reveal reveal-delay-3">
       <div class="ibc-proof-num">03 &mdash; Content + talent, signed</div>
       <div class="ibc-proof-title">EIDR for the content. HAND for the talent.</div>
-      <div class="ibc-proof-body">C2PA Content Credentials carried both IDs as cryptographic source metadata, detected at distribution end-points.</div>
+      <div class="ibc-proof-body">C2PA Content Credentials carried both IDs as cryptographic source metadata, detected at distribution end-points &mdash; what California requires of large platforms from January 2027.</div>
     </div>
   </div>
   <div class="ibc-who reveal">
-    <span><b>Champions</b>ETC &middot; ITV &middot; Paramount Global &middot; SMPTE</span>
-    <span><b>Contributors</b>EIDR &middot; C2PA &middot; HAND &middot; EZDRM &middot; The Scan Truck &middot; Videntifier &middot; WaveSeven &middot; Wild Capture</span>
+    <span><b>Champions</b>ETC@USC &middot; ITV &middot; Paramount Global &middot; SMPTE</span>
+    <span><b>Contributors</b>EIDR &middot; C2PA &middot; HAND &middot; EZDRM &middot; The Scan Truck &middot; Videntifier &middot; WaveSeven &middot; Wild Capture &middot; AMD &middot; Royal Central School of Speech and Drama</span>
   </div>
 </div>
 
@@ -1039,13 +1084,15 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <span class="standards-label">Memberships &amp; Affiliations</span>
     <div class="standards-divider"></div>
     <div class="standards-items">
-      <span class="standard-item">C2PA</span>
-      <span class="standard-item">CAWG</span>
-      <span class="standard-item">EIDR</span>
-      <span class="standard-item">IPTC</span>
-      <span class="standard-item">DPP</span>
-      <span class="standard-item">DOI Foundation</span>
-      <span class="standard-item">ISO 26324:2025</span>
+      <a class="standard-item" href="https://www.doi.org" target="_blank" rel="noopener" style="text-decoration:none;">DOI Foundation</a>
+      <a class="standard-item" href="https://www.iso.org/standard/88862.html" target="_blank" rel="noopener" style="text-decoration:none;">ISO 26324:2025</a>
+      <a class="standard-item" href="https://c2pa.org" target="_blank" rel="noopener" style="text-decoration:none;">C2PA</a>
+      <a class="standard-item" href="https://contentauthenticity.org" target="_blank" rel="noopener" style="text-decoration:none;">CAI</a>
+      <a class="standard-item" href="https://cawg.io" target="_blank" rel="noopener" style="text-decoration:none;">CAWG (DIF)</a>
+      <a class="standard-item" href="https://iptc.org" target="_blank" rel="noopener" style="text-decoration:none;">IPTC</a>
+      <a class="standard-item" href="https://www.thedpp.com" target="_blank" rel="noopener" style="text-decoration:none;">DPP</a>
+      <a class="standard-item" href="https://registry.smpte-ra.org" target="_blank" rel="noopener" style="text-decoration:none;">SMPTE Metadata Registry</a>
+      <a class="standard-item" href="https://ayra.forum/the-hand-foundation-joins-the-ayra-trust-network/" target="_blank" rel="noopener" style="text-decoration:none;">Ayra (via HAND Foundation)</a>
     </div>
   </div>
 </div>
