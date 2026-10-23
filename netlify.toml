@@ -1,5 +1,33 @@
-# If you already have a netlify.toml in the repo, just add the
-# [build] block below to it — don't duplicate the file.
+# hand-id.org — Netlify configuration
+# Updated 2026-10-23 (WK): manifesto redirect, /ibc short link, /media caching
 
 [build]
   functions = "netlify/functions"
+
+# manifesto.html is a legacy duplicate of creator-id-manifesto.html.
+# Send anyone (and any search engine) to the canonical page.
+[[redirects]]
+  from = "/manifesto"
+  to = "/creator-id-manifesto"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/manifesto.html"
+  to = "/creator-id-manifesto"
+  status = 301
+  force = true
+
+# Short, shareable link for LinkedIn / slides: hand-id.org/ibc
+[[redirects]]
+  from = "/ibc"
+  to = "/ibc-2024"
+  status = 301
+
+# Self-hosted video + poster: cache at the edge and in browsers for a week.
+# (Rename the file, e.g. -v2.mp4, if you ever replace it and need an instant refresh.)
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+    Accept-Ranges = "bytes"

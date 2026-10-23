@@ -1,0 +1,774 @@
+<!-- Version: 2026-10-23 | WK | hand-id.org ibc-2024 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="last-modified" content="2026-10-23">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBC 2024: Proof in Practice &mdash; HAND</title>
+<meta name="description" content="At IBC 2024, a consented Licensed Human Likeness of SAG-AFTRA member Evan Shafran was given a HAND ID at birth and signed into its video with C2PA Content Credentials carrying EIDR and HAND IDs. The identity graph still resolves today.">
+<link rel="canonical" href="https://hand-id.org/ibc-2024">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hand-id.org/ibc-2024">
+<meta property="og:title" content="We proved it in 2024. Most people still don&rsquo;t know.">
+<meta property="og:description" content="A consented likeness, a HAND ID at birth, and C2PA Content Credentials carrying EIDR + HAND IDs &mdash; demonstrated end to end at IBC 2024. Watch the 93-second story.">
+<meta property="og:image" content="https://hand-id.org/media/hand-ibc2024-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple:        #4D00AE;
+  --purple-dim:    rgba(77,0,174,0.08);
+  --purple-mid:    rgba(77,0,174,0.15);
+  --purple-border: rgba(77,0,174,0.22);
+  --sky:           #0284C7;
+  --sky-dim:       rgba(2,132,199,0.08);
+  --sky-border:    rgba(2,132,199,0.22);
+  --amber:         #D97706;
+  --bg:            #FAFAF8;
+  --bg2:           #F3F2EF;
+  --bg3:           #ECEAE6;
+  --card:          #FFFFFF;
+  --text:          #111111;
+  --text-dim:      #666666;
+  --text-sub:      #999999;
+  --border:        rgba(0,0,0,0.08);
+  --border-mid:    rgba(0,0,0,0.13);
+  --nav-bg:        rgba(250,250,248,0.95);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes glowDrift { 0%,100% { opacity:.06; transform:scale(1); } 50% { opacity:.10; transform:scale(1.05); } }
+@keyframes gridDrift { 0% { transform:translate(0,0); } 100% { transform:translate(5px,5px); } }
+@keyframes drawLine { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes dotPulse { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+@keyframes navSlide { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes countUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+.reveal { opacity:0; transform:translateY(22px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.08s; }
+.reveal-delay-2 { transition-delay:.16s; }
+.reveal-delay-3 { transition-delay:.24s; }
+.reveal-delay-4 { transition-delay:.32s; }
+.reveal-delay-5 { transition-delay:.40s; }
+.reveal-delay-6 { transition-delay:.48s; }
+@media (prefers-reduced-motion:reduce) { .reveal,.reveal.visible { opacity:1; transform:none; transition:none; } * { animation:none!important; } }
+
+/* ── NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:200; background:var(--nav-bg); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); height:64px; padding:0 48px; display:flex; align-items:center; justify-content:space-between; animation:navSlide .5s ease both; }
+.nav-brand { display:flex; align-items:center; gap:14px; text-decoration:none; }
+.nav-logo { height:32px; width:auto; }
+.nav-tagline { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-sub); border-left:1px solid var(--border); padding-left:14px; }
+.nav-links { display:flex; align-items:center; gap:clamp(10px,2vw,24px); list-style:none; }
+.nav-links a { font-size:clamp(11px,1.3vw,15px); font-weight:500; color:var(--text-dim); text-decoration:none; letter-spacing:.02em; transition:color .2s; white-space:nowrap; }
+.nav-links a:hover { color:var(--purple); }
+.nav-cta { background:var(--purple); color:#fff!important; padding:9px 20px; border-radius:7px; font-weight:600!important; transition:opacity .2s!important; }
+.nav-cta:hover { opacity:.88; }
+.nav-secondary { border:1px solid var(--purple-border); color:var(--purple)!important; padding:8px 18px; border-radius:7px; font-weight:600!important; transition:all .2s!important; }
+.nav-secondary:hover { background:var(--purple-dim); }
+
+/* ── HERO ── */
+.hero { padding:128px 48px 96px; position:relative; overflow:hidden; border-bottom:1px solid var(--border); min-height:96vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:0 48px; }
+.hero-image-wrap { display:flex; align-items:center; justify-content:center; position:relative; z-index:2; animation:fadeUp 1s cubic-bezier(.22,1,.36,1) .6s both; }
+.hero-image-wrap img { width:100%; max-width:680px; height:auto; display:block; filter:drop-shadow(0 48px 80px rgba(0,0,0,0.35)) drop-shadow(0 24px 48px rgba(77,0,174,0.15)); }
+.hero-grid { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px); background-size:56px 56px; animation:gridDrift 14s ease-in-out infinite alternate; }
+.hero-glow { position:absolute; top:-120px; right:-100px; pointer-events:none; width:700px; height:600px; background:radial-gradient(ellipse,rgba(77,0,174,.06) 0%,transparent 65%); animation:glowDrift 9s ease-in-out infinite; }
+.hero-glow-sky { position:absolute; bottom:-80px; left:30%; pointer-events:none; width:500px; height:400px; background:radial-gradient(ellipse,rgba(2,132,199,.05) 0%,transparent 65%); animation:glowDrift 11s ease-in-out infinite reverse; }
+.hero-content { position:relative; z-index:2; }
+.eyebrow { display:flex; align-items:center; gap:10px; font-family:'DM Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--purple); margin-bottom:24px; animation:fadeIn .8s ease .3s both; }
+.eyebrow::before { content:''; width:24px; height:1px; background:var(--purple); flex-shrink:0; animation:drawLine .6s ease .5s both; transform-origin:left; }
+.hero h1 { font-size:clamp(40px,5.5vw,78px); font-weight:800; letter-spacing:-.028em; line-height:1.04; color:var(--text); margin-bottom:24px; animation:fadeUp .8s cubic-bezier(.22,1,.36,1) .4s both; }
+.hero h1 em { font-style:normal; color:var(--purple); }
+.hero h1 .sky { color:var(--sky); }
+.hero-lead { font-size:clamp(16px,1.8vw,20px); font-weight:300; color:var(--text-dim); line-height:1.75; max-width:680px; margin-bottom:40px; animation:fadeUp .8s cubic-bezier(.22,1,.36,1) .55s both; }
+.hero-ctas { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:64px; animation:fadeUp .8s cubic-bezier(.22,1,.36,1) .7s both; }
+.btn-purple { background:var(--purple); color:#fff; padding:14px 28px; border-radius:8px; font-size:17px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:opacity .2s,transform .2s; }
+.btn-purple:hover { opacity:.88; transform:translateY(-1px); }
+.btn-sky { background:var(--sky); color:#fff; padding:14px 28px; border-radius:8px; font-size:17px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:opacity .2s,transform .2s; }
+.btn-sky:hover { opacity:.88; transform:translateY(-1px); }
+.btn-ghost { border:1px solid var(--border-mid); color:var(--text); padding:14px 24px; border-radius:8px; font-size:17px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:border-color .2s,transform .2s; }
+.btn-ghost:hover { border-color:var(--purple-border); transform:translateY(-1px); }
+
+/* ── URGENCY BAND ── */
+.urgency { background:var(--purple); padding:20px 48px; display:flex; align-items:center; gap:32px; flex-wrap:wrap; }
+.urgency-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.5); white-space:nowrap; }
+.urgency-items { display:flex; gap:32px; flex-wrap:wrap; flex:1; }
+.urgency-item { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:500; color:rgba(255,255,255,.85); white-space:nowrap; }
+.urgency-dot { width:5px; height:5px; background:#fff; border-radius:50%; opacity:.6; animation:dotPulse 2s infinite; }
+
+/* ── METRICS BAR ── */
+.metrics-bar { display:grid; grid-template-columns:repeat(5,1fr); border-bottom:1px solid var(--border); background:var(--card); }
+.metric { padding:32px 28px; border-right:1px solid var(--border); transition:background .2s; }
+.metric:last-child { border-right:none; }
+.metric:hover { background:var(--bg2); }
+.metric-num { font-size:clamp(26px,3vw,42px); font-weight:800; letter-spacing:-.03em; line-height:1; color:var(--text); margin-bottom:8px; }
+.metric-num em { font-style:normal; color:var(--purple); }
+.metric-num .sky { color:var(--sky); }
+.metric-label { font-size:15px; font-weight:400; color:var(--text-dim); line-height:1.4; }
+.metric-sub { font-family:'DM Mono',monospace; font-size:10px; color:var(--text-sub); margin-top:4px; letter-spacing:.04em; }
+
+/* ── SECTION SHARED ── */
+.section { padding:80px 48px; border-bottom:1px solid var(--border); }
+.section.alt { background:var(--bg2); }
+.section.white { background:var(--card); }
+.section-label { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--purple); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+.section-label::before { content:''; width:20px; height:1px; background:var(--purple); }
+.section-label.sky { color:var(--sky); }
+.section-label.sky::before { background:var(--sky); }
+.section-heading { font-size:clamp(28px,3.5vw,46px); font-weight:800; letter-spacing:-.025em; line-height:1.1; margin-bottom:18px; }
+.section-heading em { font-style:normal; color:var(--purple); }
+.section-heading .sky { color:var(--sky); }
+.body-lead { font-size:17px; font-weight:300; color:var(--text-dim); line-height:1.75; max-width:700px; }
+
+/* ── WHY NOW / 3 FORCES ── */
+.forces-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:48px; }
+.force-card { background:var(--card); padding:36px 32px; border:1px solid var(--border); position:relative; overflow:hidden; transition:border-color .25s,transform .25s; }
+.force-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--purple); transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.22,1,.36,1); }
+.force-card:hover::before { transform:scaleX(1); }
+.force-card:hover { transform:translateY(-2px); border-color:var(--purple-border); }
+.force-num { font-family:'DM Mono',monospace; font-size:10px; color:var(--text-sub); letter-spacing:.1em; margin-bottom:16px; }
+.force-title { font-size:18px; font-weight:700; margin-bottom:12px; letter-spacing:-.01em; }
+.force-body { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.7; }
+.force-law { margin-top:16px; display:flex; flex-wrap:wrap; gap:6px; }
+.force-pill { font-family:'DM Mono',monospace; font-size:10px; background:var(--purple-dim); color:var(--purple); border:1px solid var(--purple-border); border-radius:100px; padding:3px 10px; letter-spacing:.04em; }
+.force-pill.sky { background:var(--sky-dim); color:var(--sky); border-color:var(--sky-border); }
+
+/* ── REGISTRY IN ACTION ── */
+.registry-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.registry-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px 24px; transition:border-color .25s,transform .25s; }
+.registry-card:hover { border-color:var(--purple-border); transform:translateY(-2px); }
+.registry-badge { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--purple); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.registry-badge::before { content:''; width:5px; height:5px; background:var(--purple); border-radius:50%; animation:dotPulse 2s infinite; }
+.registry-date { font-size:11px; color:var(--text-sub); margin-bottom:10px; font-family:'DM Mono',monospace; }
+.registry-title { font-size:17px; font-weight:700; margin-bottom:8px; }
+.registry-body { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.65; }
+.registry-link { display:inline-flex; align-items:center; gap:4px; margin-top:14px; font-size:12px; font-weight:600; color:var(--purple); text-decoration:none; letter-spacing:.02em; font-family:'DM Mono',monospace; }
+
+/* ── WHO HAND SERVES ── */
+.audience-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; margin-top:48px; }
+.audience-card { background:var(--card); border:1px solid var(--border); padding:36px 32px; transition:background .25s,border-color .25s; position:relative; }
+.audience-card:hover { background:var(--bg2); border-color:var(--purple-border); }
+.audience-primary-tag { display:inline-block; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; background:var(--purple-dim); color:var(--purple); border:1px solid var(--purple-border); border-radius:100px; padding:3px 10px; margin-bottom:16px; }
+.audience-icon { font-size:28px; margin-bottom:14px; display:block; }
+.audience-title { font-size:18px; font-weight:700; margin-bottom:10px; }
+.audience-body { font-size:16px; font-weight:300; color:var(--text-dim); line-height:1.7; }
+.audience-why { margin-top:16px; font-size:15px; font-weight:500; color:var(--purple); }
+
+/* ── WHAT IS HAND ── */
+.what-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+.what-features { display:flex; flex-direction:column; gap:20px; margin-top:40px; }
+.what-feature { display:flex; gap:16px; align-items:flex-start; }
+.what-feature-icon { width:36px; height:36px; background:var(--purple-dim); border:1px solid var(--purple-border); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+.what-feature-title { font-size:16px; font-weight:700; margin-bottom:4px; }
+.what-feature-body { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.6; }
+
+/* ── CBN ── */
+.cbn-section { padding:80px 48px; background:var(--text); border-bottom:1px solid rgba(255,255,255,.1); }
+.cbn-section .section-label { color:var(--purple); }
+.cbn-section .section-label::before { background:var(--purple); }
+.cbn-heading { font-size:clamp(28px,3.5vw,46px); font-weight:800; letter-spacing:-.025em; line-height:1.1; color:#fff; margin-bottom:18px; }
+.cbn-lead { font-size:17px; font-weight:300; color:rgba(255,255,255,.6); line-height:1.75; max-width:680px; margin-bottom:48px; }
+.cbn-attributes { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.cbn-attr { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:24px 20px; }
+.cbn-attr-icon { font-size:20px; margin-bottom:12px; }
+.cbn-attr-title { font-size:15px; font-weight:700; color:#fff; margin-bottom:6px; }
+.cbn-attr-body { font-size:12px; font-weight:300; color:rgba(255,255,255,.5); line-height:1.6; }
+.cbn-badge { display:inline-flex; align-items:center; gap:8px; margin-top:32px; background:var(--purple); color:#fff; border-radius:100px; padding:10px 20px; font-size:12px; font-weight:600; letter-spacing:.04em; }
+
+/* ── BOARD / ADVISORS ── */
+.board-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.board-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px 24px; transition:border-color .25s,transform .25s; }
+.board-card:hover { border-color:var(--purple-border); transform:translateY(-2px); }
+.board-initials { width:48px; height:48px; background:var(--purple-dim); border:1px solid var(--purple-border); border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:17px; font-weight:700; color:var(--purple); margin-bottom:16px; }
+.board-name { font-size:18px; font-weight:700; margin-bottom:4px; }
+.board-role { font-size:12px; font-weight:600; color:var(--purple); margin-bottom:8px; letter-spacing:.02em; }
+.board-cred { font-size:12px; font-weight:300; color:var(--text-dim); line-height:1.55; }
+.board-signal { margin-top:12px; font-size:11px; font-weight:500; color:var(--text-sub); font-style:italic; line-height:1.5; border-top:1px solid var(--border); padding-top:12px; }
+.advisor-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:24px; }
+.advisor-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:20px; transition:border-color .2s; }
+.advisor-card:hover { border-color:var(--purple-border); }
+.advisor-name { font-size:16px; font-weight:700; margin-bottom:3px; }
+.advisor-cred { font-size:12px; font-weight:300; color:var(--text-dim); line-height:1.5; }
+
+/* ── INDUSTRY VOICES ── */
+.voices-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:48px; }
+.voice-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:32px; transition:border-color .25s, transform .25s; }
+.voice-card:hover { border-color:var(--purple-border); transform:translateY(-2px); }
+.voice-pullquote { font-size:22px; font-weight:700; color:var(--text); line-height:1.35; margin-bottom:16px; letter-spacing:-.01em; }
+.voice-pullquote::before { content:'“'; display:block; font-size:48px; line-height:1; color:var(--purple); opacity:.5; font-family:Georgia,serif; margin-bottom:6px; }
+.voice-quote-full { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.7; margin-bottom:20px; font-style:italic; padding-top:12px; border-top:1px solid var(--border); }
+.voice-name { font-size:15px; font-weight:700; color:var(--text); }
+.voice-title { font-size:12px; font-weight:300; color:var(--text-dim); margin-top:2px; }
+
+/* ── MEMBERSHIP CTA ── */
+.membership { background:var(--purple); padding:80px 48px; border-bottom:1px solid rgba(255,255,255,.1); }
+.membership-heading { font-size:clamp(28px,3.5vw,46px); font-weight:800; letter-spacing:-.025em; line-height:1.1; color:#fff; margin-bottom:18px; }
+.membership-heading em { font-style:normal; color:rgba(255,255,255,.55); }
+.membership-sub { font-size:17px; font-weight:300; color:rgba(255,255,255,.65); line-height:1.7; max-width:640px; margin-bottom:48px; }
+.membership-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.member-tier { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:28px 22px; transition:background .25s,border-color .25s,transform .25s; text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+.member-tier:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.25); transform:translateY(-2px); }
+.member-tier-tag { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:12px; }
+.member-tier-title { font-size:18px; font-weight:700; color:#fff; margin-bottom:8px; }
+.member-tier-who { font-size:12px; font-weight:300; color:rgba(255,255,255,.6); line-height:1.55; margin-bottom:16px; flex-grow:1; }
+.member-tier-cta { font-size:12px; font-weight:600; color:rgba(255,255,255,.8); display:flex; align-items:center; gap:6px; margin-top:auto; }
+.member-tier.featured { background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.3); }
+
+/* ── STANDARDS BAR ── */
+.standards { background:var(--bg2); padding:40px 48px; border-bottom:1px solid var(--border); }
+.standards-inner { display:flex; align-items:center; gap:48px; flex-wrap:wrap; }
+.standards-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-sub); flex-shrink:0; }
+.standards-divider { width:1px; height:28px; background:var(--border); flex-shrink:0; }
+.standards-items { display:flex; gap:32px; flex-wrap:wrap; align-items:center; }
+.standard-item { font-size:15px; font-weight:500; color:var(--text-dim); letter-spacing:.02em; transition:color .2s; white-space:nowrap; }
+.standard-item:hover { color:var(--purple); }
+
+/* ── FOOTER ── */
+footer { background:var(--purple); padding:56px 48px 40px; }
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,.12); }
+.footer-mission { font-size:15px; font-weight:300; color:rgba(255,255,255,.65); line-height:1.7; max-width:300px; margin-bottom:16px; margin-top:16px; }
+.footer-501 { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,.4); letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border:1px solid rgba(255,255,255,.15); border-radius:4px; display:inline-block; }
+.footer-col-heading { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:16px; }
+.footer-links { list-style:none; }
+.footer-links li { margin-bottom:10px; }
+.footer-links a { font-size:15px; color:rgba(255,255,255,.7); text-decoration:none; transition:color .2s; }
+.footer-links a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.footer-copy { font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,.35); letter-spacing:.04em; }
+.footer-hd-link { font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,.35); text-decoration:none; transition:color .2s; }
+.footer-hd-link:hover { color:rgba(255,255,255,.7); }
+
+
+  /* ── HAMBURGER NAV (mobile) ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-dim);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 2px;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    background: rgba(250,250,248,0.98);
+    border-bottom: 1px solid var(--border);
+    z-index: 199;
+    padding: 16px 24px 24px;
+    backdrop-filter: blur(16px);
+  }
+  .nav-mobile-menu.open { display: block; }
+  .nav-mobile-menu ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .nav-mobile-menu ul li a {
+    display: block;
+    padding: 14px 0;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .nav-mobile-menu ul li:last-child a { border-bottom: none; }
+  .nav-mobile-menu ul li a:hover { color: var(--purple); }
+  .nav-mobile-menu ul li a.nav-cta {
+    background: var(--purple);
+    color: #fff !important;
+    padding: 12px 20px;
+    border-radius: 7px;
+    margin-top: 8px;
+    text-align: center;
+    border-bottom: none;
+  }
+
+  
+  .hero-image-mobile { display:none; }
+  @media (max-width:1024px) {
+  nav { padding:0 24px; }
+  .nav-tagline { display:none; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+  .hero {
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:96px 24px 48px;
+  }
+  .hero-content { grid-column:1; grid-row:1; }
+  .hero-image-wrap { display:none; }
+  .hero-image-mobile { display:block; }
+  .hero-image-wrap img { max-width:100%; }
+  .hero,.section,.membership,.cbn-section { padding-left:24px; padding-right:24px; }
+  .standards { padding-left:24px; padding-right:24px; }
+  .metrics-bar { grid-template-columns:repeat(3,1fr); }
+  .forces-grid,.registry-grid { grid-template-columns:1fr; }
+  .audience-grid,.what-grid,.voices-grid { grid-template-columns:1fr; }
+  .board-grid { grid-template-columns:1fr 1fr; }
+  .membership-grid { grid-template-columns:1fr 1fr; }
+  .cbn-attributes { grid-template-columns:repeat(2,1fr); }
+  .footer-top { grid-template-columns:1fr 1fr; }
+  footer { padding:48px 24px 32px; }
+}
+@media (max-width:640px) {
+  .hero h1 { font-size:36px; }
+  .metrics-bar { grid-template-columns:1fr 1fr; }
+  .board-grid,.advisor-grid,.membership-grid { grid-template-columns:1fr; }
+}
+/* ── IBC 2024 PROOF SECTION ── */
+.ibc-section { padding:88px 48px; background:var(--text); border-bottom:1px solid rgba(255,255,255,.1); position:relative; overflow:hidden; }
+.ibc-section::before { content:''; position:absolute; top:-160px; right:-120px; width:620px; height:520px; background:radial-gradient(ellipse,rgba(77,0,174,.35) 0%,transparent 65%); pointer-events:none; }
+.ibc-section .section-label { color:#B794F6; }
+.ibc-section .section-label::before { background:#B794F6; }
+.ibc-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center; position:relative; z-index:1; }
+.ibc-heading { font-size:clamp(28px,3.5vw,46px); font-weight:800; letter-spacing:-.025em; line-height:1.1; color:#fff; margin-bottom:18px; }
+.ibc-heading em { font-style:normal; color:#B794F6; }
+.ibc-lead { font-size:17px; font-weight:300; color:rgba(255,255,255,.72); line-height:1.75; margin-bottom:32px; }
+.ibc-lead strong { color:#fff; font-weight:600; }
+.ibc-ctas { display:flex; gap:12px; flex-wrap:wrap; }
+.btn-ghost-dark { border:1px solid rgba(255,255,255,.25); color:#fff; padding:14px 24px; border-radius:8px; font-size:17px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:border-color .2s,transform .2s; }
+.btn-ghost-dark:hover { border-color:rgba(255,255,255,.6); transform:translateY(-1px); }
+.ibc-player { position:relative; aspect-ratio:16/9; background:#000; border-radius:12px; overflow:hidden; box-shadow:0 40px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.08); }
+.ibc-player video, .ibc-player iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; background:#000; }
+.ibc-facade { position:absolute; inset:0; padding:0; border:0; background:#000; cursor:pointer; display:block; width:100%; }
+.ibc-facade img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.78); transition:filter .3s; }
+.ibc-facade:hover img { filter:brightness(.9); }
+.ibc-facade:focus-visible { outline:3px solid #B794F6; outline-offset:-3px; }
+.ibc-play { position:absolute; left:50%; top:50%; width:84px; height:84px; margin:-42px 0 0 -42px; border-radius:50%; background:var(--purple); color:#fff; display:flex; align-items:center; justify-content:center; font-size:28px; padding-left:6px; box-shadow:0 12px 40px rgba(77,0,174,.6); transition:transform .25s; }
+.ibc-facade:hover .ibc-play { transform:scale(1.07); }
+.ibc-dur { position:absolute; right:14px; bottom:14px; font-family:'DM Mono',monospace; font-size:12px; color:#fff; background:rgba(0,0,0,.65); padding:4px 9px; border-radius:4px; letter-spacing:.04em; }
+.ibc-tag { position:absolute; left:14px; top:14px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:rgba(77,0,174,.85); padding:5px 10px; border-radius:4px; }
+.ibc-proof { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:56px; position:relative; z-index:1; }
+.ibc-proof-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:24px 22px; }
+.ibc-proof-num { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; color:#B794F6; margin-bottom:10px; }
+.ibc-proof-title { font-size:16px; font-weight:700; color:#fff; margin-bottom:6px; }
+.ibc-proof-body { font-size:14px; font-weight:300; color:rgba(255,255,255,.6); line-height:1.6; }
+.ibc-who { margin-top:28px; display:flex; gap:10px 28px; flex-wrap:wrap; align-items:baseline; font-size:14px; color:rgba(255,255,255,.55); position:relative; z-index:1; }
+.ibc-who b { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-right:8px; }
+
+/* ── REGISTRY PATH / ELIGIBILITY (form gate) ── */
+.lane-box { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); border-left:4px solid var(--sky); border-radius:10px; padding:24px 26px; margin-bottom:36px; }
+.lane-title { font-size:16px; font-weight:700; color:#fff; margin-bottom:10px; }
+.lane-body { font-size:14px; font-weight:300; color:rgba(255,255,255,.7); line-height:1.7; margin-bottom:14px; }
+.lane-row { display:flex; gap:12px; align-items:flex-start; font-size:14px; color:rgba(255,255,255,.82); line-height:1.6; margin-top:10px; }
+.lane-row b { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:#7DD3FC; flex-shrink:0; width:110px; padding-top:3px; }
+.gate-label { display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px; }
+.gate-options { display:flex; gap:12px; flex-wrap:wrap; }
+.gate-opt { flex:1; min-width:220px; display:flex; gap:10px; align-items:flex-start; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:8px; padding:13px 16px; font-size:14px; color:#fff; cursor:pointer; line-height:1.45; transition:border-color .2s; }
+.gate-opt:hover { border-color:rgba(255,255,255,.3); }
+.gate-opt input { margin-top:3px; accent-color:#7C3AED; }
+.gate-fields[hidden], .gate-talent[hidden] { display:none; }
+.gate-talent { background:rgba(2,132,199,.12); border:1px solid rgba(2,132,199,.4); border-radius:10px; padding:22px 24px; font-size:14px; color:rgba(255,255,255,.85); line-height:1.7; }
+.gate-talent strong { color:#fff; }
+.gate-talent a { color:#7DD3FC; font-weight:600; }
+@media (max-width:1024px) {
+  .ibc-section { padding-left:24px; padding-right:24px; }
+  .ibc-grid, .ibc-proof { grid-template-columns:1fr; }
+  #join { padding:56px 24px !important; }
+}
+</style>
+<style>
+.page-hero { padding:128px 48px 80px; }
+.page-hero h1 { font-size:clamp(36px,5vw,68px); font-weight:800; letter-spacing:-.028em; line-height:1.05; color:#fff; margin-bottom:22px; }
+.page-hero h1 em { font-style:normal; color:#B794F6; }
+.page-hero .ibc-grid { grid-template-columns:1fr 1.25fr; }
+.results-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:40px; }
+.result-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px 24px 22px; display:flex; gap:18px; align-items:flex-start; }
+.result-n { font-family:'DM Mono',monospace; font-size:12px; color:var(--purple); background:var(--purple-dim); border:1px solid var(--purple-border); border-radius:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.result-title { font-size:16px; font-weight:700; margin-bottom:4px; }
+.result-body { font-size:14px; font-weight:300; color:var(--text-dim); line-height:1.65; }
+.graph-wrap { margin-top:40px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:28px; }
+.graph-svg { display:block; width:100%; height:auto; }
+.graph-svg a:hover rect { stroke-width:2.5; }
+.graph-svg a:focus-visible rect { stroke:#111; stroke-width:3; }
+.graph-list { display:none; }
+.graph-node { display:block; border:1px solid var(--purple-border); background:var(--purple-dim); border-radius:10px; padding:14px 16px; text-decoration:none; color:var(--text); }
+.graph-node.sky { border-color:var(--sky-border); background:var(--sky-dim); }
+.graph-node small { display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--purple); margin-bottom:4px; }
+.graph-node.sky small { color:var(--sky); }
+.graph-node code { display:block; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-dim); margin-top:4px; word-break:break-all; }
+.graph-edge { font-family:'DM Mono',monospace; font-size:11px; color:var(--text-sub); padding:8px 0 8px 18px; }
+.manifest-card { margin-top:20px; border:1px dashed var(--border-mid); border-radius:10px; padding:18px 20px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; font-size:14px; color:var(--text-dim); }
+.manifest-card b { color:var(--text); }
+.manifest-pill { font-family:'DM Mono',monospace; font-size:11px; border-radius:100px; padding:4px 12px; }
+.four-c { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:40px; }
+.four-c > div { background:var(--card); border:1px solid var(--border); padding:28px 24px; }
+.four-c .c-n { font-family:'DM Mono',monospace; font-size:10px; color:var(--text-sub); letter-spacing:.1em; margin-bottom:10px; }
+.four-c .c-t { font-size:22px; font-weight:800; color:var(--purple); margin-bottom:8px; letter-spacing:-.01em; }
+.four-c .c-b { font-size:14px; font-weight:300; color:var(--text-dim); line-height:1.6; }
+.who-grid { display:grid; grid-template-columns:1fr 2fr; gap:24px; margin-top:40px; }
+.who-col { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px; }
+.who-col h3 { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-sub); margin-bottom:14px; }
+.who-list { display:flex; flex-wrap:wrap; gap:8px; }
+.who-list a { font-size:14px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border-mid); border-radius:100px; padding:6px 14px; transition:border-color .2s,color .2s; }
+.who-list a:hover { border-color:var(--purple-border); color:var(--purple); }
+.now-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
+.now-card { background:var(--card); border:1px solid var(--border); border-top:3px solid var(--sky); border-radius:10px; padding:24px; }
+.now-k { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--sky); margin-bottom:8px; }
+.now-t { font-size:16px; font-weight:700; margin-bottom:6px; }
+.now-b { font-size:14px; font-weight:300; color:var(--text-dim); line-height:1.65; }
+.now-b a { color:var(--sky); }
+.share-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+@media (max-width:1024px) {
+  .page-hero { padding:96px 24px 56px; }
+  .page-hero .ibc-grid, .results-grid, .now-grid, .who-grid { grid-template-columns:1fr; }
+  .four-c { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:760px) {
+  .graph-svg { display:none; }
+  .graph-list { display:block; }
+  .four-c { grid-template-columns:1fr; }
+  .graph-wrap { padding:18px; }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VN98QYPGL0');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "HAND at IBC 2024 — Licensed Human Likeness of Evan Shafran (behind the scenes)",
+  "description": "Behind the scenes of the IBC Accelerator 2024 project Digital Replicas & Talent ID: a consented likeness, issued a HAND ID and signed with C2PA Content Credentials carrying EIDR and HAND identifiers.",
+  "thumbnailUrl": ["https://hand-id.org/media/hand-ibc2024-poster.jpg", "https://i.ytimg.com/vi/196N7OTp9As/hqdefault.jpg"],
+  "uploadDate": "2024-09-13",
+  "duration": "PT1M33S",
+  "contentUrl": "https://hand-id.org/media/hand-ibc2024-720p.mp4",
+  "embedUrl": "https://www.youtube-nocookie.com/embed/196N7OTp9As",
+  "publisher": { "@type": "Organization", "name": "HAND – The Universal Talent Identifier", "url": "https://hand-id.org" }
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="/">
+    <img class="nav-logo" id="nav-logo-img" src="/images/hand-logo.webp" alt="HAND">
+    <span class="nav-tagline">The Universal Talent Identifier</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#what">What is HAND?</a></li>
+    <li><a href="/#why-now">Why Now</a></li>
+    <li><a href="architecture.html">The Standard</a></li>
+    <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
+    <li><a href="/ibc-2024" style="color:var(--purple); font-weight:700;">IBC 2024 &#9654;</a></li>
+    <li><a href="/#board">Leadership</a></li>
+    <li><a href="supplemental.html">Traction</a></li>
+    <li><a href="/#membership" class="nav-secondary">Join HAND</a></li>
+    <li><a href="https://registry.hand-id.org" class="nav-cta">Find a HAND ID</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hand-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="hand-mobile-menu">
+  <ul>
+    <li><a href="/#what">What is HAND?</a></li>
+    <li><a href="/#why-now">Why Now</a></li>
+    <li><a href="architecture.html">The Standard</a></li>
+    <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
+    <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
+    <li><a href="/#board">Leadership</a></li>
+    <li><a href="supplemental.html">Traction</a></li>
+    <li><a href="/#membership">Join HAND</a></li>
+    <li><a href="https://registry.hand-id.org" class="nav-cta">Find a HAND ID</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="ibc-section page-hero" id="top">
+  <div class="ibc-grid">
+    <div>
+      <div class="section-label">IBC Accelerator 2024 &middot; Amsterdam &middot; Proof in Practice</div>
+      <h1>A consented likeness.<br><em>A resolvable chain of custody.</em></h1>
+      <p class="ibc-lead">In September 2024, an IBC Accelerator project proposed and led by HAND showed &mdash; end to end, in a working pipeline &mdash; how a human likeness can be created with consent, identified at birth, signed into the content it appears in, and verified where audiences meet it. Two years later, the rules have caught up with the workflow. Most people still haven&rsquo;t seen it.</p>
+      <div class="ibc-ctas">
+        <a href="#graph" class="btn-purple">See the live graph &darr;</a>
+        <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id" target="_blank" rel="noopener" class="btn-ghost-dark">Read the project book &#8599;</a>
+      </div>
+    </div>
+    <div>
+      <div class="ibc-player" data-mp4="/media/hand-ibc2024-720p.mp4" data-yt="196N7OTp9As" data-loc="ibc-page" data-title="HAND at IBC 2024 &mdash; Licensed Human Likeness of Evan Shafran (behind the scenes)">
+        <button class="ibc-facade" type="button" aria-label="Play: HAND at IBC 2024, behind the scenes (1 minute 33 seconds)">
+          <img src="/media/hand-ibc2024-poster.jpg" alt="Behind the scenes at IBC 2024: capturing a consented likeness of Evan Shafran">
+          <span class="ibc-tag">Behind the scenes</span>
+          <span class="ibc-play" aria-hidden="true">&#9654;</span>
+          <span class="ibc-dur">1:33</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE CHALLENGE -->
+<div class="section white" id="challenge">
+  <div class="reveal" style="max-width:860px;">
+    <div class="section-label">The Challenge</div>
+    <h2 class="section-heading">AI can copy anyone.<br><em>Could the industry prove who&rsquo;s real &mdash; and who consented?</em></h2>
+    <p class="body-lead">The IBC Accelerator challenge <em>Digital Replicas &amp; Talent ID: Provenance, Verification and New Automated Workflows</em> took on a question every studio, broadcaster, and guild now faces: when a performer&rsquo;s likeness can be generated by machine, how do you tell an authorized likeness from an unauthorized one &mdash; automatically, across every platform it travels to? HAND first proposed the challenge in November 2023 and pitched it at the IBC Accelerator Kickstart Day in London in March 2024. The answer it tested was a standardized, resolvable identity framework for real people, their licensed likenesses, and fictional characters, carried inside the media itself.</p>
+  </div>
+</div>
+
+<!-- WHAT WE BUILT -->
+<div class="section alt" id="results">
+  <div class="reveal">
+    <div class="section-label">What Was Built</div>
+    <h2 class="section-heading">Seven results.<br><em>All of them still standing.</em></h2>
+  </div>
+  <div class="results-grid">
+    <div class="result-card reveal reveal-delay-1"><div class="result-n">01</div><div><div class="result-title">A consented likeness of a working performer</div><div class="result-body">Actor, rapper, DJ, and SAG-AFTRA member Evan Shafran was scanned with his consent, and a video of his Licensed Human Likeness was produced.</div></div></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-n">02</div><div><div class="result-title">Two HAND IDs, issued at birth</div><div class="result-body">Evan (Type 01) and his likeness (Type 02) were both registered in the HAND registry &mdash; resolvable, unique, interoperable, and linked to each other.</div></div></div>
+    <div class="result-card reveal reveal-delay-3"><div class="result-n">03</div><div><div class="result-title">Content and talent IDs, cryptographically signed</div><div class="result-body">C2PA Content Credentials for the likeness video carried the EIDR content ID and the HAND talent ID as source metadata, using EZDRM technology.</div></div></div>
+    <div class="result-card reveal reveal-delay-4"><div class="result-n">04</div><div><div class="result-title">An asset &amp; metadata workflow, greenlight to delivery</div><div class="result-body">A mapped workflow tracking a likeness from project greenlight through capture, creation, and distribution &mdash; across theatrical, TV, gaming, and advertising use cases.</div></div></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-n">05</div><div><div class="result-title">Connectors to the people who pay talent</div><div class="result-body">Workflow connectors mapped to accounting and finance teams &mdash; where consent becomes credit and compensation.</div></div></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-n">06</div><div><div class="result-title">Verification at the point of distribution</div><div class="result-body">Content Credentials were detected in the delivered media at distribution end-points &mdash; provenance that travels with the file.</div></div></div>
+    <div class="result-card reveal reveal-delay-3"><div class="result-n">07</div><div><div class="result-title">Deepfake detection alongside</div><div class="result-body">Videntifier&rsquo;s forensic media analysis demonstrated detection of manipulated media &mdash; the counterpart to proving what&rsquo;s authentic.</div></div></div>
+    <div class="result-card reveal reveal-delay-4" style="background:var(--purple); border-color:var(--purple);"><div class="result-n" style="background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.25); color:#fff;">&rarr;</div><div><div class="result-title" style="color:#fff;">Read every detail</div><div class="result-body" style="color:rgba(255,255,255,.75);">Workflows, use cases, legal context, and participants are documented in the public <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id" target="_blank" rel="noopener" style="color:#fff; font-weight:600;">IBC project book &#8599;</a></div></div></div>
+  </div>
+</div>
+
+<!-- LIVE GRAPH -->
+<div class="section white" id="graph">
+  <div class="reveal" style="max-width:860px;">
+    <div class="section-label sky">Still Live Today</div>
+    <h2 class="section-heading">The identity graph from 2024<br><span class="sky">resolves right now.</span></h2>
+    <p class="body-lead">This is not a mock-up. These three records sit in the HAND registry today. The likeness points to the human it is licensed from, and to the company that produced it. Click any node to open the live record.</p>
+  </div>
+  <div class="graph-wrap reveal reveal-delay-1">
+<svg class="graph-svg" viewBox="0 0 880 380" role="img" aria-labelledby="g-title g-desc">
+  <title id="g-title">Evan Shafran&rsquo;s identity graph in the HAND registry</title>
+  <desc id="g-desc">A Type 02 Licensed Human Likeness record links to the Type 01 human it is licensed from, via the licensedHuman edge, and to the Type 04 legal entity that produced it, The Scan Truck, via the productionEntity edge.</desc>
+  <defs>
+    <marker id="arr-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4D00AE"/></marker>
+    <marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0284C7"/></marker>
+  </defs>
+  <path d="M500,118 C560,180 610,210 660,262" fill="none" stroke="#4D00AE" stroke-width="2" marker-end="url(#arr-p)"/>
+  <path d="M380,118 C320,180 270,210 220,262" fill="none" stroke="#0284C7" stroke-width="2" marker-end="url(#arr-s)"/>
+  <rect x="566" y="172" width="122" height="24" rx="12" fill="#FAFAF8"/>
+  <text x="627" y="189" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#4D00AE">licensedHuman</text>
+  <rect x="180" y="172" width="138" height="24" rx="12" fill="#FAFAF8"/>
+  <text x="249" y="189" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#0284C7">productionEntity</text>
+  <a href="https://registry.hand-id.org/#objects/10.23/E46E-7EB9-3AF8-E551-23D4" target="_blank" rel="noopener" aria-label="Type 02 · Licensed Human Likeness: Evan Shafran LHL #0001, 10.23/E46E-7EB9-3AF8-E551-23D4 (opens the HAND registry)">
+    <rect x="270" y="20" width="340" height="98" rx="12" fill="#4D00AE" fill-opacity=".07" stroke="#4D00AE" stroke-width="1.5"/>
+    <text x="440.0" y="48" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" letter-spacing="1.2" fill="#4D00AE">TYPE 02 · LICENSED HUMAN LIKENESS</text>
+    <text x="440.0" y="74" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" font-weight="700" fill="#111111">Evan Shafran LHL #0001</text>
+    <text x="440.0" y="98" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#666666">10.23/E46E-7EB9-3AF8-E551-23D4 &#8599;</text>
+  </a>
+  <a href="https://registry.hand-id.org/#objects/10.23/59BB-1EA7-1BAB-413B-37DC" target="_blank" rel="noopener" aria-label="Type 01 · Human Identity: Evan Shafran, 10.23/59BB-1EA7-1BAB-413B-37DC (opens the HAND registry)">
+    <rect x="500" y="266" width="360" height="98" rx="12" fill="#4D00AE" fill-opacity=".07" stroke="#4D00AE" stroke-width="1.5"/>
+    <text x="680.0" y="294" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" letter-spacing="1.2" fill="#4D00AE">TYPE 01 · HUMAN IDENTITY</text>
+    <text x="680.0" y="320" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" font-weight="700" fill="#111111">Evan Shafran</text>
+    <text x="680.0" y="344" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#666666">10.23/59BB-1EA7-1BAB-413B-37DC &#8599;</text>
+  </a>
+  <a href="https://registry.hand-id.org/#objects/10.23/F90B-E2F3-AF95-276A-A2D7" target="_blank" rel="noopener" aria-label="Type 04 · Legal Entity: The Scan Truck, 10.23/F90B-E2F3-AF95-276A-A2D7 (opens the HAND registry)">
+    <rect x="20" y="266" width="360" height="98" rx="12" fill="#0284C7" fill-opacity=".07" stroke="#0284C7" stroke-width="1.5"/>
+    <text x="200.0" y="294" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" letter-spacing="1.2" fill="#0284C7">TYPE 04 · LEGAL ENTITY</text>
+    <text x="200.0" y="320" text-anchor="middle" font-family="Manrope, sans-serif" font-size="18" font-weight="700" fill="#111111">The Scan Truck</text>
+    <text x="200.0" y="344" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="#666666">10.23/F90B-E2F3-AF95-276A-A2D7 &#8599;</text>
+  </a>
+</svg>
+<div class="graph-list">
+  <a class="graph-node" href="https://registry.hand-id.org/#objects/10.23/E46E-7EB9-3AF8-E551-23D4" target="_blank" rel="noopener"><small>Type 02 &middot; Licensed Human Likeness</small><strong>Evan Shafran LHL #0001</strong><code>10.23/E46E-7EB9-3AF8-E551-23D4 &#8599;</code></a>
+  <div class="graph-edge">&darr; licensedHuman</div>
+  <a class="graph-node" href="https://registry.hand-id.org/#objects/10.23/59BB-1EA7-1BAB-413B-37DC" target="_blank" rel="noopener"><small>Type 01 &middot; Human Identity</small><strong>Evan Shafran</strong><code>10.23/59BB-1EA7-1BAB-413B-37DC &#8599;</code></a>
+  <div class="graph-edge">&uarr; from LHL #0001 &middot; productionEntity &darr;</div>
+  <a class="graph-node sky" href="https://registry.hand-id.org/#objects/10.23/F90B-E2F3-AF95-276A-A2D7" target="_blank" rel="noopener"><small>Type 04 &middot; Legal Entity</small><strong>The Scan Truck</strong><code>10.23/F90B-E2F3-AF95-276A-A2D7 &#8599;</code></a>
+</div>
+    <div class="manifest-card">
+      <span><b>And on the video itself:</b> a C2PA Content Credential carrying</span>
+      <span class="manifest-pill" style="background:var(--sky-dim); color:var(--sky); border:1px solid var(--sky-border);">EIDR &middot; what was made</span>
+      <span class="manifest-pill" style="background:var(--purple-dim); color:var(--purple); border:1px solid var(--purple-border);">HAND &middot; who is in it</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOUR C'S -->
+<div class="section alt" id="four-cs">
+  <div class="reveal" style="max-width:860px;">
+    <div class="section-label">The Principle</div>
+    <h2 class="section-heading">The Four C&rsquo;s &mdash;<br><em>in the order that protects people.</em></h2>
+    <p class="body-lead">The project framed every use of a performer&rsquo;s name, image, likeness, and voice around four principles. Their order matters: control exercised only after distribution and payment is remediation, not control.</p>
+  </div>
+  <div class="four-c reveal reveal-delay-1">
+    <div><div class="c-n">01</div><div class="c-t">Consent</div><div class="c-b">The performer agrees, on the record, before the likeness exists.</div></div>
+    <div><div class="c-n">02</div><div class="c-t">Control</div><div class="c-b">The performer governs how, where, and for how long it is used.</div></div>
+    <div><div class="c-n">03</div><div class="c-t">Credit</div><div class="c-b">Every use is attributable to the right person, by a resolvable ID.</div></div>
+    <div><div class="c-n">04</div><div class="c-t">Compensation</div><div class="c-b">The result of the first three: the right person gets paid.</div></div>
+  </div>
+</div>
+
+<!-- WHY IT MATTERS NOW -->
+<div class="section white" id="now">
+  <div class="reveal" style="max-width:860px;">
+    <div class="section-label sky">Why It Matters More in 2026</div>
+    <h2 class="section-heading">The rules caught up<br><span class="sky">with the workflow.</span></h2>
+    <p class="body-lead">In 2024 this was a proof of concept. In 2026 it is what contracts and statutes assume exists. (The law calls these &ldquo;digital replicas.&rdquo; HAND&rsquo;s canonical term is Licensed Human Likeness &mdash; and HAND holds that every synthetic likeness of a person deserves consent-based protection, whatever its statutory label.)</p>
+  </div>
+  <div class="now-grid">
+    <div class="now-card reveal reveal-delay-1"><div class="now-k">Labor</div><div class="now-t">SAG-AFTRA&rsquo;s 2026 contract</div><div class="now-b">Ratified June 2026 with expanded AI protections, running through June 30, 2030 &mdash; consent and compensation terms that need verifiable identity to enforce at scale.</div></div>
+    <div class="now-card reveal reveal-delay-2"><div class="now-k">Federal</div><div class="now-t">NO FAKES Act</div><div class="now-b">Cleared the Senate Judiciary Committee unanimously in June 2026 &mdash; the closest the U.S. has come to a federal right in voice and likeness.</div></div>
+    <div class="now-card reveal reveal-delay-3"><div class="now-k">State</div><div class="now-t">California AB 1836 &amp; AB 2602</div><div class="now-b">In force: consent requirements for digital replicas of performers, living and deceased, in the state where the studios are.</div></div>
+  </div>
+</div>
+
+<!-- WHO WAS IN THE ROOM -->
+<div class="section alt" id="participants">
+  <div class="reveal">
+    <div class="section-label">Who Was in the Room</div>
+    <h2 class="section-heading">Built in the open,<br><em>with the industry.</em></h2>
+  </div>
+  <div class="who-grid reveal reveal-delay-1">
+    <div class="who-col"><h3>Champions</h3><div class="who-list">
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/champions/etc" target="_blank" rel="noopener">ETC</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/champions/itv" target="_blank" rel="noopener">ITV</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/champions/paramount-global" target="_blank" rel="noopener">Paramount Global</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/champions/smpte" target="_blank" rel="noopener">SMPTE</a>
+    </div></div>
+    <div class="who-col"><h3>Contributors</h3><div class="who-list">
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/metadata-and-governance/eidr" target="_blank" rel="noopener">EIDR</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/metadata-and-governance/c2pa" target="_blank" rel="noopener">C2PA</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/metadata-and-governance/hand" target="_blank" rel="noopener">HAND</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/technology/ezdrm" target="_blank" rel="noopener">EZDRM</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/technology/the-scan-truck" target="_blank" rel="noopener">The Scan Truck</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/technology/videntifier" target="_blank" rel="noopener">Videntifier</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/technology/waveseven" target="_blank" rel="noopener">WaveSeven</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id/overview/key-participants/contributors/technology/wild-capture" target="_blank" rel="noopener">Wild Capture</a>
+    </div></div>
+  </div>
+  <p class="reveal" style="margin-top:20px; font-size:13px; color:var(--text-sub); max-width:860px; line-height:1.6;">Organizations are named as credited at the time of the project. With thanks to Evan Shafran.</p>
+</div>
+
+<!-- CTA -->
+<div class="membership" id="next">
+  <div class="reveal">
+    <h2 class="membership-heading">This workflow is ready<br><em>for your pipeline.</em></h2>
+    <p class="membership-sub">If your organization creates, licenses, distributes, or pays for human likenesses &mdash; studios, broadcasters, agencies, guilds, leagues, platforms &mdash; HAND wants to talk to you. Talent: ask your representative about HAND.</p>
+    <div class="share-row">
+      <a href="/#join" class="btn-ghost-dark" style="background:#fff; color:var(--purple); border-color:#fff; font-weight:700;">Talk to HAND &rarr;</a>
+      <a href="https://www.youtube.com/watch?v=196N7OTp9As" target="_blank" rel="noopener" class="btn-ghost-dark">Share the video on YouTube &#8599;</a>
+      <a href="https://eidr.gitbook.io/digital-replicas-and-talent-id" target="_blank" rel="noopener" class="btn-ghost-dark">IBC project book &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <img id="footer-logo-img" src="/images/hand-logo-white.webp" alt="HAND" style="height:36px; width:auto; margin-bottom:14px; display:block;">
+      <p class="footer-mission">HAND &mdash; The Universal Talent Identifier. The first persistent, globally resolvable identifier standard for human talent in the Cultural Industries. Delaware Non-Stock Nonprofit C Corp &middot; 501(c)(6) Application Pending.</p>
+      <span class="footer-501">Built on ISO 26324:2025</span>
+    </div>
+    <div>
+      <div class="footer-col-heading">Registry</div>
+      <ul class="footer-links">
+        <li><a href="/#what">What is HAND?</a></li>
+        <li><a href="https://registry.hand-id.org" target="_blank">Find a HAND ID</a></li>
+        <li><a href="/architecture">ID Architecture</a></li>
+        <li><a href="/ibc-2024">IBC 2024: Proof in Practice</a></li>
+        <li><a href="/#what">Citation-Backed Notability&#8482;</a></li>
+        <li><a href="/#why-now">Benefits</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-heading">Membership</div>
+      <ul class="footer-links">
+        <li><a href="supplemental.html">Partners &amp; Membership &#8599;</a></li>
+        <li><a href="/#join">Join HAND</a></li>
+        <li><a href="/#membership">Membership Tiers &amp; Rates</a></li>
+        <li><a href="/#membership">Guilds &amp; Unions</a></li>
+        <li><a href="supplemental.html#membership">Developer Access</a></li>
+        <li><a href="/#why-now">Standards Governance</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-heading">Standards &amp; Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://www.doi.org" target="_blank">DOI Foundation</a></li>
+        <li><a href="https://c2pa.org" target="_blank">C2PA</a></li>
+        <li><a href="https://cawg.io" target="_blank">CAWG</a></li>
+        <li><a href="https://eidr.org" target="_blank">EIDR</a></li>
+        <li><a href="https://handfound.org" target="_blank">HAND Foundation &#8599;</a></li>
+        <li><a href="https://www.linkedin.com/company/handidentity/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" style="display:block;margin-bottom:8px;">DOI<sup>&reg;</sup> and DOI.ORG<sup>&reg;</sup> are registered trademarks of the International DOI Foundation.</span>
+    <span class="footer-copy" style="display:block;margin-bottom:8px;">HAND is a B2B standards body. It does not offer individual registration or consumer support.</span>
+    <span class="footer-copy">&copy; 2026 HAND &mdash; The Universal Talent Identifier &middot; hand-id.org &middot; Citation-Backed Notability&#8482; is a trademark of HAND.</span>
+    <a href="https://humandigital.tech" class="footer-hd-link">humandigital.tech &#8599;</a>
+  </div>
+
+</footer>
+
+<script>
+  // ── HAMBURGER NAV ──
+  document.addEventListener('DOMContentLoaded', function() {
+    const handHamburger = document.getElementById('hand-hamburger');
+    const handMobileMenu = document.getElementById('hand-mobile-menu');
+    if (!handHamburger || !handMobileMenu) return;
+    handHamburger.addEventListener('click', () => {
+      handHamburger.classList.toggle('open');
+      handMobileMenu.classList.toggle('open');
+    });
+    handMobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        handHamburger.classList.remove('open');
+        handMobileMenu.classList.remove('open');
+      });
+    });
+  });
+</script>
+
+<script>
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+<script src="/ibc/ibc-player.js" defer></script>
+</body>
+</html>

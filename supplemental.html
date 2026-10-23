@@ -1,9 +1,9 @@
-<!-- Version: 2026-05-19 | WK | hand-id.org supplemental -->
+<!-- Version: 2026-10-23 | WK | hand-id.org supplemental -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="last-modified" content="2026-05-19">
+<meta name="last-modified" content="2026-10-23">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HAND &mdash; Partners, Membership &amp; Benefits</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -246,11 +246,91 @@ footer { background:var(--purple); padding:48px 64px 36px; }
   .membership-grid { grid-template-columns:1fr 1fr; }
   .accessible-grid { grid-template-columns:1fr; }
 }
+@media (max-width:1024px) { .neutral-grid { grid-template-columns:1fr !important; } }
 @media (max-width:640px) {
+  .supp-footer-grid { grid-template-columns:1fr !important; gap:28px !important; }
   .survives-grid { grid-template-columns:1fr 1fr; }
   .membership-grid { grid-template-columns:1fr; }
 }
 
+
+/* ── STARTUP MEMBER BAND ── */
+.startup-band { margin-top:24px; background:#fff; color:var(--text); border-radius:14px; padding:36px 36px 32px; position:relative; overflow:hidden; }
+.startup-band::before { content:''; position:absolute; inset:0 0 auto 0; height:4px; background:linear-gradient(90deg,var(--purple),var(--sky)); }
+.startup-head { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:26px; }
+.startup-tag { display:inline-block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:var(--sky); border-radius:100px; padding:4px 12px; margin-bottom:12px; }
+.startup-title { font-size:clamp(24px,2.6vw,34px); font-weight:800; letter-spacing:-.02em; line-height:1.1; }
+.startup-title em { font-style:normal; color:var(--purple); }
+.startup-sub { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.6; margin-top:8px; max-width:620px; }
+.startup-price { text-align:right; }
+.startup-price-num { font-size:40px; font-weight:800; letter-spacing:-.03em; color:var(--purple); line-height:1; }
+.startup-price-num span { font-size:16px; font-weight:600; color:var(--text-dim); letter-spacing:0; }
+.startup-price-note { font-family:'DM Mono',monospace; font-size:11px; color:var(--text-sub); margin-top:6px; letter-spacing:.04em; }
+.startup-cols { display:grid; grid-template-columns:1fr 1fr 1.1fr; gap:16px; }
+.startup-col { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:22px 22px 18px; }
+.startup-col h4 { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--purple); margin-bottom:12px; }
+.startup-col.win { background:var(--purple-dim); border-color:var(--purple-border); }
+.startup-col ul { list-style:none; margin:0; padding:0; }
+.startup-col li { font-size:14px; font-weight:400; color:var(--text); line-height:1.55; padding-left:20px; position:relative; margin-bottom:9px; }
+.startup-col li::before { content:'\2713'; position:absolute; left:0; color:var(--sky); font-weight:700; }
+.startup-col.give li::before { content:'\2192'; color:var(--purple); }
+.startup-col p { font-size:14px; line-height:1.65; color:var(--text); margin:0 0 10px; }
+.startup-cta { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:24px; }
+.startup-cta a.go { background:var(--purple); color:#fff; padding:13px 26px; border-radius:8px; font-size:16px; font-weight:700; text-decoration:none; transition:opacity .2s; }
+.startup-cta a.go:hover { opacity:.88; }
+.startup-cta span { font-size:13px; color:var(--text-dim); }
+@media (max-width:1024px) { .startup-cols { grid-template-columns:1fr; } .startup-price { text-align:left; } .startup-band { padding:28px 22px; } }
+
+/* ── PUBLIC RATE CARD ── */
+.rate-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.rate-card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:24px 20px 20px; display:flex; flex-direction:column; text-decoration:none; color:#fff; transition:background .2s,border-color .2s,transform .2s; }
+.rate-card:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.3); transform:translateY(-2px); }
+.rate-card.lead { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.4); }
+.rate-card.startup { border-color:#7DD3FC; }
+.rate-tag { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.13em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:10px; }
+.rate-card.startup .rate-tag { color:#7DD3FC; }
+.rate-name { font-size:18px; font-weight:700; margin-bottom:10px; line-height:1.25; }
+.rate-price { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1; }
+.rate-price small { font-size:13px; font-weight:500; color:rgba(255,255,255,.6); letter-spacing:0; }
+.rate-note { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,.5); margin:6px 0 14px; letter-spacing:.03em; min-height:14px; }
+.rate-gov { display:inline-block; align-self:flex-start; font-size:11px; font-weight:700; border-radius:100px; padding:4px 10px; margin-bottom:12px; }
+.rate-gov.vote { background:#fff; color:var(--purple); }
+.rate-gov.novote { background:rgba(255,255,255,.1); color:rgba(255,255,255,.75); border:1px solid rgba(255,255,255,.2); }
+.rate-who { font-size:13px; font-weight:300; color:rgba(255,255,255,.7); line-height:1.55; flex-grow:1; margin-bottom:14px; }
+.rate-cta { font-size:13px; font-weight:700; color:#fff; }
+.rate-row2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+.rate-row2 .rate-card { flex-direction:row; align-items:center; gap:18px; padding:18px 20px; }
+.rate-row2 .rate-who { margin:0; }
+.gov-table-wrap { margin-top:28px; overflow-x:auto; border-radius:12px; border:1px solid rgba(255,255,255,.14); }
+.gov-table { width:100%; border-collapse:collapse; min-width:620px; font-size:14px; color:rgba(255,255,255,.85); }
+.gov-table caption { text-align:left; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.45); padding:14px 18px 4px; }
+.gov-table th, .gov-table td { padding:11px 14px; border-top:1px solid rgba(255,255,255,.1); text-align:center; }
+.gov-table th:first-child, .gov-table td:first-child { text-align:left; padding-left:18px; }
+.gov-table thead th { font-size:12px; font-weight:700; color:#fff; }
+.gov-table thead th span { display:block; font-weight:400; color:rgba(255,255,255,.55); font-size:11px; margin-top:2px; }
+.gov-table td.y { color:#fff; font-weight:700; }
+.gov-table td.n { color:rgba(255,255,255,.3); }
+.gov-table tr.key td { background:rgba(255,255,255,.06); }
+.gov-foot { font-size:13px; color:rgba(255,255,255,.6); margin-top:12px; line-height:1.6; }
+.gov-foot strong { color:#fff; }
+@media (max-width:1024px) { .rate-grid { grid-template-columns:1fr 1fr; } .rate-row2 { grid-template-columns:1fr; } }
+@media (max-width:640px) { .rate-grid { grid-template-columns:1fr; } .rate-row2 .rate-card { flex-direction:column; align-items:flex-start; } }
+
+.acl-box { margin-top:18px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.acl-col { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:18px 20px; }
+.acl-col h4 { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.13em; text-transform:uppercase; color:#7DD3FC; margin-bottom:10px; }
+.acl-col.not h4 { color:rgba(255,255,255,.55); }
+.acl-col ul { list-style:none; margin:0; padding:0; }
+.acl-col li { font-size:13px; color:rgba(255,255,255,.82); line-height:1.6; padding-left:18px; position:relative; margin-bottom:7px; }
+.acl-col li::before { content:'\2713'; position:absolute; left:0; color:#7DD3FC; font-weight:700; }
+.acl-col.not li::before { content:'\2715'; color:rgba(255,255,255,.4); }
+.acl-intro { font-size:14px; color:rgba(255,255,255,.75); line-height:1.65; margin-top:26px; max-width:900px; }
+.acl-intro strong { color:#fff; }
+.fine-print { margin-top:18px; border-top:1px solid var(--border); padding-top:14px; }
+.fine-print h5 { font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.13em; text-transform:uppercase; color:var(--text-sub); margin-bottom:8px; }
+.fine-print ol { margin:0; padding-left:18px; }
+.fine-print li { font-size:12px; color:var(--text-dim); line-height:1.6; margin-bottom:4px; }
+@media (max-width:760px) { .acl-box { grid-template-columns:1fr; } }
 </style>
   <!-- Google Analytics GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>
@@ -284,11 +364,6 @@ footer { background:var(--purple); padding:48px 64px 36px; }
       "jobTitle": "Executive Director",
       "url": "https://www.linkedin.com/in/willkreth"
     },
-    "parentOrganization": {
-      "@type": "Corporation",
-      "name": "Human & Digital, Inc.",
-      "url": "https://humandigital.tech"
-    },
     "memberOf": {
       "@type": "Organization",
       "name": "DOI Foundation",
@@ -298,8 +373,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
       "https://www.wikidata.org/entity/Q138188575",
       "https://www.wikidata.org/wiki/Q138188575",
       "https://www.linkedin.com/company/handidentity/",
-      "https://www.crunchbase.com/organization/hand-human-digital",
-      "https://humandigital.tech"
+      "https://www.crunchbase.com/organization/hand-human-digital"
     ],
     "knowsAbout": [
       "Talent Identity",
@@ -328,6 +402,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     <li><a href="/">Home</a></li>
     <li><span style="font-size:13px; font-weight:600; color:var(--purple); letter-spacing:.02em;">Your ID & Partners</span></li>
     <li><a href="#membership">Membership</a></li>
+    <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="index.html#membership" class="nav-cta">Join HAND</a></li>
   </ul>
   <button class="nav-hamburger" id="supp-hamburger" aria-label="Menu">
@@ -339,6 +414,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     <li><a href="/">Home</a></li>
     <li><span style="font-size:13px; font-weight:600; color:var(--purple); letter-spacing:.02em;">Your ID & Partners</span></li>
     <li><a href="#membership">Membership</a></li>
+    <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="index.html#membership" class="nav-cta">Join HAND</a></li>
   </ul>
 </div>
@@ -426,6 +502,11 @@ footer { background:var(--purple); padding:48px 64px 36px; }
         <span class="survives-badge">Same ID</span>
       </div>
     </div>
+  </div>
+  <!-- How talent gets a HAND ID (HAND-284) -->
+  <div class="reveal" style="margin-top:32px; background:var(--card); border:1px solid var(--border); border-left:4px solid var(--sky); border-radius:10px; padding:24px 28px; display:grid; grid-template-columns:auto 1fr; gap:8px 24px; align-items:start;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--sky); padding-top:4px;">How talent<br>gets a HAND ID</div>
+    <div style="font-size:15px; font-weight:400; color:var(--text); line-height:1.75;">You don&rsquo;t apply, and there&rsquo;s nothing to buy. HAND IDs are issued from independent public record &mdash; Citation-Backed Notability&#8482; &mdash; and stewarded through the organizations that already represent you. <strong>Ask your agency, management company, guild, union, or league about HAND.</strong> HAND does not offer individual registration or consumer support. Anyone can <a href="https://registry.hand-id.org" target="_blank" rel="noopener" style="color:var(--sky); font-weight:600;">search the registry</a>, free.</div>
   </div>
 </div>
 
@@ -533,60 +614,129 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     <h2 class="membership-heading">The standard is being built.<br><em>The question is whether you&rsquo;re shaping it or inheriting it.</em></h2>
     <p class="membership-sub">HAND membership is how your organization participates in the governance, development, and adoption of the universal talent identifier standard. Corporate members don&rsquo;t just use the standard &mdash; they help set it. That distinction matters when the standard becomes the industry default.</p>
   </div>
-  <div class="membership-grid">
-    <a href="#" class="member-tier featured reveal reveal-delay-1">
-      <div class="member-tier-tag">Institutional &mdash; Board Level</div>
-      <div class="member-tier-title">Corporate Member</div>
-      <div class="member-tier-who">Studios, guilds, leagues, networks, streaming platforms, and player associations. The tier for organizations that have the most at stake in how the standard evolves.</div>
-      <ul class="member-tier-features">
-        <li>Unlimited API access &amp; bulk catalog mapping</li>
-        <li>Deduplication &amp; registration services</li>
-        <li>Custom integration support</li>
-        <li>Dedicated HAND account contact</li>
-        <li>Standards governance participation</li>
-        <li>Board-level engagement opportunities</li>
-      </ul>
-      <div class="member-tier-cta">Contact HAND &rarr;</div>
+  <!-- PUBLIC RATE CARD (Oct 2026) -->
+  <div class="rate-grid">
+    <a href="/?tier=founding-board#join" class="rate-card lead reveal reveal-delay-1">
+      <div class="rate-tag">Pioneer &middot; Founding Board</div>
+      <div class="rate-name">Founding Board Member</div>
+      <div class="rate-price">$50,000<small> / year</small></div>
+      <div class="rate-note">&nbsp;</div>
+      <span class="rate-gov vote">&#10003; Board seat, vote &amp; attestation</span>
+      <div class="rate-who">Major studios, networks, sports leagues, guilds, and player associations. The only tier that votes on how the standard is governed.</div>
+      <div class="rate-cta">Contact HAND &rarr;</div>
     </a>
-    <a href="#" class="member-tier reveal reveal-delay-2">
-      <div class="member-tier-tag">Associate</div>
-      <div class="member-tier-title">Individual &amp; Small Org</div>
-      <div class="member-tier-who">Independent producers, boutique agencies, regional leagues, and small guilds. Full participation, scaled to organization size.</div>
-      <ul class="member-tier-features">
-        <li>API access for ID resolution</li>
-        <li>Register talent records</li>
-        <li>Technical documentation &amp; training</li>
-        <li>HAND member roster listing</li>
-        <li>Working group participation</li>
-      </ul>
-      <div class="member-tier-cta">Get in Touch &rarr;</div>
+    <a href="/?tier=institutional#join" class="rate-card reveal reveal-delay-2">
+      <div class="rate-tag">Pioneer &middot; Institutional</div>
+      <div class="rate-name">Institutional Member</div>
+      <div class="rate-price">$25,000<small> / year</small></div>
+      <div class="rate-note">&nbsp;</div>
+      <span class="rate-gov novote">Attestation &middot; committees &middot; no vote</span>
+      <div class="rate-who">Mid-market studios, talent agencies, and sports organizations. Bulk catalog mapping, registration, and deduplication services.</div>
+      <div class="rate-cta">Contact HAND &rarr;</div>
     </a>
-    <a href="#" class="member-tier reveal reveal-delay-3">
-      <div class="member-tier-tag">Developers</div>
-      <div class="member-tier-title">Platforms &amp; Integrators</div>
-      <div class="member-tier-who">API-first teams building HAND ID resolution into supply-chain infrastructure, platforms, and products.</div>
-      <ul class="member-tier-features">
-        <li>Full DOI resolution API</li>
-        <li>Sandbox environment access</li>
-        <li>SDK documentation</li>
-        <li>C2PA / CAWG integration guidance</li>
-        <li>EIDR cross-reference support</li>
-        <li>Technical integration support</li>
-      </ul>
-      <div class="member-tier-cta">Developer Access &rarr;</div>
+    <a href="/?tier=associate#join" class="rate-card reveal reveal-delay-3">
+      <div class="rate-tag">Pioneer &middot; Associate</div>
+      <div class="rate-name">Associate Member</div>
+      <div class="rate-price">$10,000<small> / year</small></div>
+      <div class="rate-note">&nbsp;</div>
+      <span class="rate-gov novote">Committees &amp; working groups &middot; no vote</span>
+      <div class="rate-who">Agencies, production companies, independent producers, regional leagues, and university athletic departments.</div>
+      <div class="rate-cta">Get in touch &rarr;</div>
     </a>
-    <a href="#" class="member-tier reveal reveal-delay-4">
-      <div class="member-tier-tag">Always Free</div>
-      <div class="member-tier-title">Public Registry Access</div>
-      <div class="member-tier-who">Any person, organization, or system anywhere in the world can search the HAND registry and resolve any HAND ID &mdash; at no cost, forever. This is a foundational commitment.</div>
-      <ul class="member-tier-features">
-        <li>Search registry by name</li>
-        <li>Look up any HAND ID</li>
-        <li>View public talent records</li>
-        <li>Verify Licensed Human Likeness consent and provenance status</li>
-      </ul>
-      <div class="member-tier-cta">Search Registry &rarr;</div>
+    <a href="#startup" class="rate-card startup reveal reveal-delay-4">
+      <div class="rate-tag">New &middot; Startup</div>
+      <div class="rate-name">Startup Member</div>
+      <div class="rate-price">$2,500<small> / year</small></div>
+      <div class="rate-note">2-year commitment</div>
+      <span class="rate-gov novote">Working groups &middot; no vote</span>
+      <div class="rate-who">Independent companies five years old or younger, with under $20M in annual revenue.</div>
+      <div class="rate-cta">See what&rsquo;s included &darr;</div>
     </a>
+  </div>
+  <div class="rate-row2">
+    <a href="/?tier=developer#join" class="rate-card reveal">
+      <div><div class="rate-tag">Developers &amp; Integrators</div><div class="rate-name" style="margin:0;">Platform integration</div></div>
+      <div class="rate-who">API-first teams building HAND ID resolution into products and supply chains: sandbox, SDK documentation, C2PA / CAWG / EIDR guidance. Priced by scope.</div>
+    </a>
+    <a href="https://registry.hand-id.org" target="_blank" rel="noopener" class="rate-card reveal">
+      <div><div class="rate-tag">Always free</div><div class="rate-name" style="margin:0;">Public registry lookup</div></div>
+      <div class="rate-who">Anyone, anywhere, can search the registry and resolve any HAND ID at no cost, forever. No membership needed.</div>
+    </a>
+  </div>
+
+  <!-- Governance at a glance -->
+  <div class="gov-table-wrap reveal">
+    <table class="gov-table">
+      <caption>What each tier includes</caption>
+      <thead><tr><th scope="col">&nbsp;</th><th scope="col">Founding Board<span>$50K / yr</span></th><th scope="col">Institutional<span>$25K / yr</span></th><th scope="col">Associate<span>$10K / yr</span></th><th scope="col">Startup<span>$2.5K / yr</span></th></tr></thead>
+      <tbody>
+        <tr class="key"><th scope="row">Board seat &amp; voting rights</th><td class="y">&#10003;</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">&mdash;</td></tr>
+        <tr class="key"><th scope="row">Authorized record attestation<sup>&dagger;</sup></th><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="n">&mdash;</td><td class="n">&mdash;</td></tr>
+        <tr><th scope="row">Standards committees</th><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="n">&mdash;</td></tr>
+        <tr><th scope="row">Working groups</th><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td></tr>
+        <tr><th scope="row">API access &amp; ID resolution</th><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td></tr>
+        <tr><th scope="row">Bulk catalog mapping &amp; deduplication</th><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="n">&mdash;</td><td class="n">&mdash;</td></tr>
+        <tr><th scope="row">Member roster listing</th><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td><td class="y">&#10003;</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="gov-foot reveal"><strong>Only Founding Board members vote.</strong> Institutional and Associate members sit on committees and working groups, where the standard is actually shaped, without a vote on the board. Every membership includes an annual review with the HAND team. <sup>&dagger;</sup>By agreement; see below.</p>
+  <p class="gov-foot reveal"><sup>&dagger;</sup>Where a Founding Board or Institutional member holds the rights to a character, or a documented representation agreement covering talent, HAND can authorize it to attest and maintain those records &mdash; by agreement, and only while membership is active. A HAND ID itself is never sold, transferred, or locked against the person it identifies.</p>
+  <p class="gov-foot reveal" style="margin-top:6px;">Additional details, terms, and conditions are available to HAND participant member companies as part of membership.</p>
+
+
+  <!-- STARTUP MEMBER (new tier, debut Oct 2026) -->
+  <div class="startup-band reveal" id="startup">
+    <div class="startup-head">
+      <div>
+        <span class="startup-tag">New &middot; Startup Member</span>
+        <div class="startup-title">Building the future of talent, AI, or provenance?<br><em>Build it on the standard.</em></div>
+        <div class="startup-sub">A discounted membership for early-stage companies whose products touch talent identity, licensed likenesses, AI media, provenance, or creator tools.</div>
+        <div class="startup-sub" style="margin-top:10px; font-size:13px; color:var(--text);"><strong>Who qualifies:</strong> independent companies five years old or younger, with under $20M in annual revenue. <a href="#startup-fine-print" style="color:var(--purple); font-weight:600;">See the fine print &darr;</a></div>
+      </div>
+      <div class="startup-price">
+        <div class="startup-price-num">$2,500<span> / year</span></div>
+        <div class="startup-price-note">Billed annually &middot; two-year commitment</div>
+      </div>
+    </div>
+    <div class="startup-cols">
+      <div class="startup-col">
+        <h4>What you get</h4>
+        <ul>
+          <li>API access to search the registry and resolve HAND IDs in your product</li>
+          <li>Sandbox, documentation, and C2PA / CAWG / EIDR integration guidance</li>
+          <li>A seat in HAND working groups &mdash; a voice in how the standard evolves</li>
+          <li>Listing on the HAND member roster as a Startup Member</li>
+        </ul>
+      </div>
+      <div class="startup-col give">
+        <h4>What you give</h4>
+        <ul>
+          <li>A two-year commitment</li>
+          <li>Put HAND IDs to work: resolve them, display them, carry them in your metadata</li>
+          <li>Flag errors and identity changes you find, so the registry improves for everyone</li>
+          <li>Share what you learn in working groups &mdash; and, with your OK, a short case study</li>
+        </ul>
+      </div>
+      <div class="startup-col win">
+        <h4>The win-win</h4>
+        <p>Every company that resolves HAND IDs makes the standard more useful for the next one &mdash; and makes your product interoperable with the studios, leagues, and platforms adopting the same IDs.</p>
+        <p style="margin:0;"><strong>You get infrastructure you couldn&rsquo;t build alone. The ecosystem gets one more system speaking the same language.</strong></p>
+      </div>
+    </div>
+    <div class="startup-cta">
+      <a class="go" href="/?tier=startup#join">Apply as a Startup Member &rarr;</a>
+      <span>Choose &ldquo;Startup Member&rdquo; on the membership form. The HAND team follows up directly.</span>
+    </div>
+    <div class="fine-print" id="startup-fine-print">
+      <h5>Startup Member eligibility &mdash; the fine print</h5>
+      <ol>
+        <li>Five years old or younger, measured from the date of incorporation.</li>
+        <li>Under $20 million in annual revenue (trailing twelve months).</li>
+        <li>Independent: not a subsidiary, spin-out, or affiliate majority-owned or controlled by a larger company. Those organizations join at the standard tiers.</li>
+      </ol>
+      <p style="font-size:12px; color:var(--text-dim); margin-top:8px;">Additional details, terms, and conditions are available to HAND participant member companies as part of membership.</p>
+    </div>
   </div>
   <div style="margin-top:32px; padding-top:32px; border-top:1px solid rgba(255,255,255,.12); display:flex; align-items:center; gap:24px; flex-wrap:wrap;" class="reveal">
     <div style="font-size:13px; color:rgba(255,255,255,.65); max-width:560px; line-height:1.6;">Commercial identity intelligence services &mdash; enriched talent records, Citation-Backed Notability&#8482; scoring, NIL analytics, and enterprise integrations &mdash; are provided by <strong style="color:#fff;">Human &amp; Digital, Inc.</strong>, the commercial services partner that operates HAND&rsquo;s registry infrastructure.</div>
@@ -626,7 +776,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     <h2 class="section-heading">Governed by no one.<br><em>Trusted by everyone.</em></h2>
     <p class="body-lead">HAND is a Delaware non-stock nonprofit C corporation, currently applying for IRS 501(c)(6) trade association status. <strong>Not owned by any studio, platform, streaming service, guild, league, or player association.</strong> This structural neutrality is the feature &mdash; not an oversight.</p>
   </div>
-  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px;">
+  <div class="neutral-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px;">
     <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px;" class="reveal reveal-delay-1">
       <div style="font-size:24px; margin-bottom:12px;">&#127916;</div>
       <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Studios &amp; Platforms trust it</div>
@@ -640,7 +790,7 @@ footer { background:var(--purple); padding:48px 64px 36px; }
     <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px;" class="reveal reveal-delay-3">
       <div style="font-size:24px; margin-bottom:12px;">&#127942;</div>
       <div style="font-size:15px; font-weight:700; margin-bottom:8px;">Athletes &amp; Leagues trust it</div>
-      <div style="font-size:15px; font-weight:400; color:var(--text); line-height:1.75;">Because no single league, association, or broadcast partner controls the standard. A HAND ID issued to a D1 athlete belongs to that athlete &mdash; not to the school, the conference, or the NCAA.</div>
+      <div style="font-size:15px; font-weight:400; color:var(--text); line-height:1.75;">Because no single league, association, or broadcast partner controls the standard. A HAND ID issued to a college athlete belongs to that athlete &mdash; not to the school, the conference, or the NCAA.</div>
     </div>
   </div>
   <div style="margin-top:32px; background:var(--card); border:1px solid var(--border); border-left:4px solid var(--purple); border-radius:10px; padding:28px 32px;" class="reveal">
@@ -650,19 +800,19 @@ footer { background:var(--purple); padding:48px 64px 36px; }
 
 <!-- FOOTER -->
 <footer>
-  <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.12);">
+  <div class="supp-footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.12);">
     <div>
       <img id="footer-logo-img" src="/images/hand-logo-white.webp" alt="HAND" style="height:32px; width:auto; margin-bottom:14px; display:block;">
-      <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,.6); line-height:1.7; max-width:280px; margin-bottom:12px;">HAND &mdash; The Universal Talent Identifier. Delaware Non-Stock Nonprofit C Corp &middot; 501(c)(6) Applying.</p>
+      <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,.6); line-height:1.7; max-width:280px; margin-bottom:12px;">HAND &mdash; The Universal Talent Identifier. Delaware Non-Stock Nonprofit C Corp &middot; 501(c)(6) Application Pending.</p>
       <span style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,.35); letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border:1px solid rgba(255,255,255,.15); border-radius:4px; display:inline-block;">Built on ISO 26324:2025</span>
     </div>
     <div>
       <div style="font-family:'DM Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:16px;">Registry</div>
       <ul style="list-style:none;">
         <li style="margin-bottom:10px;"><a href="/" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">Home &mdash; hand-id.org</a></li>
-        <li style="margin-bottom:10px;"><a href="#" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">Find a HAND ID</a></li>
+        <li style="margin-bottom:10px;"><a href="https://registry.hand-id.org" target="_blank" rel="noopener" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">Find a HAND ID</a></li>
         <li style="margin-bottom:10px;"><a href="architecture.html" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">ID Architecture</a></li>
-        <li style="margin-bottom:10px;"><a href="#" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">The Standard</a></li>
+        <li style="margin-bottom:10px;"><a href="/ibc-2024" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">IBC 2024: Proof in Practice</a></li>
       </ul>
     </div>
     <div>
@@ -671,12 +821,13 @@ footer { background:var(--purple); padding:48px 64px 36px; }
         <li style="margin-bottom:10px;"><a href="#membership" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">Join HAND</a></li>
         <li style="margin-bottom:10px;"><a href="https://humandigital.tech" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">humandigital.tech</a></li>
         <li style="margin-bottom:10px;"><a href="https://handfound.org" target="_blank" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">HAND Foundation &#8599;</a></li>
-        <li style="margin-bottom:10px;"><a href="#" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">LinkedIn</a></li>
+        <li style="margin-bottom:10px;"><a href="https://www.linkedin.com/company/handidentity/" target="_blank" rel="noopener" style="font-size:13px; color:rgba(255,255,255,.65); text-decoration:none;">LinkedIn</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span class="footer-copy" style="display:block;margin-bottom:8px;">DOI<sup>&reg;</sup>, DOI.ORG<sup>&reg;</sup>, and short DOI<sup>&reg;</sup> are trademarks of the International DOI Foundation.</span>
+    <span class="footer-copy" style="display:block;margin-bottom:8px;">HAND is a B2B standards body. It does not offer individual registration or consumer support.</span>
     <span class="footer-copy">&copy; 2026 HAND &mdash; The Universal Talent Identifier &middot; hand-id.org &middot; Citation-Backed Notability&#8482; is a trademark of HAND.</span>
     <a href="https://humandigital.tech" class="footer-hd-link">humandigital.tech &#8599;</a>
   </div>
