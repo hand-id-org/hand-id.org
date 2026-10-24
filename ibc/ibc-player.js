@@ -12,7 +12,7 @@
  *   <div class="ibc-player" data-mp4="/media/hand-ibc2024-720p.mp4"
  *        data-yt="196N7OTp9As" data-loc="home" data-title="...">
  *     <button class="ibc-facade" type="button" aria-label="Play video">
- *       <img src="/media/hand-ibc2024-poster.jpg" alt="...">
+ *       <img src="/images/KeyArt_IBC_Accelerator_2024.webp" alt="...">
  *       <span class="ibc-play" aria-hidden="true">&#9654;</span>
  *       <span class="ibc-dur">1:33</span>
  *     </button>
