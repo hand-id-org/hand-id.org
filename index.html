@@ -496,6 +496,14 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 .fine-print ol { margin:0; padding-left:18px; }
 .fine-print li { font-size:12px; color:var(--text-dim); line-height:1.6; margin-bottom:4px; }
 @media (max-width:760px) { .acl-box { grid-template-columns:1fr; } }
+
+/* Whole-card link (Brands & Advertising card) */
+.audience-card-link { position:relative; cursor:pointer; }
+.audience-card-link .audience-card-cta::after { content:''; position:absolute; inset:0; z-index:1; border-radius:inherit; }
+.audience-card-link:hover { box-shadow:0 8px 28px rgba(77,0,174,.10); }
+.audience-card-link:hover .audience-card-cta { text-decoration:underline; }
+.audience-card-link .audience-card-cta:focus-visible { outline:none; }
+.audience-card-link:focus-within { outline:2px solid var(--purple); outline-offset:3px; }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>
@@ -1037,13 +1045,13 @@ footer { background:var(--purple); padding:56px 48px 40px; }
       <div class="audience-body">Athletes, artists, and creators don&rsquo;t sign up for HAND &mdash; and don&rsquo;t need to. HAND IDs are issued from independent public record and stewarded through the organizations that already represent talent: agencies, management companies, guilds, unions, and leagues. The ID persists through every career transition, platform migration, and change of representation. Your HAND ID follows you. Nobody else owns it.</div>
       <div class="audience-why">Talent? Ask your agency, guild, union, or league about HAND. That&rsquo;s your lane in.</div>
     </div>
-    <div class="audience-card reveal reveal-delay-4">
+    <div class="audience-card audience-card-link reveal reveal-delay-4">
       <span class="audience-primary-tag" style="background:var(--amber-dim, rgba(217,119,6,0.08)); color:var(--amber); border-color:rgba(217,119,6,0.25);">Brands</span>
       <span class="audience-icon">&#128200;</span>
       <div class="audience-title">Brands &amp; Advertising</div>
       <div class="audience-body">The brand writing the NIL check and the studio licensing the digital likeness have the same infrastructure problem: they need to know, verifiably, who they&rsquo;re paying &mdash; and prove it, in court if necessary. Advertising is the economic engine that connects sports and entertainment. HAND is the identity layer that makes verified talent attribution possible at scale &mdash; across every campaign, every platform, every market.</div>
       <div class="audience-why">Why HAND? Because &ldquo;we thought we had the right person&rdquo; is not a legal defense.</div>
-      <a href="/advertising" style="display:inline-block; margin-top:14px; font-size:14px; font-weight:700; color:var(--purple); text-decoration:none;">Who&rsquo;s in the ad? &rarr;</a>
+      <a href="/advertising" class="audience-card-cta" style="display:inline-block; margin-top:14px; font-size:14px; font-weight:700; color:var(--purple); text-decoration:none;">Who&rsquo;s in the ad? &rarr;</a>
     </div>
   </div>
 </div>
