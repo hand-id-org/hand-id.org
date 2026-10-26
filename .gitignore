@@ -1,0 +1,4 @@
+# Review cuts and masters stay local; only web encodes get committed
+media/*REVIEW*
+media/*MASTER*
+.DS_Store

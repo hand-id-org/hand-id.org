@@ -523,6 +523,13 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:rgba(250,2
     ]
   }
   </script>
+<style>
+/* Nav fit (Oct 26, 2026): "For Startups" added. The tagline hides first; below 1240px the hamburger menu takes over. */
+@media (max-width:1560px) { .nav-tagline { display:none; } }
+.nav-links { gap:clamp(8px,1.15vw,22px); }
+.nav-links a { font-size:clamp(12px,1.05vw,15px); }
+@media (max-width:1240px) { nav { padding:0 24px; } .nav-links { display:none; } .nav-hamburger { display:flex; } }
+</style>
 </head>
 <body>
 
@@ -538,6 +545,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:rgba(250,2
     <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
     <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="/advertising">Who&rsquo;s in the Ad?</a></li>
+    <li><a href="/#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
     <li><a href="/#board">Leadership</a></li>
     <li><a href="/supplemental.html">Traction</a></li>
     <li><a href="/#membership" class="nav-secondary">Join HAND</a></li>
@@ -555,6 +563,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:200; background:rgba(250,2
     <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
     <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="/advertising">Who&rsquo;s in the Ad?</a></li>
+    <li><a href="/#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
     <li><a href="/#board">Leadership</a></li>
     <li><a href="/supplemental.html">Traction</a></li>
     <li><a href="/#membership">Join HAND</a></li>

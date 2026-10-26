@@ -436,6 +436,34 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 .now-t { font-size:16px; font-weight:700; margin-bottom:6px; }
 .now-b { font-size:14px; font-weight:300; color:var(--text-dim); line-height:1.65; }
 .share-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+
+/* ── Deadline band ── */
+.deadline-band { background:#0E0620; border-top:1px solid rgba(183,148,246,.18); border-bottom:1px solid rgba(183,148,246,.18); padding:22px 48px; }
+.deadline-inner { display:flex; gap:28px 44px; align-items:center; flex-wrap:wrap; max-width:1200px; }
+.deadline-item { flex:1; min-width:260px; }
+.deadline-date { font-family:'DM Mono',monospace; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:#FBBF24; margin-bottom:6px; }
+.deadline-count { margin-left:10px; color:rgba(255,255,255,.55); }
+.deadline-text { font-size:15px; font-weight:300; color:rgba(255,255,255,.8); line-height:1.55; }
+.deadline-text strong { color:#fff; font-weight:600; }
+.deadline-link { font-size:14px; font-weight:600; color:#B794F6; text-decoration:none; white-space:nowrap; }
+.deadline-link:hover { text-decoration:underline; }
+/* ── Who verifies ── */
+.verify { margin-top:56px; }
+.verify-q { font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-.015em; margin-bottom:22px; }
+.verify-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.verify-card { background:var(--bg); border:1px solid var(--border); border-top:3px solid var(--purple); border-radius:10px; padding:24px; }
+.verify-card h3 { font-size:17px; font-weight:700; line-height:1.3; margin-bottom:10px; }
+.verify-card p { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.7; }
+.verify-card p strong { color:var(--text); font-weight:700; }
+.verify-card p em { font-style:normal; color:var(--purple); font-weight:500; }
+.verify-proof { display:block; margin-top:16px; background:#0E0620; border-radius:10px; padding:22px 26px; text-decoration:none; transition:transform .2s; }
+.verify-proof:hover { transform:translateY(-2px); }
+.verify-proof-k { display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#B794F6; margin-bottom:8px; }
+.verify-proof-t { display:block; font-size:16px; font-weight:300; color:rgba(255,255,255,.85); line-height:1.65; }
+.verify-proof-cta { display:inline-block; margin-top:12px; font-size:14px; font-weight:700; color:#fff; }
+.btn-ghost-light { color:var(--purple); border:1.5px solid var(--purple-border); padding:13px 24px; border-radius:8px; font-size:16px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; }
+.btn-ghost-light:hover { background:var(--purple-dim); }
+@media (max-width:1024px) { .verify-grid { grid-template-columns:1fr; } .deadline-band { padding:20px 24px; } }
 @media (max-width:1024px) {
   .page-hero { padding:96px 24px 56px; }
   .two-col, .now-grid { grid-template-columns:1fr; }
@@ -473,6 +501,13 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   "publisher": { "@type": "Organization", "name": "HAND – The Universal Talent Identifier", "url": "https://hand-id.org" }
 }
 </script>
+<style>
+/* Nav fit (Oct 26, 2026): "For Startups" added. The tagline hides first; below 1240px the hamburger menu takes over. */
+@media (max-width:1560px) { .nav-tagline { display:none; } }
+.nav-links { gap:clamp(8px,1.15vw,22px); }
+.nav-links a { font-size:clamp(12px,1.05vw,15px); }
+@media (max-width:1240px) { nav { padding:0 24px; } .nav-links { display:none; } .nav-hamburger { display:flex; } }
+</style>
 </head>
 <body>
 
@@ -489,6 +524,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
     <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="/advertising" style="color:var(--purple); font-weight:700;">Who&rsquo;s in the Ad?</a></li>
+    <li><a href="/#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
     <li><a href="/#board">Leadership</a></li>
     <li><a href="supplemental.html">Traction</a></li>
     <li><a href="/#membership" class="nav-secondary">Join HAND</a></li>
@@ -506,6 +542,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
     <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="/advertising">Who&rsquo;s in the Ad?</a></li>
+    <li><a href="/#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
     <li><a href="/#board">Leadership</a></li>
     <li><a href="supplemental.html">Traction</a></li>
     <li><a href="/#membership">Join HAND</a></li>
@@ -536,6 +573,21 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   </div>
 </section>
 
+<!-- DEADLINES (lead with the clock) -->
+<div class="deadline-band" id="deadlines" aria-label="Upcoming regulatory deadlines">
+  <div class="deadline-inner">
+    <div class="deadline-item">
+      <div class="deadline-date">Dec 2, 2026<span class="deadline-count" data-deadline="2026-12-02T00:00:00-05:00"></span></div>
+      <div class="deadline-text"><strong>EU AI Act, Art. 50:</strong> the grace period for machine-readable marking of AI-generated content ends.</div>
+    </div>
+    <div class="deadline-item">
+      <div class="deadline-date">Jan 1, 2027<span class="deadline-count" data-deadline="2027-01-01T00:00:00-08:00"></span></div>
+      <div class="deadline-text"><strong>California AI Transparency Act:</strong> large platforms must detect and display provenance, and may not knowingly strip it.</div>
+    </div>
+    <a href="#now" class="deadline-link">What it means for ads &darr;</a>
+  </div>
+</div>
+
 <!-- CONSENT -->
 <div class="section white" id="consent">
   <div class="reveal" style="max-width:860px;">
@@ -544,10 +596,34 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <p class="body-lead">A Licensed Human Likeness gets a HAND ID (Type 02) only when it is created with the consent of the person it depicts. That ID stays tied to the person&rsquo;s own HAND ID (Type 01) for good. The bond between a human and their likeness is what makes it a trust signal.</p>
   </div>
   <div class="two-col">
-    <div class="plain-card reveal reveal-delay-1"><h3>What HAND records</h3><p>The consent event that created the likeness, linked to the verified person it depicts. A resolvable record anyone in the supply chain can check.</p></div>
-    <div class="plain-card reveal reveal-delay-2"><h3>What HAND doesn&rsquo;t do</h3><p>License how the likeness is used. Whether a replica sells a candy bar, who gets paid and on what terms, is for the talent, their representatives and the brand to agree. HAND stays out of that deal.</p></div>
+    <div class="plain-card reveal reveal-delay-1"><h3>What HAND records</h3><p>The consent milestone that created the likeness, linked to the verified person it depicts. A resolvable record anyone in the supply chain can check.</p></div>
+    <div class="plain-card reveal reveal-delay-2"><h3>What HAND doesn&rsquo;t do</h3><p>License how the likeness is used. Whether a licensed likeness sells a candy bar, who gets paid and on what terms, is for the talent, their representatives and the brand to agree. HAND stays out of that deal.</p></div>
   </div>
-  <p class="pull reveal">Countless digital replicas already circulate with no recorded consent. Going forward, a likeness with a HAND consent chain is one a buyer can check, <em>and a likeness without one raises a question worth asking.</em></p>
+  <p class="pull reveal">Countless synthetic likenesses already circulate with no recorded consent. Going forward, a likeness with a HAND consent chain is one a buyer can check, <em>and a likeness without one raises a question worth asking.</em></p>
+
+  <!-- WHO VERIFIES THE CONSENT -->
+  <div class="verify reveal" id="who-verifies">
+    <div class="verify-q">Who verifies the consent behind a Type 02?</div>
+    <div class="verify-grid">
+      <div class="verify-card">
+        <h3>No consent, no Type 02.</h3>
+        <p>A Licensed Human Likeness gets its HAND ID only as a timestamped consent milestone of the person it depicts. <strong>Or it doesn&rsquo;t happen.</strong> There is no exception to that rule.</p>
+      </div>
+      <div class="verify-card">
+        <h3>Representation is part of consent, not a workaround.</h3>
+        <p>Talent rarely act alone, and they shouldn&rsquo;t have to. Agents, managers, guilds, unions and leagues hold delegated authority as a contractual right of the people they represent &mdash; and that matters more than ever as consent-based licensing of name, image, likeness and voice grows more complex. The question isn&rsquo;t &ldquo;does HAND police consent?&rdquo; It&rsquo;s <em>&ldquo;who holds delegated authority, and is it on the record?&rdquo;</em></p>
+      </div>
+      <div class="verify-card">
+        <h3>HAND mints the street address. The industry holds the keys.</h3>
+        <p>License terms and payment belong to the talent, their representatives and the brand. HAND stays out of that deal &mdash; which is exactly what lets every party in it trust the record.</p>
+      </div>
+    </div>
+    <a class="verify-proof" href="/ibc-2024">
+      <span class="verify-proof-k">See it done &middot; IBC 2024</span>
+      <span class="verify-proof-t">Two HAND IDs issued at the likeness&rsquo;s creation. Content Credentials carrying the EIDR ID and the HAND IDs. Detected at the distribution endpoint by an independent party. That&rsquo;s third-party verification of the chain &mdash; not HAND vouching for itself.</span>
+      <span class="verify-proof-cta">Watch the 1:33 proof &rarr;</span>
+    </a>
+  </div>
 </div>
 
 <!-- TRACK RECORD -->
@@ -581,11 +657,24 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <h2 class="section-heading">The rules just changed.<br><span class="sky">For ads, specifically.</span></h2>
   </div>
   <div class="now-grid">
-    <div class="now-card reveal reveal-delay-1"><div class="now-k">New York</div><div class="now-t">Synthetic performers, disclosed</div><div class="now-b">In effect since June 9, 2026: ads that use an AI-generated synthetic performer must say so.</div></div>
+    <div class="now-card reveal reveal-delay-1"><div class="now-k">European Union</div><div class="now-t">EU AI Act, Article 50</div><div class="now-b">The grace period for machine-readable marking of AI-generated content ends December 2, 2026.</div></div>
     <div class="now-card reveal reveal-delay-2"><div class="now-k">California</div><div class="now-t">AI Transparency Act</div><div class="now-b">From January 1, 2027, large platforms must detect and display provenance data, and may not knowingly strip it.</div></div>
-    <div class="now-card reveal reveal-delay-3"><div class="now-k">European Union</div><div class="now-t">EU AI Act, Article 50</div><div class="now-b">The grace period for machine-readable marking of AI-generated content ends December 2, 2026.</div></div>
+    <div class="now-card reveal reveal-delay-3"><div class="now-k">New York</div><div class="now-t">Synthetic performers, disclosed</div><div class="now-b">In effect since June 9, 2026: ads that use an AI-generated synthetic performer must say so.</div></div>
   </div>
   <p class="body-lead reveal" style="margin-top:32px; max-width:860px;">When an ad features a real person&rsquo;s licensed likeness rather than an invented one, the people buying, clearing and running it need a way to tell the difference. A consented, resolvable record of who that person is gives them one.</p>
+</div>
+
+<!-- NEXT PROOF: THE AD CALL -->
+<div class="section alt" id="ad-call">
+  <div class="reveal" style="max-width:860px;">
+    <div class="section-label">The Next Proof</div>
+    <h2 class="section-heading">We proved it in the file.<br><em>Next, at the ad call.</em></h2>
+    <p class="body-lead">IBC 2024 carried HAND IDs through the file and the playback chain, end to end. Advertising runs on ad servers and the ad call. That&rsquo;s the next proof &mdash; and we&rsquo;re looking for ad-tech, agency and measurement partners to run it with us.</p>
+    <div class="share-row">
+      <a href="/#join" class="btn-purple">Run the ad-call proof with us &rarr;</a>
+      <a href="/ibc-2024" class="btn-ghost-light">How the 2024 proof worked &rarr;</a>
+    </div>
+  </div>
 </div>
 
 <!-- CTA -->
@@ -684,6 +773,17 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     });
   }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
   revealEls.forEach(el => observer.observe(el));
+</script>
+<script>
+// Days-left counter for the deadline band; disappears once a date has passed.
+(function () {
+  document.querySelectorAll('.deadline-count[data-deadline]').forEach(function (el) {
+    var d = Math.ceil((new Date(el.getAttribute('data-deadline')) - new Date()) / 86400000);
+    if (d > 1) el.textContent = '\u00b7 ' + d + ' days';
+    else if (d === 1) el.textContent = '\u00b7 tomorrow';
+    else if (d === 0) el.textContent = '\u00b7 today';
+  });
+})();
 </script>
 </body>
 </html>

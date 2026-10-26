@@ -504,6 +504,25 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 .audience-card-link:hover .audience-card-cta { text-decoration:underline; }
 .audience-card-link .audience-card-cta:focus-visible { outline:none; }
 .audience-card-link:focus-within { outline:2px solid var(--purple); outline-offset:3px; }
+
+/* Customer Registry teaser card (membership section) */
+.cr-card { display:grid; grid-template-columns:1.1fr 1fr; gap:0; margin:8px 0 40px; background:#fff; color:var(--text); border-radius:14px; overflow:hidden; text-decoration:none; position:relative; transition:box-shadow .25s; }
+.cr-card::before { content:''; position:absolute; inset:0 0 auto 0; height:4px; background:linear-gradient(90deg,var(--purple),var(--sky)); z-index:2; }
+.cr-card:hover { box-shadow:0 18px 50px rgba(0,0,0,.28); }
+.cr-card:focus-visible { outline:3px solid #fff; outline-offset:4px; }
+.cr-card-media { position:relative; background:#111; aspect-ratio:16/9; overflow:hidden; }
+.cr-card-media img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+.cr-card:hover .cr-card-media img { transform:scale(1.03); }
+.cr-card-play { position:absolute; left:50%; top:50%; width:64px; height:64px; margin:-32px 0 0 -32px; border-radius:50%; background:rgba(77,0,174,.9); color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; padding-left:5px; box-shadow:0 8px 24px rgba(0,0,0,.35); }
+.cr-card-body { padding:36px 36px 32px; display:flex; flex-direction:column; justify-content:center; }
+.cr-card-tag { align-self:flex-start; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--purple); background:var(--purple-dim); border:1px solid var(--purple-border); border-radius:100px; padding:4px 12px; margin-bottom:14px; }
+.cr-card-title { font-size:clamp(22px,2.2vw,28px); font-weight:800; letter-spacing:-.02em; line-height:1.15; margin-bottom:12px; }
+.cr-card-title em { font-style:normal; color:var(--purple); }
+.cr-card-text { font-size:15px; font-weight:300; color:var(--text-dim); line-height:1.7; margin-bottom:16px; }
+.cr-card-cta { font-size:15px; font-weight:700; color:var(--purple); }
+.cr-card:hover .cr-card-cta { text-decoration:underline; }
+.cr-card-dur { background:var(--purple) !important; font-size:13px !important; padding:7px 12px !important; }
+@media (max-width:1024px) { .cr-card { grid-template-columns:1fr; } .cr-card-body { padding:28px 24px; } }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN98QYPGL0"></script>
@@ -562,6 +581,13 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     ]
   }
   </script>
+<style>
+/* Nav fit (Oct 26, 2026): "For Startups" added. The tagline hides first; below 1240px the hamburger menu takes over. */
+@media (max-width:1560px) { .nav-tagline { display:none; } }
+.nav-links { gap:clamp(8px,1.15vw,22px); }
+.nav-links a { font-size:clamp(12px,1.05vw,15px); }
+@media (max-width:1240px) { nav { padding:0 24px; } .nav-links { display:none; } .nav-hamburger { display:flex; } }
+</style>
 </head>
 <body>
 
@@ -578,6 +604,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
     <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="/advertising">Who&rsquo;s in the Ad?</a></li>
+    <li><a href="#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
     <li><a href="#board">Leadership</a></li>
     <li><a href="supplemental.html">Traction</a></li>
     <li><a href="#membership" class="nav-secondary">Join HAND</a></li>
@@ -595,6 +622,7 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
     <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
     <li><a href="/advertising">Who&rsquo;s in the Ad?</a></li>
+    <li><a href="#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
     <li><a href="#board">Leadership</a></li>
     <li><a href="supplemental.html">Traction</a></li>
     <li><a href="#membership">Join HAND</a></li>
@@ -1116,6 +1144,20 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <h2 class="membership-heading">The standard is being built.<br><em>The question is whether you&rsquo;re inside it or outside it.</em></h2>
     <p class="membership-sub">HAND membership is how your organization participates in the governance, development, and adoption of the universal talent identifier standard &mdash; before the next CBA cycles close, before the legislative enforcement windows open, and before your competitors are already integrated. Lookup is always free for everyone. Membership is how you shape what comes next &mdash; and our rates are public.</p>
   </div>
+  <!-- CUSTOMER REGISTRY TEASER (Oct 2026) — whole card links to /customer-registry -->
+  <a href="/customer-registry" class="cr-card reveal" aria-label="HAND Customer Registry: see what members get">
+    <div class="cr-card-media">
+      <img src="/images/cr-keyart.webp" alt="HAND Customer Registry: One identity. Every catalog." loading="lazy">
+      <span class="ibc-dur cr-card-dur">&#9654;&nbsp; Watch the walkthrough &middot; 3:14</span>
+    </div>
+    <div class="cr-card-body">
+      <span class="cr-card-tag">Included with membership &middot; Beta</span>
+      <div class="cr-card-title">The HAND Customer Registry.<br><em>One identity. Every catalog.</em></div>
+      <p class="cr-card-text">Search by a name, a HAND ID, or an identifier you already hold, and land on one verified identity with its public crosswalk to Wikidata, ISNI, VIAF, MusicBrainz and more. Read-only by design.</p>
+      <span class="cr-card-cta">See what members get &rarr;</span>
+    </div>
+  </a>
+
   <!-- PUBLIC RATE CARD (Oct 2026) -->
   <div class="rate-grid">
     <a href="/?tier=founding-board#join" class="rate-card lead reveal reveal-delay-1">
