@@ -437,6 +437,50 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 .now-b { font-size:14px; font-weight:300; color:var(--text-dim); line-height:1.65; }
 .share-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
 
+
+/* ── THE CLOCK (urgency band v2) ── */
+.clock { position:relative; overflow:hidden; background:radial-gradient(120% 140% at 0% 0%, #3B0A84 0%, #1A0638 45%, #0B0418 100%); color:#fff; padding:56px 48px 60px; border-top:1px solid rgba(251,191,36,.35); border-bottom:1px solid rgba(251,191,36,.35); }
+.clock::after { content:''; position:absolute; right:-120px; top:-120px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,.22), transparent 65%); pointer-events:none; }
+.clock-inner { position:relative; z-index:1; max-width:1240px; }
+.clock-head { display:flex; align-items:center; gap:12px; margin-bottom:22px; }
+.clock-pulse { width:12px; height:12px; border-radius:50%; background:#F59E0B; box-shadow:0 0 0 0 rgba(245,158,11,.7); animation:clockPulse 1.6s infinite; }
+@keyframes clockPulse { 0%{box-shadow:0 0 0 0 rgba(245,158,11,.7)} 70%{box-shadow:0 0 0 14px rgba(245,158,11,0)} 100%{box-shadow:0 0 0 0 rgba(245,158,11,0)} }
+.clock-kicker { font-family:'DM Mono',monospace; font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:#FBBF24; font-weight:500; }
+.clock-grid { display:grid; grid-template-columns:1fr 1fr 1.15fr; gap:28px; align-items:stretch; }
+.clock-item { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:26px 26px 24px; }
+.clock-hot { border-color:rgba(251,191,36,.6); background:linear-gradient(160deg, rgba(251,191,36,.14), rgba(255,255,255,.03)); box-shadow:0 0 0 1px rgba(251,191,36,.15), 0 24px 60px rgba(0,0,0,.35); }
+.clock-num { display:flex; align-items:baseline; gap:12px; line-height:.9; }
+.clock-days { font-size:clamp(64px,8vw,112px); font-weight:800; letter-spacing:-.04em; color:#fff; font-variant-numeric:tabular-nums; }
+.clock-hot .clock-days { color:#FBBF24; text-shadow:0 0 40px rgba(251,191,36,.35); }
+.clock-unit { font-size:clamp(18px,1.8vw,24px); font-weight:700; color:rgba(255,255,255,.75); text-transform:uppercase; letter-spacing:.06em; }
+.clock-unit:empty { display:none; }
+.clock-tick { font-family:'DM Mono',monospace; font-size:14px; color:rgba(251,191,36,.85); letter-spacing:.08em; margin-top:8px; font-variant-numeric:tabular-nums; min-height:1.2em; }
+.clock-date { font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.55); margin:12px 0 10px; }
+.clock-what { font-size:16px; font-weight:300; line-height:1.6; color:rgba(255,255,255,.85); }
+.clock-what strong { color:#fff; font-weight:700; }
+.clock-cta { display:flex; flex-direction:column; justify-content:center; gap:16px; padding:8px 4px 8px 12px; }
+.clock-cta-t { font-size:clamp(22px,2.3vw,30px); font-weight:800; line-height:1.2; letter-spacing:-.015em; }
+.clock-cta-t em { font-style:normal; color:#FBBF24; }
+.clock-btn { align-self:flex-start; display:inline-flex; align-items:center; gap:8px; background:#F59E0B; color:#1A0638 !important; font-size:17px; font-weight:800; padding:16px 26px; border-radius:10px; text-decoration:none; box-shadow:0 12px 30px rgba(245,158,11,.35); transition:transform .2s, box-shadow .2s, background .2s; }
+.clock-btn:hover { transform:translateY(-2px); background:#FBBF24; box-shadow:0 16px 40px rgba(245,158,11,.5); }
+.clock-sub { font-size:14px; font-weight:600; color:#C4B5FD; text-decoration:none; }
+.clock-sub:hover { text-decoration:underline; }
+/* Why Now cards, louder */
+.now-top { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px; }
+.now-top .now-k { margin-bottom:0; }
+.now-chip { font-family:'DM Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:100px; white-space:nowrap; }
+.chip-amber { background:#FEF3C7; color:#92400E; border:1px solid #FCD34D; }
+.chip-red { background:#FEE2E2; color:#991B1B; border:1px solid #FCA5A5; }
+.now-big { font-size:clamp(40px,4.4vw,60px); font-weight:800; letter-spacing:-.035em; line-height:1; margin:6px 0 12px; color:var(--text); }
+.now-hot { border-top-color:#F59E0B !important; box-shadow:0 18px 50px rgba(245,158,11,.14); }
+.now-hot .now-big { color:#B45309; }
+.now-live { border-top-color:#DC2626 !important; }
+.now-live .now-big { color:#B91C1C; }
+.now-punch { margin-top:40px; max-width:900px; font-size:clamp(20px,2vw,26px); font-weight:400; line-height:1.5; color:var(--text-dim); }
+.now-punch strong { color:var(--text); font-weight:800; }
+.now-cta { margin-top:26px; }
+@media (max-width:1024px) { .clock { padding:44px 24px 48px; } .clock-grid { grid-template-columns:1fr; } .clock-cta { padding:8px 0 0; } }
+@media (prefers-reduced-motion:reduce) { .clock-pulse { animation:none; } }
 /* ── Deadline band ── */
 .deadline-band { background:#0E0620; border-top:1px solid rgba(183,148,246,.18); border-bottom:1px solid rgba(183,148,246,.18); padding:22px 48px; }
 .deadline-inner { display:flex; gap:28px 44px; align-items:center; flex-wrap:wrap; max-width:1200px; }
@@ -622,20 +666,33 @@ html { scroll-padding-top:96px; }
   </div>
 </section>
 
-<!-- DEADLINES (lead with the clock) -->
-<div class="deadline-band" id="deadlines" aria-label="Upcoming regulatory deadlines">
-  <div class="deadline-inner">
-    <div class="deadline-item">
-      <div class="deadline-date">Dec 2, 2026<span class="deadline-count" data-deadline="2026-12-02T00:00:00-05:00"></span></div>
-      <div class="deadline-text"><strong>EU AI Act, Art. 50:</strong> the grace period for machine-readable marking of AI-generated content ends.</div>
+<!-- THE CLOCK (urgency band, v2 Oct 26) -->
+<section class="clock" id="deadlines" aria-label="Regulatory deadlines for AI-generated content in advertising">
+  <div class="clock-inner">
+    <div class="clock-head">
+      <span class="clock-pulse" aria-hidden="true"></span>
+      <span class="clock-kicker">The clock is running</span>
     </div>
-    <div class="deadline-item">
-      <div class="deadline-date">Jan 1, 2027<span class="deadline-count" data-deadline="2027-01-01T00:00:00-08:00"></span></div>
-      <div class="deadline-text"><strong>California AI Transparency Act:</strong> large platforms must detect and display provenance, and may not knowingly strip it.</div>
+    <div class="clock-grid">
+      <div class="clock-item clock-hot">
+        <div class="clock-num"><span class="clock-days" data-deadline="2026-12-02T00:00:00-05:00">Dec&nbsp;2</span><span class="clock-unit" data-unit>days</span></div>
+        <div class="clock-tick" data-tick="2026-12-02T00:00:00-05:00" aria-hidden="true"></div>
+        <div class="clock-date">Until December 2, 2026</div>
+        <div class="clock-what"><strong>EU AI Act, Art. 50.</strong> The grace period ends for machine-readable marking of AI-generated content.</div>
+      </div>
+      <div class="clock-item">
+        <div class="clock-num"><span class="clock-days" data-deadline="2027-01-01T00:00:00-08:00">Jan&nbsp;1</span><span class="clock-unit" data-unit>days</span></div>
+        <div class="clock-date">Until January 1, 2027</div>
+        <div class="clock-what"><strong>California AI Transparency Act.</strong> Large platforms must detect and display provenance &mdash; and may not knowingly strip it.</div>
+      </div>
+      <div class="clock-cta">
+        <div class="clock-cta-t">Every ad with a real person&rsquo;s likeness in it needs an answer to <em>who&rsquo;s in it?</em></div>
+        <a href="#next" class="clock-btn">Get ahead of it &mdash; talk to HAND &rarr;</a>
+        <a href="#now" class="clock-sub">What the rules mean for ads &darr;</a>
+      </div>
     </div>
-    <a href="#now" class="deadline-link">What it means for ads &darr;</a>
   </div>
-</div>
+</section>
 
 <!-- CONSENT -->
 <div class="section white" id="consent">
@@ -660,7 +717,7 @@ html { scroll-padding-top:96px; }
       </div>
       <div class="verify-card">
         <h3>Representation is part of consent, not a workaround.</h3>
-        <p>Talent rarely act alone, and they shouldn&rsquo;t have to. Agents, managers, guilds, unions and leagues hold delegated authority as a contractual right of the people they represent &mdash; and that matters more than ever as consent-based licensing of name, image, likeness and voice grows more complex. The question isn&rsquo;t &ldquo;does HAND police consent?&rdquo; It&rsquo;s <em>&ldquo;who holds delegated authority, and is it on the record?&rdquo;</em></p>
+        <p>Talent rarely act alone, and they shouldn&rsquo;t have to. Agents, managers, guilds, unions and leagues hold delegated authority as a contractual right of the people they represent &mdash; and that matters more than ever as consent-based licensing of name, image, likeness and voice grows more complex. The question isn&rsquo;t &ldquo;does HAND police consent?&rdquo; It&rsquo;s <em>&ldquo;who holds delegated authority, and is it on the record?&rdquo;</em> That&rsquo;s why the organizations that represent talent aren&rsquo;t just gatekeepers to HAND &mdash; <strong>they&rsquo;re members.</strong></p>
       </div>
       <div class="verify-card">
         <h3>HAND mints the street address. The industry holds the keys.</h3>
@@ -706,11 +763,12 @@ html { scroll-padding-top:96px; }
     <h2 class="section-heading">The rules just changed.<br><span class="sky">For ads, specifically.</span></h2>
   </div>
   <div class="now-grid">
-    <div class="now-card reveal reveal-delay-1"><div class="now-k">European Union</div><div class="now-t">EU AI Act, Article 50</div><div class="now-b">The grace period for machine-readable marking of AI-generated content ends December 2, 2026.</div></div>
-    <div class="now-card reveal reveal-delay-2"><div class="now-k">California</div><div class="now-t">AI Transparency Act</div><div class="now-b">From January 1, 2027, large platforms must detect and display provenance data, and may not knowingly strip it.</div></div>
-    <div class="now-card reveal reveal-delay-3"><div class="now-k">New York</div><div class="now-t">Synthetic performers, disclosed</div><div class="now-b">In effect since June 9, 2026: ads that use an AI-generated synthetic performer must say so.</div></div>
+    <div class="now-card now-hot reveal reveal-delay-1"><div class="now-top"><div class="now-k">European Union</div><span class="now-chip chip-amber" data-chip="2026-12-02T00:00:00-05:00">Dec 2, 2026</span></div><div class="now-big">Dec 2</div><div class="now-t">EU AI Act, Article 50</div><div class="now-b">The grace period for machine-readable marking of AI-generated content ends December 2, 2026.</div></div>
+    <div class="now-card reveal reveal-delay-2"><div class="now-top"><div class="now-k">California</div><span class="now-chip chip-amber" data-chip="2027-01-01T00:00:00-08:00">Jan 1, 2027</span></div><div class="now-big">Jan 1</div><div class="now-t">AI Transparency Act</div><div class="now-b">From January 1, 2027, large platforms must detect and display provenance data, and may not knowingly strip it.</div></div>
+    <div class="now-card now-live reveal reveal-delay-3"><div class="now-top"><div class="now-k">New York</div><span class="now-chip chip-red">In effect</span></div><div class="now-big">Now</div><div class="now-t">Synthetic performers, disclosed</div><div class="now-b">In effect since June 9, 2026: ads that use an AI-generated synthetic performer must say so.</div></div>
   </div>
-  <p class="body-lead reveal" style="margin-top:32px; max-width:860px;">When an ad features a real person&rsquo;s licensed likeness rather than an invented one, the people buying, clearing and running it need a way to tell the difference. A consented, resolvable record of who that person is gives them one.</p>
+  <p class="now-punch reveal">When an ad features a real person&rsquo;s licensed likeness rather than an invented one, the people buying, clearing and running it need a way to tell the difference. <strong>A consented, resolvable record of who that person is gives them one.</strong></p>
+  <div class="now-cta reveal"><a href="#next" class="clock-btn">Talk to HAND before Dec 2 &rarr;</a></div>
 </div>
 
 <!-- NEXT PROOF: THE AD CALL -->
@@ -730,7 +788,7 @@ html { scroll-padding-top:96px; }
 <div class="membership" id="next">
   <div class="reveal">
     <h2 class="membership-heading">If your company works with talent or advertising,<br><em>talk to us.</em></h2>
-    <p class="membership-sub">Brands, agencies, ad-tech platforms, measurement companies and publishers. HAND is a B2B standards body: lookup is always free, and membership is how you shape the standard.</p>
+    <p class="membership-sub">Brands, ad agencies, ad-tech platforms, measurement companies and publishers &mdash; and the talent agencies, management companies, guilds, unions and leagues that hold delegated authority for the people in the ads. HAND is a B2B standards body: lookup is always free, and membership is how you shape the standard.</p>
     <div class="share-row">
       <a href="/#join" class="btn-ghost-dark" style="background:#fff; color:var(--purple); border-color:#fff; font-weight:700;">Join HAND &rarr;</a>
       <a href="https://registry.hand-id.org" target="_blank" rel="noopener" class="btn-ghost-dark">Find a HAND ID &#8599;</a>
@@ -824,14 +882,32 @@ html { scroll-padding-top:96px; }
   revealEls.forEach(el => observer.observe(el));
 </script>
 <script>
-// Days-left counter for the deadline band; disappears once a date has passed.
+// The clock: big day counts, a live ticking countdown on the nearest deadline, and status chips.
 (function () {
-  document.querySelectorAll('.deadline-count[data-deadline]').forEach(function (el) {
-    var d = Math.ceil((new Date(el.getAttribute('data-deadline')) - new Date()) / 86400000);
-    if (d > 1) el.textContent = '\u00b7 ' + d + ' days';
-    else if (d === 1) el.textContent = '\u00b7 tomorrow';
-    else if (d === 0) el.textContent = '\u00b7 today';
+  function left(iso) { return new Date(iso) - new Date(); }
+  document.querySelectorAll('.clock-days[data-deadline]').forEach(function (el) {
+    var ms = left(el.getAttribute('data-deadline')), unit = el.parentNode.querySelector('[data-unit]');
+    if (ms > 0) { var d = Math.floor(ms / 86400000); el.textContent = d; if (unit) unit.textContent = d === 1 ? 'day' : 'days'; }
+    else { el.textContent = 'Now'; if (unit) unit.textContent = 'in effect'; }
   });
+  document.querySelectorAll('.now-chip[data-chip]').forEach(function (el) {
+    var ms = left(el.getAttribute('data-chip'));
+    if (ms > 0) el.textContent = Math.floor(ms / 86400000) + ' days left';
+    else { el.textContent = 'In effect'; el.className = 'now-chip chip-red'; }
+  });
+  var tick = document.querySelector('.clock-tick[data-tick]');
+  if (tick && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var end = new Date(tick.getAttribute('data-tick'));
+    var pad = function (n) { return String(n).padStart(2, '0'); };
+    var draw = function () {
+      var s = Math.floor((end - new Date()) / 1000);
+      if (s <= 0) { tick.textContent = ''; return; }
+      var d = Math.floor(s / 86400); s -= d * 86400;
+      var h = Math.floor(s / 3600); s -= h * 3600; var m = Math.floor(s / 60); s -= m * 60;
+      tick.textContent = d + 'd ' + pad(h) + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+    };
+    draw(); setInterval(draw, 1000);
+  }
 })();
 </script>
 <script src="/js/nav.js" defer></script>
