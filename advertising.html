@@ -502,11 +502,28 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 }
 </script>
 <style>
-/* Nav fit (Oct 26, 2026): "For Startups" added. The tagline hides first; below 1240px the hamburger menu takes over. */
-@media (max-width:1560px) { .nav-tagline { display:none; } }
-.nav-links { gap:clamp(8px,1.15vw,22px); }
-.nav-links a { font-size:clamp(12px,1.05vw,15px); }
-@media (max-width:1240px) { nav { padding:0 24px; } .nav-links { display:none; } .nav-hamburger { display:flex; } }
+/* ── NAV v2: grouped dropdowns (Oct 26, 2026) ── */
+.nav-links { gap:clamp(10px,1.6vw,26px); }
+.nav-links .nav-top, .nav-links .dd-btn { font-family:inherit; font-size:15px; font-weight:500; color:var(--text-dim,#666); background:none; border:0; padding:8px 0; cursor:pointer; letter-spacing:.02em; white-space:nowrap; text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:color .2s; }
+.nav-links .nav-top:hover, .nav-links .dd-btn:hover, .nav-links .dd:hover .dd-btn, .nav-links .dd.open .dd-btn, .nav-links .is-current { color:var(--purple,#4D00AE); }
+.nav-links .is-current { font-weight:700; }
+.dd-caret { font-size:10px; opacity:.7; transition:transform .2s; }
+.dd:hover .dd-caret, .dd.open .dd-caret { transform:rotate(180deg); }
+.nav-links .dd { position:relative; }
+.dd-menu { display:none; position:absolute; top:100%; left:-14px; min-width:250px; list-style:none; margin:0; padding:10px 0 8px; z-index:300; }
+.dd-menu::before { content:''; position:absolute; inset:8px 0 0 0; background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:10px; box-shadow:0 18px 40px rgba(0,0,0,.14); z-index:-1; }
+.dd:hover .dd-menu, .dd:focus-within .dd-menu, .dd.open .dd-menu { display:block; }
+.dd-menu li a { display:block; padding:9px 18px; font-size:14px !important; font-weight:500; color:var(--text,#111) !important; text-decoration:none; white-space:nowrap; }
+.dd-menu li:first-child a { margin-top:8px; }
+.dd-menu li a:hover, .dd-menu li a:focus-visible { background:rgba(77,0,174,.07); color:var(--purple,#4D00AE) !important; }
+.nav-links .nav-startup { font-size:15px !important; font-weight:700 !important; color:#B45309 !important; text-decoration:none; white-space:nowrap; }
+.nav-links .nav-startup:hover { color:#92400E !important; text-decoration:underline; }
+.nav-mobile-menu { max-height:calc(100vh - 64px); overflow-y:auto; }
+.nav-mobile-menu .mm-group { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-sub,#999); padding:18px 0 4px; }
+.nav-mobile-menu ul li a.nav-startup { color:#B45309 !important; font-weight:700; }
+html { scroll-padding-top:96px; }
+@media (max-width:1320px) { .nav-tagline { display:none; } }
+@media (max-width:1100px) { nav { padding:0 24px !important; } .nav-links { display:none !important; } .nav-hamburger { display:flex !important; } }
 </style>
 </head>
 <body>
@@ -518,17 +535,39 @@ footer { background:var(--purple); padding:56px 48px 40px; }
     <span class="nav-tagline">The Universal Talent Identifier</span>
   </a>
   <ul class="nav-links">
-    <li><a href="/#what">What is HAND?</a></li>
-    <li><a href="/#why-now">Why Now</a></li>
-    <li><a href="architecture.html">The Standard</a></li>
-    <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
-    <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
-    <li><a href="/advertising" style="color:var(--purple); font-weight:700;">Who&rsquo;s in the Ad?</a></li>
-    <li><a href="/#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
-    <li><a href="/#board">Leadership</a></li>
-    <li><a href="supplemental.html">Traction</a></li>
-    <li><a href="/#membership" class="nav-secondary">Join HAND</a></li>
-    <li><a href="https://registry.hand-id.org" class="nav-cta">Find a HAND ID</a></li>
+    <li class="dd"><button class="dd-btn nav-top" type="button" aria-expanded="false" aria-haspopup="true">About <span class="dd-caret" aria-hidden="true">&#9662;</span></button>
+      <ul class="dd-menu">
+        <li><a href="/#what">What is HAND?</a></li>
+        <li><a href="/#why-now">Why Now</a></li>
+        <li><a href="/#board">Leadership</a></li>
+        <li><a href="/creator-id-manifesto">Manifesto</a></li>
+        <li><a href="/supplemental">Traction &amp; Partners</a></li>
+      </ul>
+    </li>
+    <li class="dd"><button class="dd-btn nav-top" type="button" aria-expanded="false" aria-haspopup="true">The Standard <span class="dd-caret" aria-hidden="true">&#9662;</span></button>
+      <ul class="dd-menu">
+        <li><a href="/architecture">How HAND IDs work</a></li>
+        <li><a href="/#cbn">Citation-Backed Notability&#8482;</a></li>
+        <li><a href="https://registry.hand-id.org" target="_blank" rel="noopener">Search the registry &#8599;</a></li>
+      </ul>
+    </li>
+    <li class="dd"><button class="dd-btn nav-top" type="button" aria-expanded="false" aria-haspopup="true">Proof <span class="dd-caret" aria-hidden="true">&#9662;</span></button>
+      <ul class="dd-menu">
+        <li><a href="/customer-registry#demo">&#9654; Customer Registry demo</a></li>
+        <li><a href="/ibc-2024">&#9654; IBC 2024</a></li>
+        <li><a href="/#registry">Recent milestones</a></li>
+      </ul>
+    </li>
+    <li><a href="/advertising" class="nav-top is-current" aria-current="page">Who&rsquo;s in the Ad?</a></li>
+    <li class="dd"><button class="dd-btn nav-top" type="button" aria-expanded="false" aria-haspopup="true">Membership <span class="dd-caret" aria-hidden="true">&#9662;</span></button>
+      <ul class="dd-menu">
+        <li><a href="/#startup">For Startups &middot; $2,500/yr</a></li>
+        <li><a href="/#rates">Tiers &amp; rates</a></li>
+        <li><a href="/#join">Join HAND</a></li>
+      </ul>
+    </li>
+    <li><a href="/#startup" class="nav-startup">For Startups</a></li>
+    <li><a href="https://registry.hand-id.org" class="nav-cta" target="_blank" rel="noopener">Find a HAND ID</a></li>
   </ul>
   <button class="nav-hamburger" id="hand-hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -536,17 +575,27 @@ footer { background:var(--purple); padding:56px 48px 40px; }
 </nav>
 <div class="nav-mobile-menu" id="hand-mobile-menu">
   <ul>
+    <li><a href="/#startup" class="nav-startup">For Startups &middot; $2,500/yr</a></li>
+    <li class="mm-group">About</li>
     <li><a href="/#what">What is HAND?</a></li>
     <li><a href="/#why-now">Why Now</a></li>
-    <li><a href="architecture.html">The Standard</a></li>
-    <li><a href="https://hand-id.org/creator-id-manifesto">Manifesto</a></li>
-    <li><a href="/ibc-2024">IBC 2024 &#9654;</a></li>
-    <li><a href="/advertising">Who&rsquo;s in the Ad?</a></li>
-    <li><a href="/#startup" class="nav-startup" style="color:#B45309; font-weight:700;">For Startups</a></li>
     <li><a href="/#board">Leadership</a></li>
-    <li><a href="supplemental.html">Traction</a></li>
-    <li><a href="/#membership">Join HAND</a></li>
-    <li><a href="https://registry.hand-id.org" class="nav-cta">Find a HAND ID</a></li>
+    <li><a href="/creator-id-manifesto">Manifesto</a></li>
+    <li><a href="/supplemental">Traction &amp; Partners</a></li>
+    <li class="mm-group">The Standard</li>
+    <li><a href="/architecture">How HAND IDs work</a></li>
+    <li><a href="/#cbn">Citation-Backed Notability&#8482;</a></li>
+    <li><a href="https://registry.hand-id.org" target="_blank" rel="noopener">Search the registry &#8599;</a></li>
+    <li class="mm-group">Proof</li>
+    <li><a href="/customer-registry#demo">&#9654; Customer Registry demo</a></li>
+    <li><a href="/ibc-2024">&#9654; IBC 2024</a></li>
+    <li><a href="/#registry">Recent milestones</a></li>
+    <li><a href="/advertising">Who&rsquo;s in the Ad?</a></li>
+    <li class="mm-group">Membership</li>
+    <li><a href="/#startup">For Startups &middot; $2,500/yr</a></li>
+    <li><a href="/#rates">Tiers &amp; rates</a></li>
+    <li><a href="/#join">Join HAND</a></li>
+    <li><a href="https://registry.hand-id.org" class="nav-cta" target="_blank" rel="noopener">Find a HAND ID</a></li>
   </ul>
 </div>
 
@@ -785,5 +834,6 @@ footer { background:var(--purple); padding:56px 48px 40px; }
   });
 })();
 </script>
+<script src="/js/nav.js" defer></script>
 </body>
 </html>
