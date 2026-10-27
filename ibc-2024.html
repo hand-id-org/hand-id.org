@@ -498,6 +498,22 @@ html { scroll-padding-top:96px; }
 @media (max-width:1320px) { .nav-tagline { display:none; } }
 @media (max-width:1100px) { nav { padding:0 24px !important; } .nav-links { display:none !important; } .nav-hamburger { display:flex !important; } }
 </style>
+<style>
+/* ── Evan quote card (Oct 26) ── */
+.evan-card { position:relative; max-width:960px; margin:0; background:#fff; border:1px solid var(--border,rgba(0,0,0,.08)); border-left:6px solid var(--purple,#4D00AE); border-radius:16px; padding:64px 48px 32px 56px; box-shadow:0 24px 60px rgba(77,0,174,.10), 0 2px 6px rgba(0,0,0,.04); overflow:hidden; }
+.evan-card::after { content:''; position:absolute; right:-80px; top:-80px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(77,0,174,.08), transparent 70%); pointer-events:none; }
+.evan-mark { position:absolute; left:48px; top:-6px; font-size:110px; line-height:1; font-weight:800; color:var(--purple,#4D00AE); opacity:.18; font-family:Georgia,serif; }
+.evan-quote { position:relative; margin:0 0 28px; font-size:clamp(20px,2.4vw,28px); font-weight:700; line-height:1.42; letter-spacing:-.01em; color:var(--text,#111); }
+.evan-by { display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding-top:22px; border-top:1px solid var(--border,rgba(0,0,0,.08)); }
+.evan-avatar { width:48px; height:48px; border-radius:50%; background:var(--purple,#4D00AE); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; letter-spacing:.02em; flex-shrink:0; }
+.evan-who { flex:1; min-width:220px; }
+.evan-name { font-size:17px; font-weight:800; color:var(--text,#111); }
+.evan-role { font-size:14px; color:var(--text-dim,#666); margin-top:2px; line-height:1.5; }
+.evan-id { display:inline-flex; align-items:center; gap:8px; font-family:'DM Mono',monospace; font-size:12px; color:var(--purple,#4D00AE); background:rgba(77,0,174,.06); border:1px solid rgba(77,0,174,.22); border-radius:100px; padding:7px 14px; text-decoration:none; white-space:nowrap; transition:background .2s; }
+.evan-id span { font-weight:700; letter-spacing:.08em; }
+.evan-id:hover { background:rgba(77,0,174,.12); }
+@media (max-width:640px) { .evan-card { padding:56px 22px 24px 30px; } .evan-mark { left:24px; top:-4px; font-size:90px; } }
+</style>
 </head>
 <body>
 
@@ -626,10 +642,18 @@ html { scroll-padding-top:96px; }
 
 <!-- EVAN IN HIS OWN WORDS -->
 <div class="section white" id="evan" style="padding-top:64px; padding-bottom:64px;">
-  <blockquote class="reveal" style="max-width:900px; margin:0; border-left:4px solid var(--purple); padding:8px 0 8px 28px;">
-    <p style="font-size:clamp(20px,2.4vw,28px); font-weight:700; line-height:1.4; letter-spacing:-.01em; margin-bottom:16px;">&ldquo;To have a digital replica made of myself, which I own, is amazing. I&rsquo;m a performer and I&rsquo;m an artist, and we&rsquo;re putting our likeness out there. Somebody is making it work for us &mdash; but it&rsquo;s still our image at the end of the day.&rdquo;</p>
-    <footer style="font-size:15px; color:var(--text-dim);"><strong style="color:var(--text);">Evan Shafran</strong> &middot; actor, comedian, rapper &middot; SAG-AFTRA member &middot; from the IBC 2024 behind-the-scenes video</footer>
-  </blockquote>
+  <figure class="evan-card reveal">
+    <div class="evan-mark" aria-hidden="true">&ldquo;</div>
+    <blockquote class="evan-quote">To have a digital replica made of myself, which I own, is amazing. I&rsquo;m a performer and I&rsquo;m an artist, and we&rsquo;re putting our likeness out there. Somebody is making it work for us &mdash; but it&rsquo;s still our image at the end of the day.</blockquote>
+    <figcaption class="evan-by">
+      <div class="evan-avatar" aria-hidden="true">ES</div>
+      <div class="evan-who">
+        <div class="evan-name">Evan Shafran</div>
+        <div class="evan-role">Actor, comedian, rapper &middot; SAG-AFTRA member &middot; from the IBC 2024 behind-the-scenes video</div>
+      </div>
+      <a class="evan-id" href="https://registry.hand-id.org/#objects/10.23/59BB-1EA7-1BAB-413B-37DC" target="_blank" rel="noopener"><span>HAND ID</span>10.23/59BB&hellip;37DC &#8599;</a>
+    </figcaption>
+  </figure>
 </div>
 
 <!-- LIVE GRAPH -->
